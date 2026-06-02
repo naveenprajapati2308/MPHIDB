@@ -14,8 +14,16 @@ public class AddKhasra extends  AuthorityLogin{
 	public String password;
 	public String Captcha;
 
-	@Test(dependsOnMethods = { "TC_003" })
-	public void TC_004() {
+	@Test(dependsOnMethods = { "TC_004" })
+	public void TC_005() {
+
+		LandManagement land = new LandManagement(AuthorityLogin.driver);
+		Create_land createLand = new Create_land(AuthorityLogin.driver);
+
+
+	}
+	@Test(dependsOnMethods = { "TC_005" })
+	public void TC_006() {
 
 		LandManagement land = new LandManagement(AuthorityLogin.driver);
 		Create_land createLand = new Create_land(AuthorityLogin.driver);
