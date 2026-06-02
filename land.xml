@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Land Management Suite">
+<listeners>
+    
+    <listener class-name="ReportManager.Master_extent_report"/>
+    
+    
+</listeners>
+
+	<test name="land Management Tests" thread-count="1">
+
+		<classes>
+
+			<class name="testCases.LandModule.login" />
+			<class name="testCases.LandModule.landCreation" />
+			
+
+
+		</classes>
+
+	</test>
+
+</suite>
