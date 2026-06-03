@@ -646,17 +646,76 @@
         }, 500);
     }
 
+    function openDashboardByDefault() {
+        var dashboardView = document.querySelector('.dashboard-view');
+
+        if (!dashboardView)
+            return;
+
+        if (typeof window.toggleView === 'function') {
+            window.toggleView('dashboard-view');
+        } else {
+            document.querySelectorAll('.view').forEach(function(view) {
+                view.style.display = view.classList.contains('dashboard-view') ? '' : 'none';
+            });
+
+            document.querySelectorAll("[id^='nav-']").forEach(function(nav) {
+                nav.classList.remove('active');
+            });
+
+            var dashboardNav = document.getElementById('nav-dashboard');
+            if (dashboardNav)
+                dashboardNav.classList.add('active');
+        }
+    }
+
+    function moveDashboardNavToTop() {
+        var dashboardNav = document.getElementById('nav-dashboard');
+        var menu = document.querySelector('.side-nav-menu');
+
+        if (!dashboardNav || !menu)
+            return;
+
+        var dashboardItem = dashboardNav.closest('li');
+        if (dashboardItem && menu.firstElementChild !== dashboardItem)
+            menu.insertBefore(dashboardItem, menu.firstElementChild);
+    }
+
+    function releaseDefaultViewLockOnUserClick() {
+        var menu = document.querySelector('.side-nav-menu');
+
+        if (!menu || menu.getAttribute('data-default-lock-listener') === 'true')
+            return;
+
+        menu.setAttribute('data-default-lock-listener', 'true');
+        menu.addEventListener('click', function() {
+            document.body.classList.add('ext-view-ready');
+        }, true);
+    }
+
     // ================= LOAD =================
 
     buildNavbar();
 
     createDashboard();
 
+    moveDashboardNavToTop();
+
+    releaseDefaultViewLockOnUserClick();
+
+    openDashboardByDefault();
+
     document.addEventListener('DOMContentLoaded', function() {
 
         buildNavbar();
 
         createDashboard();
+
+        moveDashboardNavToTop();
+
+        releaseDefaultViewLockOnUserClick();
+
+        openDashboardByDefault();
 
     });
 
@@ -665,6 +724,14 @@
         setTimeout(buildNavbar, 300);
 
         setTimeout(createDashboard, 300);
+
+        setTimeout(moveDashboardNavToTop, 300);
+
+        setTimeout(releaseDefaultViewLockOnUserClick, 300);
+
+        setTimeout(openDashboardByDefault, 350);
+
+        setTimeout(openDashboardByDefault, 900);
 
     });
 

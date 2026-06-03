@@ -4,6 +4,25 @@ body {
 	overflow-x: hidden !important;
 }
 
+/* ================= DEFAULT VIEW ================= */
+body:not(.ext-view-ready) .test-view,
+body:not(.ext-view-ready) .category-view {
+	display: none !important;
+}
+
+body:not(.ext-view-ready) .dashboard-view {
+	display: block !important;
+}
+
+.side-nav .side-nav-inner .side-nav-menu {
+	display: flex !important;
+	flex-direction: column !important;
+}
+
+.side-nav .side-nav-inner .side-nav-menu li:has(#nav-dashboard) {
+	order: -1;
+}
+
 /* ================= NAVBAR ================= */
 .navbar {
 	position: fixed !important;
