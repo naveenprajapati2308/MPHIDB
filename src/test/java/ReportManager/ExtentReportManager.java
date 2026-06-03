@@ -1,13 +1,18 @@
 package ReportManager;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.openqa.selenium.WebDriver;
-//import org.testng.ITestContext;
-import org.testng.ITestListener;
-import org.testng.ITestResult;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
+import org.testng.ITestListener;
+import org.testng.ITestResult;
 
-import com.aventstack.extentreports.*;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
@@ -19,15 +24,22 @@ public class ExtentReportManager implements ITestListener, ISuiteListener {
 	public ExtentReports extent;
 	public ExtentTest test;
 	public WebDriver driver;
+	public LocalDateTime suiteStartTime;
+	public LocalDateTime suiteEndTime;
+	private String logoDataUrl = "";
+	private String execDate = "";
+	private String execTime = "";
 
 	@Override
 	public void onStart(ISuite suite) {
 
-		sparkReporter = new ExtentSparkReporter(System.getProperty("user.dir") + "/reports/MasterReport.html");
+		sparkReporter = new ExtentSparkReporter(System.getProperty("user.dir") + "/reports/TestRunnerReport.html");
 
 		sparkReporter.config().setDocumentTitle("Automation Report");
 		sparkReporter.config().setReportName("MPHIDB Test Result");
 		sparkReporter.config().setTheme(Theme.DARK);
+
+		suiteStartTime = LocalDateTime.now();
 
 		// ================= LOGO =================
 		String logoBase64 = "";
@@ -54,18 +66,27 @@ public class ExtentReportManager implements ITestListener, ISuiteListener {
 			}
 		}
 
-		String logoDataUrl = logoBase64.isEmpty() ? "" : "data:" + logoMime + ";base64," + logoBase64;
+		logoDataUrl = logoBase64.isEmpty() ? "" : "data:" + logoMime + ";base64," + logoBase64;
 
-		String execDate = java.time.LocalDate.now().toString();
-		String execTime = java.time.LocalTime.now().withNano(0).toString();
+		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
+
+		execDate = suiteStartTime.format(dateFormatter);
+		execTime = suiteStartTime.format(timeFormatter);
 
 		// ================= CSS imported from the external files =================
 
 		try {
 
 			String cssPath = System.getProperty("user.dir") + "/resources/reportAssets/custom.css";
+			String runnerCssPath = System.getProperty("user.dir") + "/resources/reportAssets/extent-runner.css";
 
 			String customCss = new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(cssPath)));
+
+			if (java.nio.file.Files.exists(java.nio.file.Paths.get(runnerCssPath))) {
+				customCss = customCss + System.lineSeparator()
+						+ new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(runnerCssPath)));
+			}
 
 			sparkReporter.config().setCss(customCss);
 
@@ -79,8 +100,14 @@ public class ExtentReportManager implements ITestListener, ISuiteListener {
 		try {
 
 			String jsPath = System.getProperty("user.dir") + "/resources/reportAssets/custom.js";
+			String runnerJsPath = System.getProperty("user.dir") + "/resources/reportAssets/extent-runner.js";
 
 			String customJs = new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(jsPath)));
+
+			if (java.nio.file.Files.exists(java.nio.file.Paths.get(runnerJsPath))) {
+				customJs = customJs + System.lineSeparator()
+						+ new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(runnerJsPath)));
+			}
 
 			// ================= DYNAMIC VALUES =================
 
@@ -90,15 +117,9 @@ public class ExtentReportManager implements ITestListener, ISuiteListener {
 
 			customJs = customJs.replace("__START_TIME__", execTime);
 
-			customJs = customJs.replace("__END_DATE__", "Running");
-
-			customJs = customJs.replace("__END_TIME__", "Running");
-
-			customJs = customJs.replace("__EXEC_DURATION__", "Running");
-
 			customJs = customJs.replace("__TESTER__", "Naveen Prajapati");
 
-			customJs = customJs.replace("__VERSION__", "v1.0.0");
+			customJs = customJs.replace("__VERSION__", "v1.2.0");
 
 			sparkReporter.config().setJs(customJs);
 
@@ -199,6 +220,53 @@ public class ExtentReportManager implements ITestListener, ISuiteListener {
 	@Override
 	public void onFinish(ISuite suite) {
 
+		suiteEndTime = LocalDateTime.now();
+
+		DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
+
+		String endDate = suiteEndTime.format(dateFormatter);
+		String endTime = suiteEndTime.format(timeFormatter);
+
+		Duration duration = Duration.between(suiteStartTime, suiteEndTime);
+		long totalSeconds = duration.getSeconds();
+		long hours = totalSeconds / 3600;
+		long minutes = (totalSeconds % 3600) / 60;
+		long seconds = totalSeconds % 60;
+		String executionDuration = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+
+		extent.setSystemInfo("End Date", endDate);
+		extent.setSystemInfo("End Time", endTime);
+		extent.setSystemInfo("Execution Duration", executionDuration);
+
+		try {
+
+			String jsPath = System.getProperty("user.dir") + "/resources/reportAssets/custom.js";
+			String runnerJsPath = System.getProperty("user.dir") + "/resources/reportAssets/extent-runner.js";
+
+			String customJs = new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(jsPath)));
+
+			if (java.nio.file.Files.exists(java.nio.file.Paths.get(runnerJsPath))) {
+				customJs = customJs + System.lineSeparator()
+						+ new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(runnerJsPath)));
+			}
+
+			customJs = customJs.replace("__LOGO__", logoDataUrl);
+			customJs = customJs.replace("__EXEC_DATE__", execDate);
+			customJs = customJs.replace("__START_TIME__", execTime);
+			customJs = customJs.replace("__TESTER__", "Naveen Prajapati");
+			customJs = customJs.replace("__VERSION__", "v1.2.0");
+			customJs = customJs.replace("__END_DATE__", endDate);
+			customJs = customJs.replace("__END_TIME__", endTime);
+			customJs = customJs.replace("__EXEC_DURATION__", executionDuration);
+
+			sparkReporter.config().setJs(customJs);
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+		}
+
 		extent.flush();
 
 		if (!Boolean.parseBoolean(System.getProperty("openReport", "true"))) {
@@ -208,7 +276,7 @@ public class ExtentReportManager implements ITestListener, ISuiteListener {
 		try {
 
 			java.awt.Desktop.getDesktop()
-					.browse(new java.io.File(System.getProperty("user.dir") + "/reports/MasterReport.html").toURI());
+					.browse(new java.io.File(System.getProperty("user.dir") + "/reports/TestRunnerReport.html").toURI());
 
 		} catch (Exception e) {
 

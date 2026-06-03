@@ -90,8 +90,14 @@ public class Master_extent_report implements ITestListener, ISuiteListener {
 		try {
 
 			String cssPath = System.getProperty("user.dir") + "/resources/reportAssets/custom.css";
+			String runnerCssPath = System.getProperty("user.dir") + "/resources/reportAssets/extent-runner.css";
 
 			String customCss = new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(cssPath)));
+
+			if (java.nio.file.Files.exists(java.nio.file.Paths.get(runnerCssPath))) {
+				customCss = customCss + System.lineSeparator()
+						+ new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(runnerCssPath)));
+			}
 
 			sparkReporter.config().setCss(customCss);
 
@@ -105,8 +111,14 @@ public class Master_extent_report implements ITestListener, ISuiteListener {
 		try {
 
 			String jsPath = System.getProperty("user.dir") + "/resources/reportAssets/custom.js";
+			String runnerJsPath = System.getProperty("user.dir") + "/resources/reportAssets/extent-runner.js";
 
 			String customJs = new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(jsPath)));
+
+			if (java.nio.file.Files.exists(java.nio.file.Paths.get(runnerJsPath))) {
+				customJs = customJs + System.lineSeparator()
+						+ new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(runnerJsPath)));
+			}
 
 			// ================= DYNAMIC VALUES =================
 
@@ -260,8 +272,14 @@ public class Master_extent_report implements ITestListener, ISuiteListener {
 		try {
 
 			String jsPath = System.getProperty("user.dir") + "/resources/reportAssets/custom.js";
+			String runnerJsPath = System.getProperty("user.dir") + "/resources/reportAssets/extent-runner.js";
 
 			String customJs = new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(jsPath)));
+
+			if (java.nio.file.Files.exists(java.nio.file.Paths.get(runnerJsPath))) {
+				customJs = customJs + System.lineSeparator()
+						+ new String(java.nio.file.Files.readAllBytes(java.nio.file.Paths.get(runnerJsPath)));
+			}
 
 		
 			

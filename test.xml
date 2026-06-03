@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Button Test Suite" parallel="tests" thread-count="2">
+
+    <listeners>
+        <listener class-name="ReportManager.ExtentReportManager"/>
+    </listeners>
+
+    <test name="Land Module Tests">
+        <classes>
+            <class name="testCases.LandModule.login"/>
+            <class name="testCases.LandModule.landCreation"/>
+        </classes>
+    </test>
+
+    <test name="Architect Empanelment Tests">
+        <classes>
+            <class name="testCases.ArchitectEmpanelment.TC_001_LaunchUrl"/>
+            <class name="testCases.ArchitectEmpanelment.TC_002_SignUp"/>
+            <class name="testCases.ArchitectEmpanelment.TC_003_SignIn"/>
+        </classes>
+    </test>
+
+</suite>

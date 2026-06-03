@@ -158,16 +158,16 @@
         // ================= COUNTS =================
 
         var totalTests =
-            document.querySelectorAll('.test-item').length;
+            document.querySelectorAll('.test-item[status][tag]').length;
 
         var passedTests =
-            document.querySelectorAll(".test-item[status='pass']").length;
+            document.querySelectorAll(".test-item[status='pass'][tag]").length;
 
         var failedTests =
-            document.querySelectorAll(".test-item[status='fail']").length;
+            document.querySelectorAll(".test-item[status='fail'][tag]").length;
 
         var skippedTests =
-            document.querySelectorAll(".test-item[status='skip']").length;
+            document.querySelectorAll(".test-item[status='skip'][tag]").length;
 
         var accuracy =
             totalTests > 0
@@ -178,7 +178,7 @@
 
         var moduleData = {};
 
-        document.querySelectorAll('.test-item').forEach(function(test) {
+        document.querySelectorAll('.test-item[status][tag]').forEach(function(test) {
 
             var module =
                 test.getAttribute('tag') || 'Unknown';
@@ -478,22 +478,22 @@
             // ================= COUNTS =================
 
             var totalTests =
-                document.querySelectorAll('.test-item').length;
+                document.querySelectorAll('.test-item[status][tag]').length;
 
             var passedTests =
-                document.querySelectorAll(".test-item[status='pass']").length;
+                document.querySelectorAll(".test-item[status='pass'][tag]").length;
 
             var failedTests =
-                document.querySelectorAll(".test-item[status='fail']").length;
+                document.querySelectorAll(".test-item[status='fail'][tag]").length;
 
             var skippedTests =
-                document.querySelectorAll(".test-item[status='skip']").length;
+                document.querySelectorAll(".test-item[status='skip'][tag]").length;
 
             // ================= MODULE DATA =================
 
             var moduleData = {};
 
-            document.querySelectorAll('.test-item').forEach(function(test) {
+            document.querySelectorAll('.test-item[status][tag]').forEach(function(test) {
 
                 var module =
                     test.getAttribute('tag') || 'Unknown';

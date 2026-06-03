@@ -1,0 +1,58 @@
+.ext-runner-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	margin-bottom: 18px;
+}
+
+.ext-runner-header .section-title {
+	margin-bottom: 0 !important;
+}
+
+#ext-runner-actions {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 10px;
+}
+
+.ext-run-btn {
+	border: 1px solid rgba(96, 165, 250, 0.45);
+	background: #123a70;
+	color: #ffffff;
+	min-height: 36px;
+	padding: 0 14px;
+	border-radius: 8px;
+	font-size: 12px;
+	font-weight: 700;
+	cursor: pointer;
+	white-space: nowrap;
+	transition: 0.2s ease;
+}
+
+.ext-run-btn:hover {
+	background: #1d5fb0;
+	border-color: #60a5fa;
+	transform: translateY(-1px);
+}
+
+.ext-run-btn.primary {
+	background: #00a86b;
+	border-color: #23d18b;
+}
+
+.ext-run-btn.primary:hover {
+	background: #0bc47f;
+}
+
+.ext-run-btn.small {
+	min-height: 32px;
+	padding: 0 12px;
+}
+
+.ext-runner-th,
+.ext-runner-td {
+	text-align: center;
+	width: 140px;
+}

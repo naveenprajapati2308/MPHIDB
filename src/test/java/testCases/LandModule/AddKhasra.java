@@ -3,8 +3,6 @@ package testCases.LandModule;
 
 import org.testng.annotations.Test;
 
-import pageObjects.LandModule.Create_land;
-
 import pageObjects.LandModule.LandManagement;
 import testBase.AuthorityLogin;
 
@@ -18,7 +16,9 @@ public class AddKhasra extends  AuthorityLogin{
 	public void TC_005() {
 
 		LandManagement land = new LandManagement(AuthorityLogin.driver);
-		Create_land createLand = new Create_land(AuthorityLogin.driver);
+		
+		land.clickEditButton(null);
+		
 
 
 	}
@@ -26,7 +26,7 @@ public class AddKhasra extends  AuthorityLogin{
 	public void TC_006() {
 
 		LandManagement land = new LandManagement(AuthorityLogin.driver);
-		Create_land createLand = new Create_land(AuthorityLogin.driver);
+		
 
 
 	}
