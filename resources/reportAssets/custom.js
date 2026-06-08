@@ -692,12 +692,24 @@
             document.body.classList.add('ext-view-ready');
         }, true);
     }
+	function addTooltips() {
 
+	    document.getElementById("nav-dashboard")
+	        ?.setAttribute("title", "Dashboard");
+
+	    document.getElementById("nav-test")
+	        ?.setAttribute("title", "Tests");
+
+	    document.getElementById("nav-category")
+	        ?.setAttribute("title", "Categories");
+	}
     // ================= LOAD =================
 
     buildNavbar();
 
     createDashboard();
+
+	addTooltips();
 
     moveDashboardNavToTop();
 
@@ -710,6 +722,8 @@
         buildNavbar();
 
         createDashboard();
+
+		addTooltips()
 
         moveDashboardNavToTop();
 
@@ -724,6 +738,8 @@
         setTimeout(buildNavbar, 300);
 
         setTimeout(createDashboard, 300);
+
+        
 
         setTimeout(moveDashboardNavToTop, 300);
 
