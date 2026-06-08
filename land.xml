@@ -14,7 +14,9 @@
 		<classes>
 
 			<class name="testCases.LandModule.login" />
-			<class name="testCases.LandModule.landCreation" />
+		
+			<class name="testCases.LandModule.AddKhasra" />
+			
 			
 
 

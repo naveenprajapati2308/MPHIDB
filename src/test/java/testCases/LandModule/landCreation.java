@@ -72,11 +72,9 @@ public class landCreation extends AuthorityLogin {
 		//
 
 		createLand.uploadPaymentReceipt(Payment_Receipt);
-		System.out.println("Code Run till here ");
+		
 
 		createLand.clickCreateButton();
-
-		System.out.println("Code Run till here after create  ");
 	}
 
 }

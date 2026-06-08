@@ -13,6 +13,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
 
+import utilities.ConfigUtils;
 import utilities.ElementUtils;
 import utilities.WaitUtils;
 
@@ -25,7 +26,8 @@ public class MPpmBASE {
 	
 	@BeforeClass
 	public void setup() throws IOException {
-		 
+		 ConfigUtils.loadPropertyFile("testData/config.properties");
+		 baseUrl = ConfigUtils.getPropertyData("MPPMCL_url");
 
 		ChromeOptions options = new ChromeOptions();
 
@@ -48,7 +50,7 @@ public class MPpmBASE {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 
-		driver.get("https://uat.mppmcl.com/eappqanew/login/");
+		driver.get(baseUrl);
 
 		WaitUtils.waitForPageLoad(driver);
 
@@ -60,7 +62,7 @@ public class MPpmBASE {
 	@BeforeMethod
 	public void loadHomePage() {
 
-		driver.get("https://uat.mppmcl.com/eappqanew/login/");
+		driver.get(baseUrl);
 
 
 		WaitUtils.waitForPageLoad(driver);

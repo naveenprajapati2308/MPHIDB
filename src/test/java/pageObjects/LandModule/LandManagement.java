@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import utilities.ClickUtils;
 
@@ -19,6 +20,13 @@ public class LandManagement extends DriverBase {
 	@FindBy(xpath = "//a[normalize-space()='Create Land ID']")
 	private WebElement CreateLandID;
 
+	@FindBy(xpath = "//input[@name='land_name']")
+	private WebElement txtLandName;
+	
+
+    @FindBy(xpath="//button[normalize-space()='Search']")
+    private WebElement SearchBtn;
+	
 	// ================= Actions (Smart Clicks) =================
 
 	public void CreateLandId() {
@@ -33,6 +41,16 @@ public class LandManagement extends DriverBase {
 
 		ClickUtils.smartClick(driver, editButton);
 	}
+	
+	
+//	public void clickEditButton(String landName) {
+//
+//	    
+//	    WebElement editBtn = wait.until(
+//	            ExpectedConditions.elementToBeClickable(By.xpath("//tr[td[contains(text(),'" + landName + "')]]//a[.//i[@data-tooltip-content='Update Land Details']]")));
+//
+//	    ClickUtils.smartClick(driver, editBtn);
+//	}
 
 	public void clickDetailsButton(String landName) {
 
@@ -50,4 +68,18 @@ public class LandManagement extends DriverBase {
 		ClickUtils.smartClick(driver, forwardButton);
 
 	}
+	
+	public void searchLand(String landName) {
+	    txtLandName.clear();
+	    txtLandName.sendKeys(landName);
+	}
+	
+	public void clickSearchBtn() {
+		ClickUtils.smartClick(driver, SearchBtn);
+	}
+	
+	
+	
+	
+	
 }

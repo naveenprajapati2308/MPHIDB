@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 import pageObjects.ArchitectEmpanelment.HomePage;
 import pageObjects.ArchitectEmpanelment.LoginPage;
 import testBase.BaseTest;
+import utilities.ConfigUtils;
 import utilities.TestContext;
 
 public class TC_003_SignIn extends BaseTest {
@@ -42,9 +43,9 @@ public class TC_003_SignIn extends BaseTest {
 
 		login.enterUsername(username1);
 
-		login.enterPassword("12345678");
+		login.enterPassword(ConfigUtils.getPropertyData("password"));
 
-		login.enterCaptcha("9895");
+		login.enterCaptcha(ConfigUtils.getPropertyData("captcha"));
 
 		login.clickLogin();
 		
@@ -104,9 +105,9 @@ public class TC_003_SignIn extends BaseTest {
 
 		login.enterUsername(username2);
 
-		login.enterPassword("12345678");
+		login.enterPassword(ConfigUtils.getPropertyData("password"));
 
-		login.enterCaptcha("9895");
+		login.enterCaptcha(ConfigUtils.getPropertyData("captcha"));
 
 		login.clickLogin();
 
@@ -164,9 +165,9 @@ public class TC_003_SignIn extends BaseTest {
 
 		login.enterUsername(username3);
 
-		login.enterPassword("12345678");
+		login.enterPassword(ConfigUtils.getPropertyData("password"));
 
-		login.enterCaptcha("9895");
+		login.enterCaptcha(ConfigUtils.getPropertyData("captcha"));
 
 		login.clickLogin();
 		

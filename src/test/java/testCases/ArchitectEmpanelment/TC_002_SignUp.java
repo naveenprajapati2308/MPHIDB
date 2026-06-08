@@ -21,7 +21,7 @@ public class TC_002_SignUp extends BaseTest {
     public void verifySignup(SignUpDataArch data) throws InterruptedException {
 
         HomePage home = new HomePage(driver);
-//        home.clickRegister();
+        home.clickRegister();
 
         RegisterPage register = new RegisterPage(driver);
 

@@ -10,7 +10,7 @@ public class OtpUtils {
 
     public static String fetchOtp(WebDriver driver) {
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
         String otpText = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(
