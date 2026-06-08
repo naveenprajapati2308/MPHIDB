@@ -41,16 +41,7 @@ public class LandManagement extends DriverBase {
 
 		ClickUtils.smartClick(driver, editButton);
 	}
-	
-	
-//	public void clickEditButton(String landName) {
-//
-//	    
-//	    WebElement editBtn = wait.until(
-//	            ExpectedConditions.elementToBeClickable(By.xpath("//tr[td[contains(text(),'" + landName + "')]]//a[.//i[@data-tooltip-content='Update Land Details']]")));
-//
-//	    ClickUtils.smartClick(driver, editBtn);
-//	}
+
 
 	public void clickDetailsButton(String landName) {
 
