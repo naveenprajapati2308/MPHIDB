@@ -54,7 +54,7 @@ public class AddKhasra{
 		
 		khasra.enterlongitude("30");
 		
-		khasra.enterPurchaseDate("2026-06-02");
+		khasra.enterPurchaseDate("02-06-2026");
 		
 		
 		String Demarcation = FileUtils.getFilePath("Demarcation.pdf");
@@ -68,8 +68,6 @@ public class AddKhasra{
 		String KhasraCopy = FileUtils.getFilePath("KhasraCopy.pdf");
 		
 		
-		
-		
 		khasra.uploadDemarcation(Demarcation);
 		khasra.uploadPossession_of_Land(Possession);
 		khasra.uploadField_Book(FieldBook);
@@ -78,16 +76,19 @@ public class AddKhasra{
 		
 		
 		khasra.clickSubmitBtn();
+		khasra.clickOkBtn();
+//		khasra.clickCancelBtn();
 		
-		
-		
-		
-		
-		
-		
-
-
 
 	}
+	@Test(dependsOnMethods = { "TC_006" })
+	public void TC_007() {
+		Add_khasra khasra = new Add_khasra(AuthorityLogin.driver);
+		
+//		khasra.clickUpdateBtn();
+		khasra.clickOtherDetailsBtn();
+		
+	}
+
 
 }

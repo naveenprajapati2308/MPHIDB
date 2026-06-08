@@ -1,10 +1,14 @@
 
 package pageObjects.LandModule;
 
+import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 //import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import utilities.ClickUtils;
 import utilities.DropdownUtils;
@@ -109,7 +113,7 @@ public class Add_khasra extends DriverBase {
 
 	// passing files in the file fields by the file functions
 
-	@FindBy(xpath = "//div[contains(.,'Demarcation')]//input[@type='file']")
+	@FindBy(xpath = "//div[.//div[contains(text(),'Demarcation')]]//input[@type='file']")
 	WebElement Demarcation;
 
 	public void uploadDemarcation(String filePath) {
@@ -118,39 +122,47 @@ public class Add_khasra extends DriverBase {
 
 	}
 
-	@FindBy(xpath = "//div[contains(.,'Possession of Land')]//input[@type='file']")
+	@FindBy(xpath = "(//input[@type='file'])[2]")
 	WebElement Possession_of_Land;
 
 	public void uploadPossession_of_Land(String filePath) {
 
 		Possession_of_Land.sendKeys(filePath);
+		System.out.println("Uploaded Value = "
+	            + Possession_of_Land.getAttribute("value"));
 
 	}
 
-	@FindBy(xpath = "//div[contains(.,'Field Book')]//input[@type='file']")
+	@FindBy(xpath="(//input[@type='file'])[3]")
 	private WebElement Field_Book;
 
 	public void uploadField_Book(String filePath) {
 
 		Field_Book.sendKeys(filePath);
+		System.out.println("Uploaded Value = "
+	            + Possession_of_Land.getAttribute("value"));
 
 	}
 
-	@FindBy(xpath = "//div[contains(.,'Map Layout')]//input[@type='file']")
+	@FindBy(xpath="(//input[@type='file'])[4]")
 	private WebElement Map_Layout;
 
 	public void uploadMap_Layout(String filePath) {
 
 		Map_Layout.sendKeys(filePath);
+		System.out.println("Uploaded Value = "
+	            + Possession_of_Land.getAttribute("value"));
 
 	}
 
-	@FindBy(xpath = "//div[contains(.,'Khasra Copy')]//input[@type='file']")
+	@FindBy(xpath="(//input[@type='file'])[5]")
 	private WebElement Khasra_Copy;
 
 	public void uploadKhasra_Copy(String filePath) {
 
 		Khasra_Copy.sendKeys(filePath);
+		System.out.println("Uploaded Value = "
+	            + Possession_of_Land.getAttribute("value"));
 
 	}
 
@@ -160,6 +172,50 @@ public class Add_khasra extends DriverBase {
 	public void clickSubmitBtn() {
 		ClickUtils.smartClick(driver, SubmitBtn);
 	}
+	
+	@FindBy(xpath = "//button[normalize-space()='OK']")
+	private WebElement OkBtn;
 
+	public void clickOkBtn() {
+
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+	    wait.until(ExpectedConditions.visibilityOf(OkBtn));
+
+	    ClickUtils.smartClick(driver, OkBtn);
+	}
+	
+	@FindBy(xpath = "//button[normalize-space()='Cancel']")
+	private WebElement CancelBtn;
+	public void clickCancelBtn() {
+	    ClickUtils.smartClick(driver, CancelBtn);
+	}
+
+	
+	@FindBy(xpath="//button[contains(.,'Update')]")
+	private WebElement UpdateBtn;
+
+	
+	
+	@FindBy(xpath="//a[contains(.,'Other Details')]")
+	private WebElement OtherDetailsBtn;
+	
+	public void clickUpdateBtn() {
+
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+
+	    wait.until(ExpectedConditions.elementToBeClickable(UpdateBtn));
+
+	    ClickUtils.smartClick(driver, UpdateBtn);
+	}
+
+	public void clickOtherDetailsBtn() {
+
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+
+	    wait.until(ExpectedConditions.elementToBeClickable(OtherDetailsBtn));
+
+	    ClickUtils.smartClick(driver, OtherDetailsBtn);
+	}
 
 }
