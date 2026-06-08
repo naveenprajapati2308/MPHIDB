@@ -72,6 +72,10 @@ body:not(.ext-view-ready) .dashboard-view {
 	display: block !important;
 	margin-top: 25px !important;
 }
+.test-list-item{
+	margin-left:10px !important;
+	
+}
 
 /* ================= LEFT SECTION ================= */
 #ext-left {
@@ -445,4 +449,8 @@ body:not(.ext-view-ready) .dashboard-view {
 	bottom: 54px;
 	height: 2px;
 	background: rgba(255, 255, 255, .45);
+}
+
+.test-wrapper .test-list .test-list-wrapper .test-list-item .test-item {
+	width :96%; 
 }
