@@ -10,10 +10,6 @@ import utilities.FileUtils;
 
 public class AddKhasra{
 
-	public String EE;
-	public String password;
-	public String Captcha;
-
 	@Test(dependsOnMethods = { "TC_001" })
 	public void TC_005() {
 

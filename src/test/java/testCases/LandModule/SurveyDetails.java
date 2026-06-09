@@ -9,12 +9,8 @@ import testBase.AuthorityLogin;
 
 public class SurveyDetails extends  AuthorityLogin{
 
-	public String EE;
-	public String password;
-	public String Captcha;
-
-	@Test(dependsOnMethods = { "TC_004" })
-	public void TC_005() {
+	@Test(dependsOnMethods = { "TC_007" })
+	public void TC_008() {
 
 		LandManagement land = new LandManagement(AuthorityLogin.driver);
 		Create_land createLand = new Create_land(AuthorityLogin.driver);

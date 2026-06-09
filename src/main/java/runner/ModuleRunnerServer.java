@@ -47,9 +47,9 @@ public class ModuleRunnerServer {
 		server.setExecutor(Executors.newCachedThreadPool());
 		server.start();
 
-		System.out.println("MPHIDB Runner Dashboard started:");
+		System.out.println("MPHIDB Automation server started:");
 		System.out.println("Local:  http://localhost:" + port);
-		System.out.println("Remote: http://<remote-machine-ip>:" + port);
+//		System.out.println("Remote: http://<remote-machine-ip>:" + port);
 	}
 
 	private static void handleHome(HttpExchange exchange) throws IOException {
