@@ -1,12 +1,12 @@
 package testCases.LandModule;
 
-import utilities.FileUtils;
 import org.testng.annotations.Test;
 
 import pageObjects.LandModule.Create_land;
-
 import pageObjects.LandModule.LandManagement;
 import testBase.AuthorityLogin;
+import utilities.FileUtils;
+import utilities.testData;
 
 public class landCreation extends AuthorityLogin {
 
@@ -15,6 +15,8 @@ public class landCreation extends AuthorityLogin {
 
 		LandManagement land = new LandManagement(AuthorityLogin.driver);
 		Create_land createLand = new Create_land(AuthorityLogin.driver);
+		
+//		 String LandName = testData.landName();
 
 		land.CreateLandId();
 
@@ -38,7 +40,8 @@ public class landCreation extends AuthorityLogin {
 
 		createLand.enterLocation("Rajmarg");
 
-		createLand.enterLandName("Automation_Land_006");
+		createLand.enterLandName(testData.landName());
+		
 
 	}
 

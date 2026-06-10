@@ -7,6 +7,7 @@ import pageObjects.LandModule.Add_khasra;
 import pageObjects.LandModule.LandManagement;
 import testBase.AuthorityLogin;
 import utilities.FileUtils;
+import utilities.testData;
 
 public class AddKhasra extends AuthorityLogin{
 
@@ -15,11 +16,11 @@ public class AddKhasra extends AuthorityLogin{
 
 		LandManagement land = new LandManagement(AuthorityLogin.driver);
 		
-		land.searchLand("Automation_Land_006");
+		land.searchLand(testData.landName());
 		
 		land.clickSearchBtn();
 		
-      land.clickEditButton("Automation_Land_006");
+      land.clickEditButton(testData.landName());
 		
 
 	}
@@ -42,7 +43,7 @@ public class AddKhasra extends AuthorityLogin{
 		
 		khasra.selectVillageORward("Bamhori");
 
-		khasra.selectKhasraNumber("1/2");
+		khasra.selectKhasraNumber("197");
 		
 		khasra.enterAreainHactare("1000");
 		

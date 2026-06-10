@@ -4,9 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import utilities.ClickUtils;
+import utilities.WaitUtils;
 
 public class LandManagement extends DriverBase {
 	
@@ -66,7 +66,7 @@ public class LandManagement extends DriverBase {
 	        + "')]]//button[.//i[contains(@data-tooltip-content,'Forward to Chief Architect')]]");
 
 	    WebElement forwardButton =
-	            WaitUtils.waitForElementClickable(driver, forwardButtonLocator);
+	            WaitUtils.waitClickable(driver, forwardButtonLocator);
 
 	    ClickUtils.smartClick(driver, forwardButton);
 	}

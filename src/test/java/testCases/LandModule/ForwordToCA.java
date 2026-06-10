@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import pageObjects.LandModule.Dashboard;
 import pageObjects.LandModule.LandManagement;
 import testBase.AuthorityLogin;
+import utilities.testData;
 
 
 public class ForwordToCA  extends AuthorityLogin {
@@ -19,13 +20,14 @@ public class ForwordToCA  extends AuthorityLogin {
 		
 		dashboard.clickLandmanagement();
 		
-		forword.searchLand("Automation_Land_006");
+		
+		forword.searchLand(testData.landName());
 		
 		forword.clickSearchBtn();
 		
-//		forword.clickEditButton("Automation_Land_006");
+//		forword.clickEditButton(testData.landName());
 		
-		forword.clickForwardButton("Automation_Land_006");
+		forword.clickForwardButton(testData.landName());
 		
 		
 		
