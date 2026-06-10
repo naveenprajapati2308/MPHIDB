@@ -128,8 +128,7 @@ public class Add_khasra extends DriverBase {
 	public void uploadPossession_of_Land(String filePath) {
 
 		Possession_of_Land.sendKeys(filePath);
-		System.out.println("Uploaded Value = "
-	            + Possession_of_Land.getAttribute("value"));
+		
 
 	}
 
@@ -139,9 +138,7 @@ public class Add_khasra extends DriverBase {
 	public void uploadField_Book(String filePath) {
 
 		Field_Book.sendKeys(filePath);
-		System.out.println("Uploaded Value = "
-	            + Possession_of_Land.getAttribute("value"));
-
+		
 	}
 
 	@FindBy(xpath="(//input[@type='file'])[4]")
@@ -150,8 +147,7 @@ public class Add_khasra extends DriverBase {
 	public void uploadMap_Layout(String filePath) {
 
 		Map_Layout.sendKeys(filePath);
-		System.out.println("Uploaded Value = "
-	            + Possession_of_Land.getAttribute("value"));
+		
 
 	}
 
@@ -161,9 +157,7 @@ public class Add_khasra extends DriverBase {
 	public void uploadKhasra_Copy(String filePath) {
 
 		Khasra_Copy.sendKeys(filePath);
-		System.out.println("Uploaded Value = "
-	            + Possession_of_Land.getAttribute("value"));
-
+		
 	}
 
 	@FindBy(xpath = "//button[normalize-space()='Submit']")
@@ -211,7 +205,7 @@ public class Add_khasra extends DriverBase {
 
 	public void clickOtherDetailsBtn() {
 
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
 	    wait.until(ExpectedConditions.elementToBeClickable(OtherDetailsBtn));
 

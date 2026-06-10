@@ -38,7 +38,7 @@ public class landCreation extends AuthorityLogin {
 
 		createLand.enterLocation("Rajmarg");
 
-		createLand.enterLandName("Land_acquired_type21");
+		createLand.enterLandName("Automation_Land_006");
 
 	}
 

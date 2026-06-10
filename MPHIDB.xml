@@ -8,7 +8,7 @@
     </listeners>
 
     <!-- LAND MODULE -->
-    <test name="Land Module Tests">
+    <test name="Land Management Suite">
 
         <classes>
 

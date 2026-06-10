@@ -51,13 +51,24 @@ public class LandManagement extends DriverBase {
 		ClickUtils.smartClick(driver, InfodetailsButton);
 	}
 
+//	public void clickForwardButton(String landName) {
+//
+//		WebElement forwardButton = driver.findElement(By.xpath("//tr[td[contains(text(),'" + landName
+//				+ "')]]//button[.//i[contains(@data-tooltip-content,'Forward to Chief Architect')]]"));
+//
+//		ClickUtils.smartClick(driver, forwardButton);
+//
+//	}
 	public void clickForwardButton(String landName) {
 
-		WebElement forwardButton = driver.findElement(By.xpath("//tr[td[contains(text(),'" + landName
-				+ "')]]//button[.//i[contains(@data-tooltip-content,'Forward to Chief Architect')]]"));
+	    By forwardButtonLocator = By.xpath(
+	        "//tr[td[contains(text(),'" + landName
+	        + "')]]//button[.//i[contains(@data-tooltip-content,'Forward to Chief Architect')]]");
 
-		ClickUtils.smartClick(driver, forwardButton);
+	    WebElement forwardButton =
+	            WaitUtils.waitForElementClickable(driver, forwardButtonLocator);
 
+	    ClickUtils.smartClick(driver, forwardButton);
 	}
 	
 	public void searchLand(String landName) {

@@ -4,6 +4,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import utilities.ClickUtils;
+
 public class Survey_details extends DriverBase {
 
 	public Survey_details(WebDriver driver) {
@@ -148,5 +150,15 @@ public class Survey_details extends DriverBase {
 
 		address.sendKeys(addressText);
 	}
+	
+
+@FindBy(xpath="//button[normalize-space()='Save & Next']")
+WebElement Sava_next;
+
+  public void clickSaveBtn() {
+	  ClickUtils.smartClick(driver, Sava_next);
+	  
+  }
+	
 
 }
