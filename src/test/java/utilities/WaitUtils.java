@@ -33,4 +33,10 @@ public class WaitUtils {
 	    new WebDriverWait(driver, Duration.ofSeconds(20))
 	            .until(ExpectedConditions.elementToBeClickable(element));
 	}
+
+	public static WebElement waitVisible(WebDriver driver, By locator) {
+
+		return new WebDriverWait(driver, Duration.ofSeconds(20))
+				.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	}
 }

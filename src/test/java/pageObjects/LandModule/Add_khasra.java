@@ -113,7 +113,7 @@ public class Add_khasra extends DriverBase {
 
 	// passing files in the file fields by the file functions
 
-	@FindBy(xpath = "//div[.//div[contains(text(),'Demarcation')]]//input[@type='file']")
+	@FindBy(xpath = "(//input[@type='file'])[1]")
 	WebElement Demarcation;
 
 	public void uploadDemarcation(String filePath) {

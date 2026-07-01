@@ -4,7 +4,7 @@
 <suite name="Master Automation Suite" parallel="tests" thread-count="2">
 
     <listeners>
-        <listener class-name="ReportManager.Master_extent_report"/>
+        <listener class-name="ReportManager.Master_extent_report_v2"/>
     </listeners>
 
     <!-- LAND MODULE -->
