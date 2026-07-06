@@ -31,6 +31,7 @@ public class Master_extent_report_v2 implements ITestListener, ISuiteListener {
     private String logoDataUrl = "";
     private String execDate = "";
     private String execTime = "";
+    private String reportFilePath = "";
 
     private int passedTestsCount = 0;
     private int failedTestsCount = 0;
@@ -52,7 +53,9 @@ public class Master_extent_report_v2 implements ITestListener, ISuiteListener {
 
     @Override
     public void onStart(ISuite suite) {
-        sparkReporter = new ExtentSparkReporter(System.getProperty("user.dir") + "/reports/MasterReport2.html");
+        String suiteName = suite.getName().replaceAll("[^a-zA-Z0-9_-]", "_");
+        reportFilePath = System.getProperty("user.dir") + "/reports/" + suiteName + ".html";
+        sparkReporter = new ExtentSparkReporter(reportFilePath);
         sparkReporter.config().setDocumentTitle("Automation Report");
         sparkReporter.config().setReportName("MPHIDB Test Result");
         sparkReporter.config().setTheme(Theme.DARK);
@@ -276,7 +279,7 @@ public class Master_extent_report_v2 implements ITestListener, ISuiteListener {
         }
 
         try {
-            java.awt.Desktop.getDesktop().browse(new java.io.File(System.getProperty("user.dir") + "/reports/MasterReport2.html").toURI());
+            java.awt.Desktop.getDesktop().browse(new java.io.File(reportFilePath).toURI());
         } catch (Exception e) {
             e.printStackTrace();
         }

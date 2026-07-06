@@ -4,7 +4,7 @@
 <suite name="Architect Empanelment Suite">
 <listeners>
    
-    <listener class-name="ReportManager.Master_extent_report_v2"/>
+    <listener class-name="ReportManager.Master_extent_report"/>
 </listeners>
 
 	<test name="Architect Empanelment Tests" thread-count="1">

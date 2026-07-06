@@ -4,7 +4,7 @@
 <suite name="Land Management Suite">
 <listeners>
     
-    <listener class-name="ReportManager.Master_extent_report_v2"/>
+    <listener class-name="ReportManager.Master_extent_report"/>
     
     
 </listeners>
@@ -19,10 +19,6 @@
 			<class name="testCases.LandModule.SurveyDetails" />
 			<class name="testCases.LandModule.ForwordToCA" />
 			
-			
-			
-			
-
 
 		</classes>
 
