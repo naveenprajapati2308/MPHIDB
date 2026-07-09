@@ -52,6 +52,34 @@
 			<version>5.1.2</version>
 			<scope>compile</scope>
 		</dependency>
+
+		<!-- Self-healing WebDriver wrapper (Option A). Opt-in only via
+		-Dhealenium.enabled=true - see testBase.AuthorityLogin. Requires the
+		Healenium backend service (Docker) running; without it, or with the flag
+		left off, the framework behaves exactly as before.
+		Transitive JUnit5/Testcontainers deps are excluded: this project doesn't
+		use them, and leaving them in confuses Surefire's provider auto-detection
+		into running the JUnit provider instead of TestNG (0 tests executed). -->
+		<dependency>
+			<groupId>com.epam.healenium</groupId>
+			<artifactId>healenium-web</artifactId>
+			<version>3.5.6</version>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.jupiter</groupId>
+					<artifactId>junit-jupiter-engine</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.junit.jupiter</groupId>
+					<artifactId>junit-jupiter-api</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.testcontainers</groupId>
+					<artifactId>junit-jupiter</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -65,6 +93,17 @@
 						<suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
 					</suiteXmlFiles>
 				</configuration>
+				<dependencies>
+					<!-- Pin Surefire to the TestNG provider explicitly. Without this,
+					adding any dependency that brings in JUnit Platform (like Healenium
+					above) can make Surefire's auto-detection silently switch away from
+					TestNG and run zero tests. -->
+					<dependency>
+						<groupId>org.apache.maven.surefire</groupId>
+						<artifactId>surefire-testng</artifactId>
+						<version>3.2.5</version>
+					</dependency>
+				</dependencies>
 			</plugin>
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>

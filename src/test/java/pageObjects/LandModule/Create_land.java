@@ -1,6 +1,6 @@
 package pageObjects.LandModule;
 
-//import org.openqa.selenium.By;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -213,6 +213,13 @@ public class Create_land extends DriverBase {
 	public void clickCreateButton() {
 
 		ClickUtils.smartClick(driver, CreateButton);
+
+		// A "Submit Land Details?" confirmation modal appears before the land is
+		// actually created; without confirming it here, the record never persists.
+		WebElement confirmOkButton = WaitUtils.waitClickable(driver,
+				By.xpath("//div[contains(@class,'modal-footer')]//button[normalize-space()='OK']"));
+
+		ClickUtils.smartClick(driver, confirmOkButton);
 	}
 
 }

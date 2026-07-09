@@ -11,6 +11,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
+import com.epam.healenium.SelfHealingDriver;
+
 import utilities.ConfigUtils;
 import utilities.ElementUtils;
 import utilities.WaitUtils;
@@ -44,7 +46,14 @@ public class AuthorityLogin {
 		options.addArguments("--disable-features=PasswordLeakDetection");
 		options.addArguments("--disable-save-password-bubble");
 
-		driver = new ChromeDriver(options);
+		WebDriver rawDriver = new ChromeDriver(options);
+
+		// Option A: self-healing locators. Off by default so the framework keeps
+		// working exactly as before when the Healenium backend isn't running;
+		// turn on with -Dhealenium.enabled=true once that backend (Docker) is up.
+		boolean healeniumEnabled = Boolean.parseBoolean(System.getProperty("healenium.enabled", "false"));
+
+		driver = healeniumEnabled ? SelfHealingDriver.create(rawDriver) : rawDriver;
 
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));

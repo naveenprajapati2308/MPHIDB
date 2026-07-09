@@ -1,8 +1,13 @@
 package pageObjects.LandModule;
 
+import java.time.Duration;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import utilities.ClickUtils;
 
@@ -10,6 +15,16 @@ public class Survey_details extends DriverBase {
 
 	public Survey_details(WebDriver driver) {
 		super(driver);
+	}
+
+	// Location Survey and Field Survey sections are collapsed/hidden by default -
+	// only the required "DTS Survey" section is visible until this toggle is
+	// clicked to reveal the optional ones.
+	@FindBy(xpath = "//button[contains(.,'Show Optional')]")
+	private WebElement showOptionalToggle;
+
+	public void clickShowOptional() {
+		ClickUtils.smartClick(driver, showOptionalToggle);
 	}
 
 	// dTS servey
@@ -157,7 +172,18 @@ WebElement Sava_next;
 
   public void clickSaveBtn() {
 	  ClickUtils.smartClick(driver, Sava_next);
-	  
+
+	  // Saving frequently triggers a confirmation modal in this app (bootstrap
+	  // modal-footer style, e.g. "Submit ... Details?"), the same pattern seen for
+	  // land and khasra creation - it must be accepted before the save persists.
+	  try {
+		  WebElement confirmOk = new WebDriverWait(driver, Duration.ofSeconds(5)).until(
+				  ExpectedConditions.elementToBeClickable(By.xpath(
+						  "//div[contains(@class,'modal-footer')]//button[normalize-space()='OK'] | //button[contains(@class,'swal2-confirm')]")));
+		  ClickUtils.smartClick(driver, confirmOk);
+	  } catch (Exception noConfirmModal) {
+		  // Some saves may not require confirmation - that's fine.
+	  }
   }
 	
 

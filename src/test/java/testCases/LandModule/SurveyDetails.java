@@ -9,6 +9,13 @@ import utilities.FileUtils;
 public class SurveyDetails extends AuthorityLogin {
 
 
+	// TC_007 (AddKhasra.java) clicks "Other Details" once a khasra has actually
+	// persisted, landing on a 5-tab page (Survey/Dispute/Amenities/Approval
+	// Details/Payment Details) with "Survey" active by default. The DTS Survey
+	// section is required and visible immediately - its field locators (confirmed
+	// against the live UI) are unchanged from before the redesign. Location Survey
+	// and Field Survey are optional and hidden until clickShowOptional() reveals
+	// them.
 	@Test(dependsOnMethods = { "TC_007" })
 	public void TC_008() {
 
@@ -22,6 +29,10 @@ public class SurveyDetails extends AuthorityLogin {
 	    survey.Upload_survey_cad_1(surveyCad);
 	    survey.survey_details_1("DTS Survey Details 1");
 	    survey.survey_discrepancy_1("No Discrepancy");
+
+	    // Location Survey and Field Survey are optional sections, collapsed by
+	    // default - reveal them before filling.
+	    survey.clickShowOptional();
 
 	    // Location Survey
 	    survey.Upload_survey_pdf_2(surveyPdf);
