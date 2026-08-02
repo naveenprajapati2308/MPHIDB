@@ -38,9 +38,11 @@ public class Application_Details extends DriverBase {
     @FindBy(xpath="//input[@id='5']")
     private WebElement firmTypeOption5;
 
-    // Dropdown
-    @FindBy(xpath="//select[@name='registered_state']")
-    private WebElement registeredStateField;
+    @FindBy(xpath="//select[@name='firm_registered_with']")
+    private WebElement firmRegisteredWithField;
+
+    // Registered State / State / District are react-select comboboxes filled
+    // via pickReactSelect() - no native <select>/<input> fields exist for them.
 
     // Input Fields
     @FindBy(xpath="//input[@name='firm_name']")
@@ -60,12 +62,6 @@ public class Application_Details extends DriverBase {
 
 
     // ================= FIRM ADDRESS =================
-
-    @FindBy(xpath="//input[@name='state']")
-    private WebElement addressStateField;
-
-    @FindBy(xpath="//input[@name='district']")
-    private WebElement addressDistrictField;
 
     @FindBy(xpath="//input[@name='pincode']")
     private WebElement addressPincodeField;
@@ -87,6 +83,11 @@ public class Application_Details extends DriverBase {
 
     @FindBy(xpath="//input[@name='architect_name']")
     private WebElement architectNameField;
+
+    /** Current value of the Architect Name field (edit-before-submit checks). */
+    public String getArchitectNameValue() {
+        return architectNameField.getAttribute("value");
+    }
 
     @FindBy(xpath="//select[@name='gender']")
     private WebElement genderField;
@@ -125,8 +126,15 @@ public class Application_Details extends DriverBase {
     private WebElement incomeTaxPaidField;
 
     
+    // Individual form's address is a single textarea (confirmed live on UAT
+    // 2026-07-15) - the state/district/pincode split fields don't exist there.
+    @FindBy(xpath="//textarea[@name='primary_address']")
+    private WebElement primaryAddressField;
+
  // -------- BUTTON --------
-    @FindBy(xpath="//button[@class='btn btn-outline-warning']")
+    // Application Details tab's own save - the tab-pane is div#home1 and its
+    // submit button reads "Submit" (confirmed live on UAT 2026-07-15).
+    @FindBy(xpath="//div[@id='home1']//button[@type='submit']")
     private WebElement educationSaveButton;
 
     // ================= ACTION METHODS =================
@@ -152,14 +160,50 @@ public class Application_Details extends DriverBase {
     public void selectFirmType4() { ClickUtils.smartClick(driver, firmTypeOption4); }
     public void selectFirmType5() { ClickUtils.smartClick(driver, firmTypeOption5); }
 
+    public boolean isFirmTypeLocked() { return !firmTypeOption1.isEnabled(); }
+
+    public void selectFirmRegisteredWith() {
+        new Select(firmRegisteredWithField).selectByIndex(1);
+    }
+
     public void selectWhatsappYes() {
         ClickUtils.smartClick(driver, whatsappYesOption);
     }
 
 
+    // ---- REACT-SELECT (confirmed live on UAT 2026-07-15) ----
+    // Registered State / State / District are react-select comboboxes (not
+    // native selects): type into the label-anchored input, wait for the
+    // option list, press Enter. District stays DISABLED until State is chosen.
+    private void pickReactSelect(String exactLabel, String value) {
+
+        org.openqa.selenium.WebElement label = new org.openqa.selenium.support.ui.WebDriverWait(driver,
+                java.time.Duration.ofSeconds(10))
+                .until(org.openqa.selenium.support.ui.ExpectedConditions.presenceOfElementLocated(
+                        org.openqa.selenium.By.xpath("//label[normalize-space()='" + exactLabel
+                                + "' or starts-with(normalize-space(),'" + exactLabel + " ')"
+                                + " or starts-with(normalize-space(),'" + exactLabel + "*')]")));
+
+        // The react-select search input is opacity:0 by design (selected value renders in a
+        // separate overlay div), so Selenium's own visibility check fails on it directly -
+        // click the visible control wrapper first, same as a real user would.
+        org.openqa.selenium.WebElement control = label.findElement(
+                org.openqa.selenium.By.xpath("following::div[contains(@class,'react-select__control')][1]"));
+        ClickUtils.smartClick(driver, control);
+
+        org.openqa.selenium.WebElement input = control.findElement(org.openqa.selenium.By.tagName("input"));
+        input.sendKeys(value);
+
+        new org.openqa.selenium.support.ui.WebDriverWait(driver, java.time.Duration.ofSeconds(10))
+                .until(org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated(
+                        org.openqa.selenium.By.cssSelector("[class*='react-select__option']")));
+
+        input.sendKeys(org.openqa.selenium.Keys.ENTER);
+    }
+
     // ---- SELECT ----
     public void selectRegisteredState(String state) {
-        new Select(registeredStateField).selectByVisibleText(state);
+        pickReactSelect("Registered State", state);
     }
 
     public void selectGender(String gender) {
@@ -202,13 +246,25 @@ public class Application_Details extends DriverBase {
     }
 
     public void enterState(String state) {
-        addressStateField.clear();
-        addressStateField.sendKeys(state);
+        pickReactSelect("State", state);
     }
 
     public void enterDistrict(String district) {
-        addressDistrictField.clear();
-        addressDistrictField.sendKeys(district);
+        pickReactSelect("District", district);
+    }
+
+    /** The firm form renders TWO inputs named 'email' - fill them all. */
+    public void fillAllEmailFields(String email) {
+        for (org.openqa.selenium.WebElement field : driver.findElements(
+                org.openqa.selenium.By.xpath("//input[@name='email']"))) {
+            try {
+                if (field.isDisplayed()) {
+                    field.clear();
+                    field.sendKeys(email);
+                }
+            } catch (Exception ignored) {
+            }
+        }
     }
 
     public void enterPincode(String pincode) {
@@ -219,6 +275,11 @@ public class Application_Details extends DriverBase {
     public void enterAddress(String address) {
         addressField.clear();
         addressField.sendKeys(address);
+    }
+
+    public void enterPrimaryAddress(String address) {
+        primaryAddressField.clear();
+        primaryAddressField.sendKeys(address);
     }
 
     public void enterFaxNumber(String fax) {

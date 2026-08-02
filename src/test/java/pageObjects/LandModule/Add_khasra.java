@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -142,24 +143,40 @@ public class Add_khasra extends DriverBase {
 		return null;
 	}
 
+	// The site re-renders the <select> a moment after its options first appear
+	// (the "loaded" check in waitForOptionsToLoad can pass a beat before that
+	// final re-render), which invalidates option element handles mid-iteration.
+	// Retry the whole read on staleness instead of failing the test.
 	private List<String> realSelectOptionTexts(WebElement dropdown) {
 
-		List<String> texts = new ArrayList<>();
+		StaleElementReferenceException lastFailure = null;
 
-		for (WebElement option : new Select(dropdown).getOptions()) {
+		for (int attempt = 1; attempt <= 3; attempt++) {
 
-			String value = option.getAttribute("value");
-			String text = option.getText();
+			try {
+				List<String> texts = new ArrayList<>();
 
-			if (value != null && !value.isEmpty()
-					&& !text.equals("--Select--")
-					&& !text.toLowerCase().contains("no records")
-					&& !text.toLowerCase().contains("loading")) {
-				texts.add(text);
+				for (WebElement option : new Select(dropdown).getOptions()) {
+
+					String value = option.getAttribute("value");
+					String text = option.getText();
+
+					if (value != null && !value.isEmpty()
+							&& !text.equals("--Select--")
+							&& !text.toLowerCase().contains("no records")
+							&& !text.toLowerCase().contains("loading")) {
+						texts.add(text);
+					}
+				}
+
+				return texts;
+
+			} catch (StaleElementReferenceException stale) {
+				lastFailure = stale;
 			}
 		}
 
-		return texts;
+		throw lastFailure;
 	}
 
 	/**
@@ -181,17 +198,29 @@ public class Add_khasra extends DriverBase {
 			return null;
 		}
 
+		// Same load/re-render race as realSelectOptionTexts - retry on staleness.
 		List<String> candidates = new ArrayList<>();
-		for (WebElement option : new Select(khasraNumber).getOptions()) {
+		StaleElementReferenceException lastFailure = null;
+		for (int attempt = 1; attempt <= 3 && candidates.isEmpty(); attempt++) {
+			try {
+				for (WebElement option : new Select(khasraNumber).getOptions()) {
 
-			String value = option.getAttribute("value");
-			String text = option.getText();
+					String value = option.getAttribute("value");
+					String text = option.getText();
 
-			if (value != null && !value.isEmpty()
-					&& !text.toLowerCase().contains("no records")
-					&& !text.toLowerCase().contains("loading")) {
-				candidates.add(text);
+					if (value != null && !value.isEmpty()
+							&& !text.toLowerCase().contains("no records")
+							&& !text.toLowerCase().contains("loading")) {
+						candidates.add(text);
+					}
+				}
+			} catch (StaleElementReferenceException stale) {
+				lastFailure = stale;
+				candidates.clear();
 			}
+		}
+		if (candidates.isEmpty() && lastFailure != null) {
+			throw lastFailure;
 		}
 
 		for (String candidate : candidates) {
@@ -307,11 +336,31 @@ public class Add_khasra extends DriverBase {
 
 	public void clickOkBtn() {
 
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	    // The "Submit Khasra Details?" confirm dialog can take well over 10s to
+	    // render after Submit when the modal carries several document uploads +
+	    // owner rows (live-confirmed on Private Land 2026-07-16: the failure
+	    // screenshot showed the dialog OPEN right after the old 10s wait had
+	    // already timed out). Budget generously - the wait returns as soon as
+	    // the button appears.
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(45));
 
 	    wait.until(ExpectedConditions.visibilityOf(OkBtn));
 
 	    ClickUtils.smartClick(driver, OkBtn);
+
+	    // Confirming shows a loading spinner while the khasra (plus however many
+	    // documents were uploaded) is actually saved server-side - confirmed live
+	    // to take up to ~30s for a khasra with 7 document uploads. Callers that
+	    // proceed immediately (e.g. clicking the page-level Update button) can
+	    // race this and hit a stale/still-open modal, so wait here for the modal
+	    // to actually close before returning.
+	    try {
+	        new WebDriverWait(driver, Duration.ofSeconds(45))
+	                .until(ExpectedConditions.invisibilityOfElementLocated(By.id("khasraModalLabel")));
+	    } catch (Exception stillVisibleOrAlreadyGone) {
+	        // Best-effort - if the modal was already gone or uses a different
+	        // structure in some flow, don't fail the whole action over this wait.
+	    }
 	}
 	
 	@FindBy(xpath = "//button[normalize-space()='Cancel']")

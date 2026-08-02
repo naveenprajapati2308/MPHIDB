@@ -10,8 +10,11 @@ import pageObjects.LandModule.LoginPage;
  * AuthorityLoginManager
  *
  * Central reusable utility for all Authority Portal logins.
- * All authority users share the same login URL, password, and captcha.
- * Only the username (email) changes per role.
+ * All authority users share the same login URL. Password and captcha default to the shared
+ * authority_password / authority_captch config keys, but any role can be given its own
+ * distinct password/captcha by adding a "<ConfigKey>_password" / "<ConfigKey>_captcha" entry
+ * (e.g. "ChiefArchitect_password") to the environment's config — real per-user credentials can
+ * be rolled in per role, per environment, without any framework code change.
  *
  * Usage in test classes:
  *   AuthorityLoginManager.loginAs(driver, "EE");
@@ -90,12 +93,20 @@ public class AuthorityLoginManager {
     }
 
     // -------------------------------------------------------
+    // Returns the first argument that is non-null and non-blank, else null.
+    // -------------------------------------------------------
+    private static String firstNonBlank(String preferred, String fallback) {
+        return (preferred != null && !preferred.trim().isEmpty()) ? preferred : fallback;
+    }
+
+    // -------------------------------------------------------
     // loginAs() — Kisi bhi Authority role se login karo
     // -------------------------------------------------------
     /**
      * Logs in to the Authority Portal as the specified role.
      * Reads username from config.properties based on role mapping.
-     * Uses authority_password and authority_captch from config.
+     * Password/captcha: uses "<ConfigKey>_password" / "<ConfigKey>_captcha" if set for this
+     * role, otherwise falls back to the shared authority_password / authority_captch.
      * Verifies login success via Dashboard welcome message.
      *
      * @param driver WebDriver instance (from AuthorityLogin.driver)
@@ -105,8 +116,8 @@ public class AuthorityLoginManager {
 
         String configKey = getConfigKey(role);
         String username  = ConfigUtils.getPropertyData(configKey);
-        String password  = ConfigUtils.getPropertyData("authority_password");
-        String captcha   = ConfigUtils.getPropertyData("authority_captch");
+        String password  = firstNonBlank(ConfigUtils.getPropertyData(configKey + "_password"), ConfigUtils.getPropertyData("authority_password"));
+        String captcha   = firstNonBlank(ConfigUtils.getPropertyData(configKey + "_captcha"), ConfigUtils.getPropertyData("authority_captch"));
 
         // config.properties validation
         Assert.assertNotNull(username,

@@ -57,14 +57,19 @@ public class Stakeholder_otherDetails extends DriverBase {
 	// ===================== STAKEHOLDER DETAILS =====================
 
 	// -------- INPUT --------
-	@FindBy(xpath="//input[@name='member_of_town_planners']")
+	// Confirmed live on UAT (2026-07-15): these are TEXTAREAs inside the
+	// div#partner tab-pane, which also holds the pane's own submit "Save".
+	@FindBy(xpath="//textarea[@name='member_of_town_planners']")
 	private WebElement townPlannersField;
 
-	@FindBy(xpath="//input[@name='member_of_indian_architecture']")
+	@FindBy(xpath="//textarea[@name='member_of_indian_architecture']")
 	private WebElement indianArchitectureField;
 
-	@FindBy(xpath="//input[@name='empanelment_in_mp']")
+	@FindBy(xpath="//textarea[@name='empanelment_in_mp']")
 	private WebElement empanelmentField;
+
+	@FindBy(xpath="//div[@id='partner']//button[@type='submit']")
+	private WebElement otherDetailsSaveButton;
 
 
 	// ===================== ACTION METHODS =====================
@@ -76,6 +81,29 @@ public class Stakeholder_otherDetails extends DriverBase {
 
 
 	// ---- PARTNER ----
+
+	/**
+	 * Individual and Proprietorship applications have NO shareholder/partner
+	 * section (TC_AR_031: partner details not mandatory for proprietorship) —
+	 * for them the "+ Add Partner" button never renders and the flow must jump
+	 * to the Stakeholders/Other Details tab directly instead of using Next.
+	 */
+	public boolean isAddPartnerPresent() {
+	    return !driver.findElements(
+	            By.xpath("//button[normalize-space()='+ Add Partner']")).isEmpty();
+	}
+
+	/** True once the Other Details section's first field is rendered. */
+	public boolean isOtherDetailsSectionPresent() {
+	    return !driver.findElements(
+	            By.xpath("//*[@name='member_of_town_planners']")).isEmpty();
+	}
+
+	/** Saves the Other Details section via the div#partner pane's own submit. */
+	public void clickOtherDetailsSave() {
+	    ClickUtils.smartClick(driver, otherDetailsSaveButton);
+	}
+
 	public void clickAddPartner() {
 	    ClickUtils.smartClick(driver, addPartnerButton);
 	}

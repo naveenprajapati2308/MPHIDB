@@ -1,0 +1,849 @@
+Project Name:,MPHIDB,Test Case- Land Management(CR),,,,,,,,,,,,,,,,,,,,,
+Module : ,Land Management ,,,,Iteration 1,,,,Iteration 2,,,,,,,,,,,,,,
+Test Case No.,Test description,Title/User Story ,Expected Result,Actual Result, Status,"Severity (Major Minor, Low)",Date when Test Case Performed,Status (Pass / Fail / Cannot Be Tested/ Blocked/Invalid),Status,Date when Test Case Performed,Status (Pass / Fail / Cannot Be Tested/ Blocked/Invalid),Remarks (Resolution for Failed Test Cases),,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+Land & Khasra creation,,,,,,,,,,,,,,,,,,,,,,,
+,Create Land ID,,,,,,,,,,,,,,,,,,,,,,
+User Story 8,Land Type -1 Deposit Work ,LM: User Story 8: Capture Land Details for Deposit Work,,,,,,,,,,,,,,,,,,,,,
+LM_001,Create Land Details,"Verify user should be allowed to Insert-
+A) Land details (Create):-
+
+
+",Verify GUI in dropdown,,,,,,,,,,,,,,,,,,,,
+LM_002,,1 Pick Land (Deposit work) type. ,Verify pick from dropdown field madatory.,As expected,Pass,,5/7/2026,,,,,,,,,,,,,,,,
+LM_003,,2 Pick District (auto-bind),Verify should be auto filled & non editable based on role & user.,Not as expected ,Fail,High,5/7/2026,User-role with demography not implemented at DB/API,,,,,,,,,,,,,,,
+LM_004,,3 Pick Circle ,Verify should be auto filled & non editable based on role & user.,As expected,Pass,,5/7/2026,,,,,,,,,,,,,,,,
+LM_005,,4 Pick Division ,Verify Division should be auto filled & non editable based on role & user.,As expected,Pass,,5/7/2026,,,,,,,,,,,,,,,,
+LM_006,,5 Pick Subdivision ,Verify Subdivision should be auto filled & non editable based on role & user.,As expected,Pass,,5/7/2026,,,,,,,,,,,,,,,,
+LM_007,,6 Pick Town type ,Verify pick District or Tehsil,As expected,Pass,,5/7/2026,,,,,,,,,,,,,,,,
+LM_008,,7 Pick Dist or Tehsil,"Verify shows only dist name, Tehsil shows multiple tehsil under Dist",As expected,Pass,,5/7/2026,,,,,,,,,,,,,,,,
+LM_009,,8 Location / Locality / Area ,Verify allow insert alphanumeric values.(Max 255 char),Not as expected ,Fail,High,5/7/2026,Front-end popup message needs to implement & correct.,,,,,,,,,,,,,,,
+LM_010,,9 Land Name ,Verify with tool tip text (Ex. Land allocated for housing projects under government schemes.)(Max 150 char),Not as expected ,Fail,High,5/7/2026,Front-end popup message needs to implement & correct.,,,,,,,,,,,,,,,
+LM_011,,"10 Pick Land use-
+","Verify pick any one -
+Agricultural,Commercial,Industrial,Mixed Land Use,Public & Semi-Public,Recreational / Open Space,Residential,Special Use,Water Bodies",As expected,Pass,,5/7/2026,,,,,,,,,,,,,,,,
+LM_012,,11 Reset Button ,Verify clear inserted values & take user to back page.,As expected,Pass,,5/7/2026,,,,,,,,,,,,,,,,
+LM_013,,12 Create button ,"Verify inserted records & display popup confirmation message ""Land created successfully""",As expected,Pass,,5/7/2026,,,,,,,,,,,,,,,,
+LM_014,,"Update details after create like-
+1 Town type
+2 Town
+3 Location / Locality / Area
+4 Land Name
+5 Land Use (dropdown)",Verify user is able to update all field details,,Pass,High,5/7/2026,"Front-end popup message needs to implement & correct.
+Total area becoming 0.",,,,,,,,,,,,,,,
+LM_015,3 Insert Khasra details,Insert Fileds,,,,,,,,,,,,,,,,,,,,,
+LM_016,,1 Khasra type (New/Old),"1 Verify Pick any one from dropdown
+2 Verify New khasra can't be duplicate & Old one can be used multiple times.
+3 Verify duplicacy via popup message
+","ER1
+ER2
+ER3",Pass,,5/7/2026,,,,,,,,,,,,,,,,
+LM_017,,2 District ,Verify auto fetch ,Not as expected ,Pass,,5/7/2026,Due to data setupOnly Narsinghpur Dist Khasra API available ,,,,,,,,,,,,,,,
+LM_018,,3 Tehsil ,Verify Tehsil fetch based on Dist selected.,ER,Pass,,5/7/2026,,,,,,,,,,,,,,,,
+LM_019,,4 Area Type ,Verify values Urban & Rural.,ER,Pass,,5/7/2026,,,,,,,,,,,,,,,,
+LM_020,,5 Village/Ward ,Verify values based on Village/Ward,ER,Pass,,5/7/2026,,,,,,,,,,,,,,,,
+LM_021,,6 Khasra No,Verify Khasra values comes from API.,ER,Pass,,5/7/2026,,,,,,,,,,,,,,,,
+LM_022,,7 GIS Map API ,"1 Verify GIS map naviagates on selecting above locations.
+2 Verify particular khasra map marked with boundaries.","ER1
+ER2
+",Pass,,5/7/2026,,,,,,,,,,,,,,,,
+LM_023,,8 Area in Hactrae,"1 Verify numeric insert allowed only.
+2 Negative value not accepted .
+3 Deecimal values allowed","ER1
+ER2
+ER3",Pass,,5/7/2026,,,,,,,,,,,,,,,,
+LM_024,,9 Latitude & Longitude,"Verify allowed range-
+1 Latitude (-90 to 90)
+2 Longitude (-180 to 180)","ER1
+ER",Pass,,5/7/2026,,,,,,,,,,,,,,,,
+LM_025,,10 Collector Order date,Verify allow date pick from calender,ER,Pass,,5/7/2026,,,,,,,,,,,,,,,,
+LM_026,,11 Upload Order Copy,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size","ER1
+ER2
+ER3 Fail",Fail,,,Uplaoding invalid type or Exceeding size limit throwing error on back of the page not on current screen.,,,,,,,,,,,,,,,
+LM_027,,12 Possession Date,Verify allow date pick from calender,ER,Pass,,5/7/2026,,,,,,,,,,,,,,,,
+LM_028,,12 Possession details,Verify alphanumeric & max length 500 char.,-,-,,,max lengtgh not implemented,,,,,,,,,,,,,,,
+LM_029,,13 Documents ,"Verify 1 Allotment Letter 
+1 Allowed file type PDF
+2 Allowed max size 10 mb.
+3 Display error message for Invalid file type & file.
+4 Allow view/downlaod of document
+ ","ER1
+ER2
+ER3 
+ER4",Pass,,,,,,,,,,,,,,,,,,
+LM_030,,14 Add optional Documents,"1 Ducument Type- Verify allow file name to pick 
+2 Uplaod File- Verify PDF Max 10 mb file.
+3 Display Error on invalid file type & size.
+4 Verify Add & Cancel button functionality.
+5 Display success popup message
+6 View/change/delete upladed document.
+7 Same doc name pic not allowed.
+8 Allow custom name for File name","ER1
+ER2
+ER3 
+ER4
+ER5
+ER6
+ER7
+ER8",Pass,,5/7/2026,,,,,,,,,,,,,,,,
+LM_031,,15 Submit & Close Button ,"Verify
+1 Submit click should re-confiem user & display success message.
+2 Close button click will terminate the existing page.
+3 After Khasra details saved display popup message","ER1
+ER2
+ER3",Pass,,5/7/2026,,,,,,,,,,,,,,,,
+LM_032,,16 Enter multiple khasras,Verify user is allowed to enter multiple khasra details before forward (Land Id created),As expected,Pass,,5/7/2026,,,,,,,,,,,,,,,,
+LM_033,,17 Delete entered khasra,Verify user is able to delete the inserted khasra details (Land Id created),As expected,Pass,,5/7/2026,,,,,,,,,,,,,,,,
+LM_034,4 Insert Other Details,1 Survey,"Verify-
+1 Verify survey tab details mandatorily captured,without this land can't be forwarded.
+1 Survey PDF,Survey Autocad,Survey details,Agency name,surveyed by,contact no,addess details insert.
+2 Allow edit & doc update after save.
+3 Without survey details forward to Chief architect.","ER1
+ER2
+ER3",Pass,,5/8/2026,,,,,,,,,,,,,,,,
+LM_035,,2 Dispute,"Verify-
+1 Verify dispute details are non-mandatorilui required.
+2 If user choose to insert Dispute code,Dispute ref no,Dispute document dates are mandatory to fill.
+3 Closer date always greater than Dispute date 
+4 Display poopup message on confirmation","ER1
+ER2
+ER3
+ER4",Pass,,5/8/2026,,,,,,,,,,,,,,,,
+LM_036,,3 Amenities,"Verify capture details-
+1 Distance related Info like- Railway station,Police station,school,Bus stand,hospital,Airport,.
+2 Facilities availability like- Park,Drainage,High Tension Lines,Approach road with dropdown selection with Yes or No.
+3 Tab details are optional to fill.
+4 Save & next button functionality
+5 Display confirmation vai popup toaster message.","ER1
+ER2
+ER3
+ER4
+ER5",Pass,,5/8/2026,,,,,,,,,,,,,,,,
+LM_037,,4 Approval Details,"Verify soil & water,Possession details.
+1 Details capture are optional/non mandatory.
+2 verify Type of soil,water source,status,possession document,remark.
+3 Save & next button functionality
+4 Display confirmation vai popup toaster message.","ER1
+ER2
+ER3
+ER4",Pass,,5/8/2026,,,,,,,,,,,,,,,,
+LM_038,5 Update Khasra/Edit,Edit & Update khasra details ,"Verify edit details like- Khasra type,District,Tehsil,Area Type,Village / Ward,Khasra No,Area In Hectare,Latitude ,Longitude,Collector Order Date,Upload Order Copy,Possession Date,Possession Details,Allotment Letter & edit Optional documents,all these before land Id creation.",As expected,Pass,,5/8/2026,"1 Warning messages for dates & other fields appearing in red color.
+2 once saved with khasra type as new/old can't be interchanged in edit/update.
+3 Date of purchase where not applicable appearing as created date BUG ID- 25950",,,,,,,,,,,,,,,
+LM_039,6 a) Payment details,Insert/Update Payment,"1 Verify to capture payment related details.
+2 Verify No payment Iinvolved for 
+(1 Land Pulling,
+2 Redevelopment,
+3 Deposit work ,
+4 Redensification for Govt) 
+3 Lease rent payment can also be inserted for forwarded land (Land Id created) with multiple enteries.
+","ER1
+ER2
+ER3",Pass,,5/8/2026,,,,,,,,,,,,,,,,
+LM_040,b)Payment Field details,Payment Details ,"Verify mandatory Payment type depending upon land type-
+1 A) Free Hold type,verify Insert Premium amount,Allotment letter,payment recipt.
+B) Verify file type PDF only,max size 10 mb.
+C)verify negative values not allowed.
+
+2  A) Lease verify, Insert premium amount,lease amount,no of lease dropdown,lease duration. 
+
+B) Allotment letter,payment recipt
+C)verify negative values not allowed.","ER1
+ER2",Pass,,5/8/2026,,,,,,,,,,,,,,,,
+LM_041,7 Create Land Id,Land Id creation ,"1 Verify allow to create Land id by clicking 'Forward to Chief Architect' button from Land List.
+2 All mandatory fields must be filled.
+3 Survey details must be captured from Other details.
+4 Edit is allowed till status of land is 'Saved'.
+5 Create LAND ID after fwd to Chief Architect.
+6 Lease rent payment capture is allowed even after Land Id created.","ER1
+ER2
+ER3
+ER4
+ER5
+ER6",Pass,,5/8/2026,,,,,,,,,,,,,,,,
+LM_042,8 Land Name Duplicacy not allowed,Restrict Same 'Land Name' ,"1 Verify do not allow same 'Land name' for two or more Lands.
+2 Verify Display warning popup message for Land name duplicacy.","ER1
+ER2",Pass,,5/8/2026,"error displayed- ""The land name has already been taken.""",,,,,,,,,,,,,,,
+LM_043,9 Advance Search ,Advance search functionality @land list page,"Verify-
+1 Fields like- Circle,Division,Sub-division,Land name,Land-Id,Land type (dropdown),Status (dropdown),land created from date,land creaeted to date.
+2 verify reset & search button
+3 Circle,Division,Sub-division should be freezed based on role & demography of logged in user.
+4 From & to To date for search should be mandatory
+5 Allow user to search based on listed parameters.","ER1
+ER2
+3 Not as expected
+4 Not as expected
+ER5",Fail,,5/8/2026,"1 Circle,Division,Sub-division not freezed.
+2 From & to To date both are non-madatory for search.
+",,,,,,,,,,,,,,,
+LM_044,10 Pagination,Pagination,Verify Pagination functionality working with different record holder.,As expected,Pass,,5/8/2026,,,,,,,,,,,,,,,,
+LM_045,11 Land List,Listing of Land,"verify user see the Land table with details like- Sno,Land Name,land id/Ref Id,Land Type,Created Date,last modified date,Status & edit,view & forward buttons.",As expected,Pass,,5/8/2026,,,,,,,,,,,,,,,,
+User Story 1,2 Government Land ,LM: User Story 1: Capture Land Details for By Government Land,,,,,,,,,,,,,,,,,,,,,
+LM_046,Create Land Details,"Verify user should be allowed to Insert-
+A) Land details (Create):-
+
+
+",Verify pick from dropdown field madatory.,As expected,Pass,,5/8/2026,,,,,,,,,,,,,,,,
+LM_047,,1 Pick Land (Government) type. ,Verify pick from dropdown field madatory.,As expected,Pass,,5/8/2026,,,,,,,,,,,,,,,,
+LM_048,,2 Pick District (auto-bind),Verify should be auto filled & non editable based on role & user.,Not as expected ,Fail,High,5/8/2026,,,,,,,,,,,,,,,,
+LM_049,,3 Pick Circle ,Verify should be auto filled & non editable based on role & user.,As expected,Pass,,5/8/2026,,,,,,,,,,,,,,,,
+LM_050,,4 Pick Division ,Verify Division should be auto filled & non editable based on role & user.,As expected,Pass,,5/8/2026,,,,,,,,,,,,,,,,
+LM_051,,5 Pick Sub-division ,Verify Subdivision should be auto filled & non editable based on role & user.,As expected,Pass,,5/8/2026,,,,,,,,,,,,,,,,
+LM_052,,6 Pick Town type ,Verify pick District or Tehsil,As expected,Pass,,5/8/2026,,,,,,,,,,,,,,,,
+LM_053,,7 Pick Dist or Tehsil,"Verify shows only dist name, Tehsil shows multiple tehsil under Dist",As expected,Pass,,5/8/2026,,,,,,,,,,,,,,,,
+LM_054,,8 Location / Locality / Area ,Verify allow insert alphanumeric values.(Max 255 char),Not as expected ,Fail,High,5/8/2026,Front-end popup message needs to implement & correct.,,,,,,,,,,,,,,,
+LM_055,,9 Land Name ,Verify with tool tip text (Ex. Land allocated for housing projects under government schemes.)(Max 150 char),Not as expected ,Fail,High,5/8/2026,Front-end popup message needs to implement & correct.,,,,,,,,,,,,,,,
+LM_056,,10 Land purpose,"Verify dropdown values (Housing,commercial,PSSP) allow one value to pick.",As expected,pass,,5/8/2026,,,,,,,,,,,,,,,,
+LM_057,,"11 Pick Land use-
+","Verify dropdown values (Agriculture,Commercial,Industrial,mixed land use,Public & semi public,Recreational/opne space,Residential,Special user,Water bodies) allow one value to pick.",As expected,pass,,5/8/2026,,,,,,,,,,,,,,,,
+LM_058,,12 Payment Type ,"Verify allow user to pick from dropdown-
+Leaser or Free hold ",As expected,pass,,5/8/2026,,,,,,,,,,,,,,,,
+LM_059,3 Insert Khasra details,Insert Fileds,,,,,,,,,,,,,,,,,,,,,
+LM_060,,1 Area in Hectare,"1 Verify numeric insert allowed only.
+2 Negative value not accepted .
+3 Deecimal values allowed","ER1
+ER2
+ER3",Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_061,,2 Latitude & Longitude,"Verify allowed range-
+1 Latitude (-90 to 90)
+2 Longitude (-180 to 180)","ER1
+ER 2",Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_062,,3 Current owner of land,"Verify fields show auto filled non editabel content-""MP Housing board""",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_063,,4 Date of Purchase,Verify future dates not allowed to pick.,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_064,,5 Documents -Demarcation,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size","ER1
+ER2
+ER3 ",Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_065,,6 Possession of Land,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size","ER1
+ER2
+ER3 ",Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_066,,7 Field Book,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size","ER1
+ER2
+ER3 ",Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_067,,8 Map Layout Khasra copy ,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size","ER1
+ER2
+ER3 ",Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_068,,9 Add optional Documents,"1 Ducument Type- Verify allow file name to pick 
+2 Uplaod File- Verify PDF Max 10 mb file.
+3 Display Error on invalid file type & size.
+4 Verify Add & Cancel button functionality.
+5 Display success popup message
+6 View/change/delete upladed document.
+7 Same doc name pick not allowed.
+8 Allow custom name for File name","ER1
+ER2
+ER3 
+ER4
+ER5
+ER6
+ER7
+ER8",Pass,,5/11/2026,,,,,,,,,,,,,,,,
+User Story 5,3 Housing for Redensification ,LM: User Story 5: Capture Land Details for 'Hosuing for Redensification',,,,,,,,,,,,,,,,,,,,,
+LM_069,Create Land Details,"Verify user should be allowed to Insert-
+A) Land details (Create):-
+
+
+",Verify pick from dropdown field madatory.,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_070,,1 Pick Land Housing for Redensification  type. ,Verify Land acquired type pick from dropdown field madatory.,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_071,,2 Pick District (auto-bind),Verify should be auto filled & non editable based on role & user.,As expected,Fail,,5/11/2026,,,,,,,,,,,,,,,,
+LM_072,,3 Pick Circle ,Verify should be auto filled & non editable based on role & user.,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_073,,4 Pick Division ,Verify Division should be auto filled & non editable based on role & user.,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_074,,5 Pick Sub-division ,Verify Subdivision should be auto filled & non editable based on role & user.,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_075,,6 Pick Town type ,Verify pick District or Tehsil,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_076,,7 Pick Dist or Tehsil,"Verify shows only dist name, Tehsil shows multiple tehsil under Dist",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_077,,8 Location / Locality / Area ,Verify allow insert alphanumeric values.(Max 255 char),As expected,Fail,,5/11/2026,,,,,,,,,,,,,,,,
+LM_078,,9 Land Name ,Verify with tool tip text (Ex. Land allocated for housing projects under government schemes.)(Max 150 char),As expected,Fail,,5/11/2026,,,,,,,,,,,,,,,,
+LM_079,,10 Land purpose,"Verify dropdown values (Housing,commercial,PSSP) allow one value to pick.",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_080,,"11 Pick Land use-
+","Verify dropdown values (Agriculture,Commercial,Industrial,mixed land use,Public & semi public,Recreational/opne space,Residential,Special user,Water bodies) allow one value to pick.",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_081,,12 Payment Type ,"Verify allow user to pick from dropdown-
+Leaser or Free hold ",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_082,Insert Khasra details,Insert Fields for Housing for Redensification ,,,,,,,,,,,,,,,,,,,,,
+LM_083,,1 Land source,"Verify dropdown values to pick any one-
+Land pulling,Direct purchase,By goct,By individual,By acquired",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_084,,2 Area in Hectare,"1 Verify numeric insert allowed only.
+2 Negative value not accepted .
+3 Deecimal values allowed","ER1
+ER2
+ER3",Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_085,,3 Latitude & Longitude,"Verify allowed range-
+1 Latitude (-90 to 90)
+2 Longitude (-180 to 180)","ER1
+ER 2",Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_086,,4 Collector Order Date ,Verify pick a date from calender,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_087,,5 Uplaod order copy ,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size","ER1
+ER2
+ER3 ",Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_088,,6 Possession details,Verify alphanumeric & max length 500 char.,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_089,,7 Possesstion Date,Verify pick a date from calender,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_090,,8 Adjustment Amount ,Verify numeric values that negative values not allowed.,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_091,,9 Adjustment Details,Verify alphanumeric & max length 500 char.,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+User Story 3:,4 Land Acquisition Act,LM: User Story 3: Capture Land Details for By Land Acquisition,,,,,,,,,,,,,,,,,,,,,
+LM_092,Land Details ,"Verify user should be allowed to Insert-
+A) Land details (Create):-
+
+
+",Verify pick from dropdown field madatory.,As expected,,,5/11/2026,,,,,,,,,,,,,,,,
+LM_093,,1 Pick Land Land Acquisition Act  type. ,Verify Land acquired type pick from dropdown field madatory.,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_094,,2 Pick District (auto-bind),Verify should be auto filled & non editable based on role & user.,As expected,Fail,,5/11/2026,,,,,,,,,,,,,,,,
+LM_095,,3 Pick Circle ,Verify should be auto filled & non editable based on role & user.,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_096,,4 Pick Division ,Verify Division should be auto filled & non editable based on role & user.,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_097,,5 Pick Sub-division ,Verify Subdivision should be auto filled & non editable based on role & user.,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_098,,6 Pick Town type ,Verify pick District or Tehsil,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_099,,7 Pick Dist or Tehsil,"Verify shows only dist name, Tehsil shows multiple tehsil under Dist",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_100,,8 Location / Locality / Area ,Verify allow insert alphanumeric values.(Max 255 char),As expected,Fail,,5/11/2026,,,,,,,,,,,,,,,,
+LM_101,,9 Land Name ,Verify with tool tip text (Ex. Land allocated for housing projects under government schemes.)(Max 150 char),As expected,Fail,,5/11/2026,,,,,,,,,,,,,,,,
+LM_102,,10 Land purpose,"Verify dropdown values (Housing,commercial,PSSP) allow one value to pick.",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_103,,"11 Pick Land use-
+","Verify dropdown values (Agriculture,Commercial,Industrial,mixed land use,Public & semi public,Recreational/opne space,Residential,Special user,Water bodies) allow one value to pick.",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_104,,12 Payment Type ,"Verify allow user to pick from dropdown-
+Leaser or Free hold ",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_105,Insert Khasra details,1 Area in Hectare,"1 Verify numeric insert allowed only.
+2 Negative value not accepted .
+3 Deecimal values allowed","ER1
+ER2
+ER3",Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_106,,2 Latitude & Longitude,"Verify allowed range-
+1 Latitude (-90 to 90)
+2 Longitude (-180 to 180)","ER1
+ER 2",Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_107,,3 Date of Notification,Verify date pick from calender,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_108,,4 Date of Award,Verify date pick from calender,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_109,,5 Land Award,Verify allow insert alphanumeric values.(Max 255 char),As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_110,,6 Purpose of Award ,"Verify dropdwn pick from-
+housing,others",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_111,,7 Award Purpose(Other) Specify,Verify allow insert alphanumeric values.(Max 255 char),As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_112,,8 Possession Date,Verify date pick from calender,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_113,,9 Mutation Date,Verify date pick from calender,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_114,,10 Possession Letter,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_115,,11 Select Act,"Verify dropdown selection for-
+1 The Right for fair Compensation and Transparency in Land Acquisition and rehabiliation and Resettlement Act(2013)
+2 The Land Acquisition Act (1894)
+3 Allow to insert details for related fields ",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_116,,"12 (Documents) 
+Demarcation","Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_117,,13 Possession of land,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_118,,14 Field Book,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_119,,15 Map layout,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_120,,16 Khasra copy,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+User Story 4,5 Land Pulling ,LM: User Story 4: Capture Land Details for By Land Pulling,,,,,,,,,,,,,,,,,,,,,
+LM_121,Insert Land Details ,"Verify user should be allowed to Insert-
+A) Land details (Create):-
+
+
+",Verify pick from dropdown field madatory.,As expected,,,5/11/2026,,,,,,,,,,,,,,,,
+LM_122,,1 Pick Land  Land Pulling type. ,Verify Land acquired type pick from dropdown field madatory.,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_123,,2 Pick District (auto-bind),Verify should be auto filled & non editable based on role & user.,As expected,Fail,,5/11/2026,,,,,,,,,,,,,,,,
+LM_124,,3 Pick Circle ,Verify should be auto filled & non editable based on role & user.,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_125,,4 Pick Division ,Verify Division should be auto filled & non editable based on role & user.,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_126,,5 Pick Sub-division ,Verify Subdivision should be auto filled & non editable based on role & user.,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_127,,6 Pick Town type ,Verify pick District or Tehsil,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_128,,7 Pick Dist or Tehsil,"Verify shows only dist name, Tehsil shows multiple tehsil under Dist",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_129,,8 Location / Locality / Area ,Verify allow insert alphanumeric values.(Max 255 char),As expected,Fail,,5/11/2026,,,,,,,,,,,,,,,,
+LM_130,,9 Land Name ,Verify with tool tip text (Ex. Land allocated for housing projects under government schemes.)(Max 150 char),As expected,Fail,,5/11/2026,,,,,,,,,,,,,,,,
+LM_131,,10 Acquisition For ,"Verify dropdown field to pick from-
+1 Redevelopment RDH
+2 Redensification RH
+3 Housing H
+4 Sooraj SH",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_132,,"11 Pick Land use-
+","Verify dropdown values (Agriculture,Commercial,Industrial,mixed land use,Public & semi public,Recreational/opne space,Residential,Special user,Water bodies) allow one value to pick.",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_133,Insert Khasra details,1 Land Source  ,"Verify pick from dropdown field madatory.-
+Land pulling,Direct purchase,By goct,By individual,By acquired",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_134,,2 Area in Hectare,"1 Verify numeric insert allowed only.
+2 Negative value not accepted .
+3 Deecimal values allowed","ER1
+ER2
+ER3",Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_135,,3 Latitude & Longitude,"Verify allowed range-
+1 Latitude (-90 to 90)
+2 Longitude (-180 to 180)","ER1
+ER 2",Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_136,,4 Notification Date,Verify date pick from calender,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_137,,5 Final notification Date,Verify date pick from calender,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_138,,6 Final Agreement date,Verify date pick from calender,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_139,,7 Add land Owner details,"Verify-
+1 Verify insert character field Max 255 cha.
+2 Insert land area in Hectare
+3 Pick mutaton date
+4 Upload agreement copy
+5 User can delete inserted info
+6 User can add multiple owner details
+7 Area must be less than total area of khasra details","ER1
+ER2
+ER3
+ER4
+ER5
+ER6
+7 not as expected",Fail,High,,Land owner area is greater than total ara.,,,,,,,,,,,,,,,
+LM_140,,"8 (Documents)
+Khasra copy","Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_141,,9 Scheme layout,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_142,,10 Demarcation,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_143,,"11 Possession of Land
+","Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_144,,12 Field Book,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+User Story 2,6 Private Land,LM: User Story 2: Capture Land Details for By Private Land,,,,,,,,,,,,,,,,,,,,,
+LM_145,Insert Land Details,"Verify user should be allowed to Insert-
+A) Land details (Create):-
+
+
+",Verify pick from dropdown field madatory.,As expected,,,5/11/2026,,,,,,,,,,,,,,,,
+LM_146,,1 Pick Land Private Land type. ,Verify Land acquired type pick from dropdown field madatory.,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_147,,2 Pick District (auto-bind),Verify should be auto filled & non editable based on role & user.,As expected,Fail,,5/11/2026,,,,,,,,,,,,,,,,
+LM_148,,3 Pick Circle ,Verify should be auto filled & non editable based on role & user.,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_149,,4 Pick Division ,Verify Division should be auto filled & non editable based on role & user.,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_150,,5 Pick Sub-division ,Verify Subdivision should be auto filled & non editable based on role & user.,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_151,,6 Pick Town type ,Verify pick District or Tehsil,As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_152,,7 Pick Dist or Tehsil,"Verify shows only dist name, Tehsil shows multiple tehsil under Dist",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_153,,8 Location / Locality / Area ,Verify allow insert alphanumeric values.(Max 255 char),As expected,Fail,,5/11/2026,,,,,,,,,,,,,,,,
+LM_154,,9 Land Name ,Verify with tool tip text (Ex. Land allocated for housing projects under government schemes.)(Max 150 char),As expected,Fail,,5/11/2026,,,,,,,,,,,,,,,,
+LM_155,,10 Land purpose ,"Verify dropdown field to pick from-
+1 Redevelopment RDH
+2 Redensification RH
+3 Housing H
+4 Sooraj SH",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_156,,"11 Pick Land use-
+","Verify dropdown values (Agriculture,Commercial,Industrial,mixed land use,Public & semi public,Recreational/opne space,Residential,Special user,Water bodies) allow one value to pick.",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_157,,12 Insert Payment Type,"Verify allow user to pick from dropdown-
+Leaser or Free hold ",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_158,Insert Khasra details,1 Land Source  ,"Verify pick value from dropdown-Land pulling,Direct purchase,By goct,By individual,By acquired
+",,,,,,,,,,,,,,,,,,,,
+LM_159,,2 Area in Hectare,"1 Verify numeric insert allowed only.
+2 Negative value not accepted .
+3 Deecimal values allowed","ER1
+ER2
+ER3",Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_160,,3 Latitude & Longitude,"Verify allowed range-
+1 Latitude (-90 to 90)
+2 Longitude (-180 to 180)","ER1
+ER 2",Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_161,,4 Owner details,"Verify 
+1 Current Owner Of Land (MPHB)
+2 Owner Name (alphanumeric)
+3 Purchase Date (calender pick)
+4 Registry Date
+5 Possession Date
+6 Mutation Date
+7 Allow multiple entries to capture","ER1
+ER2
+ER3
+ER4
+ER5
+ER6
+ER7
+",Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_162,,"5 (Documents)
+Demarcation","Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_163,,6 Possession of Land,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_164,,7 Field Book,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_165,,8 Map Layout,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+LM_166,,9 Khasra Copy,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/11/2026,,,,,,,,,,,,,,,,
+User Story 6,7 Redensification for Government,LM: User Story 6: Capture Land Details for Redensification for Government,,,,,,,,,,,,,,,,,,,,,
+LM_167,Insert Land Details,"Verify user should be allowed to Insert-
+A) Land details (Create):-
+
+
+",Verify pick from dropdown field madatory.,As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_168,,1 Pick Land Redensification for Government type. ,Verify Land acquired type pick from dropdown field madatory.,As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_169,,2 Pick District (auto-bind),Verify should be auto filled & non editable based on role & user.,As expected,Fail,,5/12/2026,,,,,,,,,,,,,,,,
+LM_170,,3 Pick Circle ,Verify should be auto filled & non editable based on role & user.,As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_171,,4 Pick Division ,Verify Division should be auto filled & non editable based on role & user.,As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_172,,5 Pick Sub-division ,Verify Subdivision should be auto filled & non editable based on role & user.,As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_173,,6 Pick Town type ,Verify pick District or Tehsil,As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_174,,7 Pick Dist or Tehsil,"Verify shows only dist name, Tehsil shows multiple tehsil under Dist",As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_175,,8 Location / Locality / Area ,Verify allow insert alphanumeric values.(Max 255 char),As expected,Fail,,5/12/2026,,,,,,,,,,,,,,,,
+LM_176,,9 Land Name ,Verify with tool tip text (Ex. Land allocated for housing projects under government schemes.)(Max 150 char),As expected,Fail,,5/12/2026,,,,,,,,,,,,,,,,
+LM_177,,10 Land purpose ,"Verify dropdown field to pick from-
+1 Redevelopment RDH
+2 Redensification RH
+3 Housing H
+4 Sooraj SH",As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_178,,"11 Pick Land use-
+","Verify dropdown values (Agriculture,Commercial,Industrial,mixed land use,Public & semi public,Recreational/opne space,Residential,Special user,Water bodies) allow one value to pick.",As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_179,,12 No Payment,Verify No payment for 'Redensification for Government' type Land,As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_180,Inser Khasra Details,1 Area in Hectare,"1 Verify numeric insert allowed only.
+2 Negative value not accepted .
+3 Deecimal values allowed","ER1
+ER2
+ER3",Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_181,,2 Latitude & Longitude,"Verify allowed range-
+1 Latitude (-90 to 90)
+2 Longitude (-180 to 180)","ER1
+ER 2",Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_182,,3 Collector order date,Verify date pick from calender,As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_183,,4 Upload Order Copy,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_184,,5 Development Date,Verify date pick from calender,As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_185,,6 Possession Date,Verify date pick from calender,As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_186,,7 Possession Document Upload,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_187,,8 Possession Details,Verify allow insert alphanumeric values.(Max 255 char),As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_188,,9 Land Details,Verify allow insert alphanumeric values.(Max 255 char),As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_189,,"10 (Documents)
+Khasra Copy","Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_190,,11 Map Layout,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_191,,12 Demarcation,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_192,,13 Possession of Land,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_193,,14 Field Book,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_194,,15 Allotment Letter,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_195,,16 Empowered Committee MOM,"Verify valid uplaod-
+1 Allowed type- PDF
+2 Max size- 10 mb
+3 Throw error message on invalid type beyond allowed size",As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+User Story 7,8 Redevelopment ,LM: User Story 7: Capture Land Details for Redevelopment,,,,,,,,,,,,,,,,,,,,,
+LM_196,,"Verify user should be allowed to Insert-
+A) Land details (Create):-
+
+
+",Verify pick from dropdown field madatory.,As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_197,,1 Pick Land Redevelopment type. ,Verify Land acquired type pick from dropdown field madatory.,As expected,Pass,,5/12/2026,,,,,,,,,,,,,,,,
+LM_198,,2 Select Land Source,"Verify user to -
+1 User should get Land Id created only land.
+2 User should be allowed to search in dropdon via keyword.
+3 After picking Rest location related details should get auto-fetched
+4 Allow user to edit fields like- Town type,Town,Location / Locality / Area,Land Name,Land use etc",As expected,Pass,,5/12/2026,Unknown text appearing in dropdown value.,,,,,,,,,,,,,,,
+LM_199,,3 Pick khasra from created Land to make new Redevelopment Land,"Verify-
+1 User can select either one or more than one khasra to form redevelopment Land.
+2 Select Khasra via checkbox & add area.
+3 Remaining khasra of old land must be intact with oold Land Id.
+4 Extracted khasra in land should form new Redevelopment id.
+5 Do not allow Land name duplicacy.
+6 Click on Create should generate a new redevelopment Land id &display popup confirmation.",Not as expected,Fail,,5/12/2026,Redevelopment Id create faile- throwing Integer error,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,,

@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import utilities.AlertUtils;
 import utilities.ClickUtils;
 
 public class RegisterPage extends DriverBase {
@@ -105,24 +106,37 @@ public class RegisterPage extends DriverBase {
 
 	// Enter mobile OTP
 	public void enterMobileOtp(String otp) {
-		mobileOtpField.clear();
-		mobileOtpField.sendKeys(otp);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebElement field = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@placeholder='Enter Mobile OTP']")));
+		try {
+			wait.until(ExpectedConditions.elementToBeClickable(field));
+		} catch (Exception ignored) {
+		}
+		if (field.isEnabled()) {
+			field.clear();
+			field.sendKeys(otp);
+		}
 	}
 
 	// Click Verify Mobile OTP
 	public void clickVerifyMobileOtp() {
 		ClickUtils.smartClick(driver, verifyMobileOtpButton);
+		AlertUtils.captureSweetAlertTextAndOk(driver);
 	}
 
-	// Enter email
+	// Enter email — confirmed live on UAT (2026-07-15): the input is
+	// name='email', placeholder 'Enter Email ID'
 	public void enterEmail(String email) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-		WebElement emailField = wait
-				.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@placeholder='Enter email ID']")));
-
-		emailField.clear();
-		emailField.sendKeys(email);
+		WebElement field = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@name='email']")));
+		try {
+			wait.until(ExpectedConditions.elementToBeClickable(field));
+		} catch (Exception ignored) {
+		}
+		if (field.isEnabled()) {
+			field.clear();
+			field.sendKeys(email);
+		}
 	}
 
 	// Click Send Email OTP
@@ -132,13 +146,22 @@ public class RegisterPage extends DriverBase {
 
 	// Enter email OTP
 	public void enterEmailOtp(String otp) {
-		emailOtpField.clear();
-		emailOtpField.sendKeys(otp);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebElement field = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//input[@placeholder='Enter Email OTP']")));
+		try {
+			wait.until(ExpectedConditions.elementToBeClickable(field));
+		} catch (Exception ignored) {
+		}
+		if (field.isEnabled()) {
+			field.clear();
+			field.sendKeys(otp);
+		}
 	}
 
 	// Click Verify Email OTP
 	public void clickVerifyEmailOtp() {
 		ClickUtils.smartClick(driver, verifyEmailOtpButton);
+		AlertUtils.captureSweetAlertTextAndOk(driver);
 	}
 
 	// Check declaration checkbox

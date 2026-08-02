@@ -209,7 +209,20 @@ public class Master_extent_report_v2 implements ITestListener, ISuiteListener {
             }
         }
 
-        PortalApiClient.pushTestFailed(result, screenshotPath);
+        // Raw Selenium exceptions only say a locator didn't resolve in time - they
+        // don't say WHY the page never reached the expected state. Scan the live DOM
+        // at failure time for any on-screen error/status text (API error banners,
+        // SweetAlert2 popups, invalid-feedback messages) so the report shows the
+        // actual root cause alongside the exception, e.g. "Request failed with
+        // status code 404" instead of just "element not clickable". Mirrors the same
+        // wiring in Master_extent_report (v1) - see utilities.FailureDiagnostics.
+        String rootCause = utilities.FailureDiagnostics.captureRootCause(activeDriver);
+        if (rootCause != null && !rootCause.isEmpty()) {
+            test.log(Status.FAIL, "🔎 Actual reason shown on page: " + rootCause);
+            System.out.println("[FailureDiagnostics] " + result.getName() + " -> " + rootCause);
+        }
+
+        PortalApiClient.pushTestFailed(result, screenshotPath, rootCause);
     }
 
     @Override

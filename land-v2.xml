@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
+<!-- Land Management suite (portal/v2 listener) - all 7 live-verified land
+     types (see future/Framework_Context.md section 10/10b). Redevelopment
+     stays out: different flow + known site defect (LM_199). Keep the class
+     list in sync with land.xml - these two are the ONLY land suite XMLs. -->
 <suite name="Land Management Suite">
 <listeners>
     <listener class-name="ReportManager.Master_extent_report_v2"/>
@@ -11,10 +15,14 @@
 		<classes>
 
 			<class name="testCases.LandModule.login" />
-			<class name="testCases.LandModule.landCreation" />
-			<class name="testCases.LandModule.AddKhasra" />
-			<class name="testCases.LandModule.SurveyDetails" />
-			<class name="testCases.LandModule.ForwordToCA" />
+
+			<class name="testCases.LandModule.GovernmentLandCreation" />
+			<class name="testCases.LandModule.DepositWorkLandCreation" />
+			<class name="testCases.LandModule.HousingRedensificationLandCreation" />
+			<class name="testCases.LandModule.LandAcquisitionActLandCreation" />
+			<class name="testCases.LandModule.LandPullingLandCreation" />
+			<class name="testCases.LandModule.PrivateLandLandCreation" />
+			<class name="testCases.LandModule.RedensificationGovtLandCreation" />
 
 		</classes>
 

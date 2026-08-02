@@ -150,11 +150,23 @@ public class Create_land extends DriverBase {
 
 	    landNameField.sendKeys(landName);
 
-	    DropdownUtils.waitForOptionsToLoad(driver, purposeOfLandDropdown);
+	    // Land purpose and Payment Type are only rendered for some land types
+	    // (e.g. Government Land) - other types (e.g. Deposit Work) never show
+	    // them, so these waits are best-effort: if the field never appears,
+	    // that just means this land type doesn't have it.
+	    waitIfPresent(purposeOfLandDropdown);
 
-	    DropdownUtils.waitForOptionsToLoad(driver, landUseDropdown);
+	    waitIfPresent(landUseDropdown);
 
-	    DropdownUtils.waitForOptionsToLoad(driver, paymentTypeDropdown);
+	    waitIfPresent(paymentTypeDropdown);
+	}
+
+	private void waitIfPresent(WebElement dropdown) {
+	    try {
+	        DropdownUtils.waitForOptionsToLoad(driver, dropdown);
+	    } catch (Exception fieldNotPresentForThisLandType) {
+	        // Expected for land types that don't render this field.
+	    }
 	}
 	public void selectLandUse(String landUse) {
 

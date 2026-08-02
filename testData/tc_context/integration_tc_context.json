@@ -1,0 +1,1262 @@
+﻿{
+    "project":  "MPHIDB",
+    "generated":  "2026-07-14",
+    "source_excel":  [
+                         "g:\\MPHB\\integration_tc.xlsx (sheet: Cross-Module Integration - legacy merged inline as Part 2)"
+                     ],
+    "note":  "Minimum TC set for automation - more can be added",
+    "total_test_cases":  73,
+    "rtm_flows":  [
+                      {
+                          "sno":  1,
+                          "id":  "INT-FLOW-1",
+                          "req":  "Land Module -\u003e Architect Workflow: EE creates Land ID, completes land activities \u0026 forwards to CA",
+                          "tcs":  "INT_001 - INT_007",
+                          "desc":  "Authority login, Land creation, data persistence, forward, ownership transfer \u0026 module transition validation",
+                          "count":  7
+                      },
+                      {
+                          "sno":  2,
+                          "id":  "INT-FLOW-2",
+                          "req":  "In-House Architect Workflow: CA -\u003e In-House Architect -\u003e AA -\u003e Draftsman",
+                          "tcs":  "INT_008 - INT_020",
+                          "desc":  "Sub Land creation \u0026 parent linkage, In-House selection, document association, ownership transfers \u0026 routing restriction",
+                          "count":  13
+                      },
+                      {
+                          "sno":  3,
+                          "id":  "INT-FLOW-3",
+                          "req":  "Reverse Approval \u0026 Final Approval: Draftsman -\u003e AA -\u003e In-House Architect -\u003e CA",
+                          "tcs":  "INT_021 - INT_026",
+                          "desc":  "Reverse paths as per permissions, history accuracy, document integrity \u0026 final approval/completion",
+                          "count":  6
+                      },
+                      {
+                          "sno":  4,
+                          "id":  "INT-FLOW-4",
+                          "req":  "Competition Creation \u0026 CMS synchronization (CA)",
+                          "tcs":  "INT_027 - INT_031",
+                          "desc":  "Competition creation against Sub Land, Note Sheet, duration, publish \u0026 CMS visibility/date sync",
+                          "count":  5
+                      },
+                      {
+                          "sno":  5,
+                          "id":  "INT-FLOW-5",
+                          "req":  "CMS Empanelment Integration: Registration -\u003e Application -\u003e CA Approval -\u003e Payment -\u003e Active",
+                          "tcs":  "INT_032 - INT_038",
+                          "desc":  "CMS registration, application sync to CA, approval, payment, activation \u0026 competition eligibility",
+                          "count":  7
+                      },
+                      {
+                          "sno":  6,
+                          "id":  "INT-FLOW-6",
+                          "req":  "Competition Application Integration (CMS \u003c-\u003e Architect module)",
+                          "tcs":  "INT_039 - INT_044",
+                          "desc":  "Competition visibility, multiple applications, date window enforcement, single winner selection \u0026 CMS reflection",
+                          "count":  6
+                      },
+                      {
+                          "sno":  7,
+                          "id":  "INT-FLOW-7",
+                          "req":  "Competition Workflow Integration: CA -\u003e DHC -\u003e EE -\u003e Empanelled Architect",
+                          "tcs":  "INT_045 - INT_050",
+                          "desc":  "LoA, Work Order, Agreement, winner-only visibility, CMS-Authority document synchronization \u0026 return routing",
+                          "count":  6
+                      },
+                      {
+                          "sno":  8,
+                          "id":  "INT-FLOW-8",
+                          "req":  "Reverse Competition \u0026 Final Approval: Emp Architect -\u003e EE -\u003e DHC -\u003e CA",
+                          "tcs":  "INT_051 - INT_056",
+                          "desc":  "Reverse ownership transfers, document/version integrity, completion in both modules \u0026 end-to-end consistency",
+                          "count":  6
+                      },
+                      {
+                          "sno":  9,
+                          "id":  "INT-FLOW-9",
+                          "req":  "Legacy Land Processing (Part 2 of Land Module): EE retrieves migrated Land via Advanced Filter (Is Migrated Data = Yes), completes minimum data \u0026 forwards to CA using the same Land ID",
+                          "tcs":  "INT_LG_001 - INT_LG_017",
+                          "desc":  "Advanced Filter retrieval, existing Land ID (no new ID), NA defaults, Land Type \u0026 Area \u003e 0 validations, relaxed document rule, forwarding, ownership transfer, CA document visibility (uploaded vs missing), negative scenarios \u0026 data consistency",
+                          "count":  17
+                      }
+                  ],
+    "test_cases":  [
+                       {
+                           "id":  "INT_001",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 1 - Land Module -\u003e Architect Workflow (EE -\u003e CA)",
+                           "sub_section":  "",
+                           "description":  "Authority Login - Executive Engineer (EE)",
+                           "steps":  [
+                                         "1 Open Authority Login page",
+                                         "2 Enter valid EE credentials",
+                                         "3 Click Login"
+                                     ],
+                           "expected":  [
+                                            "1 EE should be logged in successfully through Authority Login.",
+                                            "2 EE dashboard should display Land module options as per assigned role \u0026 permissions.",
+                                            "3 Menus/actions of other roles should not be visible to EE."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_002",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 1 - Land Module -\u003e Architect Workflow (EE -\u003e CA)",
+                           "sub_section":  "",
+                           "description":  "Create new Land ID with complete details",
+                           "steps":  [
+                                         "Precondition- INT_001 passed.",
+                                         "1 Navigate to Land module \u003e Create Land",
+                                         "2 Insert all mandatory Land details (Land type, District, Circle, Division, Subdivision, Town type, Location, Land Name, Land use)",
+                                         "3 Insert Khasra details",
+                                         "4 Upload required documents",
+                                         "5 Click Create"
+                                     ],
+                           "expected":  [
+                                            "1 Land ID should be generated successfully with confirmation popup message.",
+                                            "2 All inserted Land \u0026 Khasra details should be saved correctly.",
+                                            "3 Uploaded documents should be attached with the created Land ID."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_003",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 1 - Land Module -\u003e Architect Workflow (EE -\u003e CA)",
+                           "sub_section":  "",
+                           "description":  "Data persistence after Land creation",
+                           "steps":  [
+                                         "1 Reopen the created Land ID from Land list",
+                                         "2 Compare each saved field value with the inserted data",
+                                         "3 Open attached documents"
+                                     ],
+                           "expected":  [
+                                            "1 All field values should exactly match the data entered at creation time.",
+                                            "2 All attached documents should be viewable/downloadable without corruption.",
+                                            "3 No data should be lost or auto-changed after save."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_004",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 1 - Land Module -\u003e Architect Workflow (EE -\u003e CA)",
+                           "sub_section":  "",
+                           "description":  "Forward Land to Chief Architect (CA)",
+                           "steps":  [
+                                         "1 Open the created Land ID at EE",
+                                         "2 Complete all Land creation activities",
+                                         "3 Click Forward, select Chief Architect, insert remarks",
+                                         "4 Confirm forward action"
+                                     ],
+                           "expected":  [
+                                            "1 Forward should be successful with confirmation message.",
+                                            "2 Workflow status should be updated correctly (e.g. Forwarded to CA).",
+                                            "3 Ownership should be transferred to the Chief Architect.",
+                                            "4 Audit log should capture from-user, to-user, timestamp \u0026 remarks."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_005",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 1 - Land Module -\u003e Architect Workflow (EE -\u003e CA)",
+                           "sub_section":  "",
+                           "description":  "Ownership removal at EE after forward",
+                           "steps":  [
+                                         "1 After forwarding, at EE login open the same Land ID"
+                                     ],
+                           "expected":  [
+                                            "1 EE should not be able to edit or re-forward the forwarded Land.",
+                                            "2 Land should be visible to EE in read-only / history mode only."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_006",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 1 - Land Module -\u003e Architect Workflow (EE -\u003e CA)",
+                           "sub_section":  "",
+                           "description":  "Land availability in Architect Workflow module (CA)",
+                           "steps":  [
+                                         "1 Login with CA credentials via Authority Login",
+                                         "2 Open Architect Workflow \u003e received/pending list",
+                                         "3 Open the same Land ID forwarded by EE"
+                                     ],
+                           "expected":  [
+                                            "1 The same Land ID should be available within the Architect Workflow module.",
+                                            "2 All Land details, Khasra details \u0026 documents should be intact.",
+                                            "3 No data should be lost during module transition (Land -\u003e Architect Workflow)."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_007",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 1 - Land Module -\u003e Architect Workflow (EE -\u003e CA)",
+                           "sub_section":  "",
+                           "description":  "Workflow status \u0026 history trail after module transition",
+                           "steps":  [
+                                         "1 At CA, open activity log / history of the received Land ID"
+                                     ],
+                           "expected":  [
+                                            "1 History should show Land creation by EE and forward event in correct sequence.",
+                                            "2 Each event should display correct user, role, date-time \u0026 status transition."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_008",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 2 - In-House Architect Workflow",
+                           "sub_section":  "Step 1 - Chief Architect (CA)",
+                           "description":  "Create Sub Land from received Land ID",
+                           "steps":  [
+                                         "Precondition- INT_006 passed.",
+                                         "1 CA opens the received Land ID",
+                                         "2 Create one or more Sub Lands with area details",
+                                         "3 Save Sub Land"
+                                     ],
+                           "expected":  [
+                                            "1 Sub Land ID should be generated \u0026 linked with the correct parent Land ID.",
+                                            "2 Sub Land area should be validated against parent available land area.",
+                                            "3 Parent available area should reduce accordingly after Sub Land creation."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_009",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 2 - In-House Architect Workflow",
+                           "sub_section":  "Step 1 - Chief Architect (CA)",
+                           "description":  "Select In-House workflow option",
+                           "steps":  [
+                                         "1 Open the created Sub Land",
+                                         "2 Select workflow mode = In-House",
+                                         "3 Save selection"
+                                     ],
+                           "expected":  [
+                                            "1 In-House mode should be saved against the Sub Land.",
+                                            "2 Competition option should not get initiated for the same Sub Land."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_010",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 2 - In-House Architect Workflow",
+                           "sub_section":  "Step 1 - Chief Architect (CA)",
+                           "description":  "Upload required documents at CA",
+                           "steps":  [
+                                         "1 Upload required documents (allowed type PDF, within max size) against the Sub Land",
+                                         "2 Try uploading invalid file type \u0026 oversized file"
+                                     ],
+                           "expected":  [
+                                            "1 Valid documents should be uploaded successfully \u0026 remain associated with the Sub Land.",
+                                            "2 Invalid file type/size should be rejected with proper error message on the same screen."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_011",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 2 - In-House Architect Workflow",
+                           "sub_section":  "Step 1 - Chief Architect (CA)",
+                           "description":  "Forward workflow to In-House Architect",
+                           "steps":  [
+                                         "1 Click Forward, select In-House Architect, insert remarks",
+                                         "2 Confirm forward"
+                                     ],
+                           "expected":  [
+                                            "1 Workflow ownership should change correctly to In-House Architect.",
+                                            "2 Workflow status should be updated.",
+                                            "3 Sub Land should appear in In-House Architect pending/assigned queue.",
+                                            "4 Audit log should capture the forwarding event."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_012",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 2 - In-House Architect Workflow",
+                           "sub_section":  "Step 2 - In-House Architect",
+                           "description":  "Assigned Sub Land visibility at In-House Architect",
+                           "steps":  [
+                                         "1 Login as In-House Architect via Authority Login",
+                                         "2 Open assigned workflow list",
+                                         "3 Open the assigned Sub Land"
+                                     ],
+                           "expected":  [
+                                            "1 The assigned Sub Land should be visible to the In-House Architect.",
+                                            "2 Linked parent Land ID \u0026 details should be accessible.",
+                                            "3 Sub Lands not assigned to this user should not be visible."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_013",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 2 - In-House Architect Workflow",
+                           "sub_section":  "Step 2 - In-House Architect",
+                           "description":  "Previously uploaded documents accessibility",
+                           "steps":  [
+                                         "1 Open document section of the assigned Sub Land",
+                                         "2 View/download documents uploaded by CA"
+                                     ],
+                           "expected":  [
+                                            "1 All previously uploaded (CA) documents should remain accessible.",
+                                            "2 Documents should open/download without corruption."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_014",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 2 - In-House Architect Workflow",
+                           "sub_section":  "Step 2 - In-House Architect",
+                           "description":  "Upload documents \u0026 forward to Assistant Architect (AA)",
+                           "steps":  [
+                                         "1 Upload required documents",
+                                         "2 Click Forward, select Assistant Architect, insert remarks",
+                                         "3 Confirm forward"
+                                     ],
+                           "expected":  [
+                                            "1 Newly uploaded documents should be stored successfully.",
+                                            "2 Workflow ownership should transfer correctly to AA.",
+                                            "3 Workflow status \u0026 history should be updated."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_015",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 2 - In-House Architect Workflow",
+                           "sub_section":  "Step 3 - Assistant Architect (AA)",
+                           "description":  "Workflow history preservation at AA",
+                           "steps":  [
+                                         "1 Login as AA",
+                                         "2 Open the received workflow",
+                                         "3 Open activity log / history"
+                                     ],
+                           "expected":  [
+                                            "1 Complete workflow history (EE -\u003e CA -\u003e In-House Architect -\u003e AA) should be preserved in correct sequence with users, dates \u0026 remarks."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_016",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 2 - In-House Architect Workflow",
+                           "sub_section":  "Step 3 - Assistant Architect (AA)",
+                           "description":  "Document availability at AA",
+                           "steps":  [
+                                         "1 Open document section of the workflow at AA"
+                                     ],
+                           "expected":  [
+                                            "1 All documents uploaded by CA \u0026 In-House Architect should remain accessible at AA."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_017",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 2 - In-House Architect Workflow",
+                           "sub_section":  "Step 3 - Assistant Architect (AA)",
+                           "description":  "Upload documents \u0026 forward to Draftsman",
+                           "steps":  [
+                                         "1 AA uploads required documents",
+                                         "2 Click Forward, select Draftsman, insert remarks",
+                                         "3 Confirm forward"
+                                     ],
+                           "expected":  [
+                                            "1 Documents should be stored successfully.",
+                                            "2 Workflow status should change correctly.",
+                                            "3 Ownership should transfer to Draftsman."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_018",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 2 - In-House Architect Workflow",
+                           "sub_section":  "Step 4 - Draftsman",
+                           "description":  "Mandatory document upload at Draftsman",
+                           "steps":  [
+                                         "1 Login as Draftsman \u0026 open the received workflow",
+                                         "2 Try to return workflow without uploading mandatory documents",
+                                         "3 Upload mandatory documents \u0026 retry"
+                                     ],
+                           "expected":  [
+                                            "1 System should not allow return/forward without mandatory documents \u0026 should show proper validation message.",
+                                            "2 After uploading mandatory documents, workflow return should be allowed."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_019",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 2 - In-House Architect Workflow",
+                           "sub_section":  "Step 4 - Draftsman",
+                           "description":  "Return routing restriction at Draftsman",
+                           "steps":  [
+                                         "1 Click Return/Forward at Draftsman",
+                                         "2 Check the list of available users/roles"
+                                     ],
+                           "expected":  [
+                                            "1 Draftsman should be able to return the workflow only to the assigning user (AA).",
+                                            "2 Other users/roles should not be available for selection.",
+                                            "3 Invalid routing should be prevented."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_020",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 2 - In-House Architect Workflow",
+                           "sub_section":  "Step 4 - Draftsman",
+                           "description":  "Ownership update on return to AA",
+                           "steps":  [
+                                         "1 Draftsman returns the workflow to AA with remarks"
+                                     ],
+                           "expected":  [
+                                            "1 Workflow ownership should be updated correctly to AA.",
+                                            "2 Status should be updated \u0026 return event captured in audit log."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_021",
+                           "suite":  "cross-module-integration",
+                           "section":  "Reverse Approval Integration (Draftsman -\u003e AA -\u003e In-House Architect -\u003e CA)",
+                           "sub_section":  "",
+                           "description":  "Reverse Path 1 - AA forwards to In-House Architect",
+                           "steps":  [
+                                         "1 AA opens workflow received back from Draftsman",
+                                         "2 Forward to In-House Architect",
+                                         "3 In-House Architect reviews \u0026 forwards to CA"
+                                     ],
+                           "expected":  [
+                                            "1 Forward should be allowed as per configured permissions.",
+                                            "2 Ownership \u0026 status should update correctly at each step.",
+                                            "3 CA should receive the workflow with complete data."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_022",
+                           "suite":  "cross-module-integration",
+                           "section":  "Reverse Approval Integration (Draftsman -\u003e AA -\u003e In-House Architect -\u003e CA)",
+                           "sub_section":  "",
+                           "description":  "Reverse Path 2 - AA forwards directly to CA (if allowed)",
+                           "steps":  [
+                                         "1 AA opens workflow received back from Draftsman",
+                                         "2 Try to forward directly to CA"
+                                     ],
+                           "expected":  [
+                                            "1 Direct forward to CA should behave as per configured permissions - allowed only if permission is granted, otherwise CA option should not be available.",
+                                            "2 Both business paths (via In-House Architect / direct) should behave correctly."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_023",
+                           "suite":  "cross-module-integration",
+                           "section":  "Reverse Approval Integration (Draftsman -\u003e AA -\u003e In-House Architect -\u003e CA)",
+                           "sub_section":  "",
+                           "description":  "Workflow history accuracy in reverse flow",
+                           "steps":  [
+                                         "1 Open activity log after each reverse transition"
+                                     ],
+                           "expected":  [
+                                            "1 Every reverse transition should be recorded accurately in sequence with from-user, to-user, action, timestamp \u0026 remarks.",
+                                            "2 Workflow history should remain accurate \u0026 complete."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_024",
+                           "suite":  "cross-module-integration",
+                           "section":  "Reverse Approval Integration (Draftsman -\u003e AA -\u003e In-House Architect -\u003e CA)",
+                           "sub_section":  "",
+                           "description":  "Document integrity in reverse flow",
+                           "steps":  [
+                                         "1 Verify document section at every stage of reverse transition (Draftsman -\u003e AA -\u003e In-House Architect -\u003e CA)"
+                                     ],
+                           "expected":  [
+                                            "1 No document should be lost during reverse transitions.",
+                                            "2 All documents \u0026 their versions should remain accessible at each stage."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_025",
+                           "suite":  "cross-module-integration",
+                           "section":  "Final Approval - In-House Workflow (CA)",
+                           "sub_section":  "",
+                           "description":  "Final review by CA",
+                           "steps":  [
+                                         "1 CA opens the workflow received via reverse approval",
+                                         "2 Review all submitted documents \u0026 complete history",
+                                         "3 Perform final verification"
+                                     ],
+                           "expected":  [
+                                            "1 All documents uploaded by every role should be available to CA for final verification.",
+                                            "2 Complete workflow history should be visible."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_026",
+                           "suite":  "cross-module-integration",
+                           "section":  "Final Approval - In-House Workflow (CA)",
+                           "sub_section":  "",
+                           "description":  "Final approval \u0026 workflow completion",
+                           "steps":  [
+                                         "1 CA clicks Approve with remarks",
+                                         "2 Reopen the workflow after approval"
+                                     ],
+                           "expected":  [
+                                            "1 Final approval should update the workflow status to Approved/Completed.",
+                                            "2 Workflow should be marked as completed.",
+                                            "3 All uploaded documents should remain available after completion.",
+                                            "4 No further edit/forward should be allowed on completed workflow."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_027",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 3 - Competition Workflow",
+                           "sub_section":  "Competition Creation \u0026 Publish (CA)",
+                           "description":  "Create Competition against Sub Land",
+                           "steps":  [
+                                         "Precondition- Sub Land created (INT_008).",
+                                         "1 CA selects Competition option (instead of In-House) for a Sub Land",
+                                         "2 Insert competition details \u0026 save"
+                                     ],
+                           "expected":  [
+                                            "1 Competition should be created \u0026 linked with the correct Sub Land ID.",
+                                            "2 System should allow multiple competitions to be active simultaneously, uniquely identified by competition name/ID."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_028",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 3 - Competition Workflow",
+                           "sub_section":  "Competition Creation \u0026 Publish (CA)",
+                           "description":  "Upload supporting documents \u0026 mandatory Note Sheet",
+                           "steps":  [
+                                         "1 Upload required supporting documents",
+                                         "2 Upload mandatory Note Sheet",
+                                         "3 Try to publish without Note Sheet"
+                                     ],
+                           "expected":  [
+                                            "1 Supporting documents \u0026 Note Sheet should be uploaded successfully.",
+                                            "2 Note Sheet should be enforced as mandatory - publish should be blocked without it with proper message."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_029",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 3 - Competition Workflow",
+                           "sub_section":  "Competition Creation \u0026 Publish (CA)",
+                           "description":  "Define Competition duration",
+                           "steps":  [
+                                         "1 Select competition start date \u0026 end date from calendar",
+                                         "2 Try end date earlier than start date"
+                                     ],
+                           "expected":  [
+                                            "1 Valid duration should be saved correctly.",
+                                            "2 End date earlier than start date should not be accepted."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_030",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 3 - Competition Workflow",
+                           "sub_section":  "Competition Creation \u0026 Publish (CA)",
+                           "description":  "Publish Competition",
+                           "steps":  [
+                                         "1 Click Publish",
+                                         "2 Check workflow status after publish"
+                                     ],
+                           "expected":  [
+                                            "1 Competition should be published successfully with confirmation.",
+                                            "2 Publishing should NOT start the workflow immediately - workflow starts only after winner selection.",
+                                            "3 Competition status should show Published/Active."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_031",
+                           "suite":  "cross-module-integration",
+                           "section":  "Integration Flow 3 - Competition Workflow",
+                           "sub_section":  "Competition Creation \u0026 Publish (CA)",
+                           "description":  "Competition synchronization with CMS module",
+                           "steps":  [
+                                         "1 Login on CMS portal as an Active Empanelled Architect",
+                                         "2 Open Competition list"
+                                     ],
+                           "expected":  [
+                                            "1 Published competition should become visible in the CMS module.",
+                                            "2 Competition start/end dates should be synchronized correctly between modules.",
+                                            "3 Required reference documents should be available to view."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_032",
+                           "suite":  "cross-module-integration",
+                           "section":  "CMS Module Integration - Empanelment",
+                           "sub_section":  "",
+                           "description":  "CMS Portal registration",
+                           "steps":  [
+                                         "1 Open CMS portal registration page",
+                                         "2 Complete registration with mobile \u0026 email OTP verification",
+                                         "3 Login with received credentials"
+                                     ],
+                           "expected":  [
+                                            "1 User should be registered successfully after OTP verification.",
+                                            "2 Login credentials should be received via SMS/email.",
+                                            "3 CMS login should work with the new credentials (separate from Authority Login)."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_033",
+                           "suite":  "cross-module-integration",
+                           "section":  "CMS Module Integration - Empanelment",
+                           "sub_section":  "",
+                           "description":  "Submit Empanelment application",
+                           "steps":  [
+                                         "1 Login on CMS",
+                                         "2 Fill complete Empanelment application",
+                                         "3 Upload all required documents",
+                                         "4 Submit application"
+                                     ],
+                           "expected":  [
+                                            "1 Application should be submitted successfully with all details \u0026 documents.",
+                                            "2 Application status should show In-Process/Pending at user end."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_034",
+                           "suite":  "cross-module-integration",
+                           "section":  "CMS Module Integration - Empanelment",
+                           "sub_section":  "",
+                           "description":  "Application visibility at CA (Authority module)",
+                           "steps":  [
+                                         "1 Login as CA via Authority Login",
+                                         "2 Open Empanelment applications review list",
+                                         "3 Open the submitted application"
+                                     ],
+                           "expected":  [
+                                            "1 The application submitted in CMS should be visible to CA in the Authority module.",
+                                            "2 All applicant details \u0026 uploaded documents should be synchronized correctly from CMS."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_035",
+                           "suite":  "cross-module-integration",
+                           "section":  "CMS Module Integration - Empanelment",
+                           "sub_section":  "",
+                           "description":  "CA approval of Empanelment application",
+                           "steps":  [
+                                         "1 CA reviews the application",
+                                         "2 Click Approve"
+                                     ],
+                           "expected":  [
+                                            "1 Application status should be updated after approval.",
+                                            "2 Status change should reflect correctly at CMS user end.",
+                                            "3 User should get option to complete registration payment."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_036",
+                           "suite":  "cross-module-integration",
+                           "section":  "CMS Module Integration - Empanelment",
+                           "sub_section":  "",
+                           "description":  "Registration payment \u0026 user activation",
+                           "steps":  [
+                                         "1 CMS user completes registration payment online",
+                                         "2 Check user status after successful payment"
+                                     ],
+                           "expected":  [
+                                            "1 Payment should complete successfully with payment summary/receipt.",
+                                            "2 User status should change correctly to Active Empanelled Architect after approval + payment.",
+                                            "3 Empanelment validity period should be assigned."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_037",
+                           "suite":  "cross-module-integration",
+                           "section":  "CMS Module Integration - Empanelment",
+                           "sub_section":  "",
+                           "description":  "Eligibility of Active Empanelled Architect for Competitions",
+                           "steps":  [
+                                         "1 Login as Active Empanelled Architect (valid COA till apply date)",
+                                         "2 Open Competition list"
+                                     ],
+                           "expected":  [
+                                            "1 Active Empanelled Architect should become eligible for Competitions.",
+                                            "2 Published competitions should be visible with Apply option."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_038",
+                           "suite":  "cross-module-integration",
+                           "section":  "CMS Module Integration - Empanelment",
+                           "sub_section":  "",
+                           "description":  "Restriction of inactive/ineligible users",
+                           "steps":  [
+                                         "1 Login with In-Process/Pending user, Reverted user \u0026 Expired-validity user one by one",
+                                         "2 Try to view/apply for competition"
+                                     ],
+                           "expected":  [
+                                            "1 Inactive users (pending/reverted/expired validity) should NOT be able to participate in competitions.",
+                                            "2 Competition should not be applicable/visible for such users as per rule, with proper restriction."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_039",
+                           "suite":  "cross-module-integration",
+                           "section":  "Competition Application Integration (CMS \u003c-\u003e Architect Module)",
+                           "sub_section":  "",
+                           "description":  "Published Competition availability in CMS list",
+                           "steps":  [
+                                         "1 Login as eligible Empanelled Architect",
+                                         "2 Open Competition list menu"
+                                     ],
+                           "expected":  [
+                                            "1 Competition list should display S.No, Initiated date, Title, Start date, End date \u0026 Apply button.",
+                                            "2 Competition visibility should be synchronized between Architect module \u0026 CMS."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_040",
+                           "suite":  "cross-module-integration",
+                           "section":  "Competition Application Integration (CMS \u003c-\u003e Architect Module)",
+                           "sub_section":  "",
+                           "description":  "Multiple applicants submit applications",
+                           "steps":  [
+                                         "1 Apply for the same competition from 2-3 different Active Empanelled Architect users",
+                                         "2 Upload required documents (Presentation PPT/PDF) for each"
+                                     ],
+                           "expected":  [
+                                            "1 Each application should be submitted successfully \u0026 correctly mapped to the Competition.",
+                                            "2 Uploaded documents should remain associated with each respective applicant.",
+                                            "3 Applications should remain available until the competition closes."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_041",
+                           "suite":  "cross-module-integration",
+                           "section":  "Competition Application Integration (CMS \u003c-\u003e Architect Module)",
+                           "sub_section":  "",
+                           "description":  "Application window enforcement (dates)",
+                           "steps":  [
+                                         "1 Try to apply before competition start date (future window)",
+                                         "2 Apply within the start-end window",
+                                         "3 Try to apply after end date has passed"
+                                     ],
+                           "expected":  [
+                                            "1 Apply should not be allowed for future date window.",
+                                            "2 Apply should be allowed only within start \u0026 end date.",
+                                            "3 System must prevent new applications after expiry/end date."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_042",
+                           "suite":  "cross-module-integration",
+                           "section":  "Competition Application Integration (CMS \u003c-\u003e Architect Module)",
+                           "sub_section":  "",
+                           "description":  "CA review of applicants after competition closure",
+                           "steps":  [
+                                         "1 Before end date - CA tries to view/take action on applications",
+                                         "2 After end date - CA selects competition name \u0026 views applicant list",
+                                         "3 Download applicant PPT \u0026 export list"
+                                     ],
+                           "expected":  [
+                                            "1 CA should not be able to take selection action within start \u0026 end date - only after end date is over.",
+                                            "2 After expiry, CA should view all applicants in table (Name, COA, Mobile, Email, Address, PPT downloadable).",
+                                            "3 Export to excel of interested architects should be available."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_043",
+                           "suite":  "cross-module-integration",
+                           "section":  "Competition Application Integration (CMS \u003c-\u003e Architect Module)",
+                           "sub_section":  "",
+                           "description":  "Single winner selection",
+                           "steps":  [
+                                         "1 CA selects one applicant via radio button",
+                                         "2 Confirm selection"
+                                     ],
+                           "expected":  [
+                                            "1 CA should be allowed to select only ONE Empanelled Architect as winner.",
+                                            "2 Multiple selection should not be possible.",
+                                            "3 Selection should be recorded in audit log."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_044",
+                           "suite":  "cross-module-integration",
+                           "section":  "Competition Application Integration (CMS \u003c-\u003e Architect Module)",
+                           "sub_section":  "",
+                           "description":  "Winner selection reflection in CMS",
+                           "steps":  [
+                                         "1 Login as selected (winner) architect - check Assigned Competition menu",
+                                         "2 Login as non-selected applicant - check Assigned Competition menu"
+                                     ],
+                           "expected":  [
+                                            "1 Selected architect should see the competition under Assigned Competition.",
+                                            "2 Non-selected applicants should NOT receive the assignment.",
+                                            "3 Only records selected by CA should appear in Assigned Competition."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_045",
+                           "suite":  "cross-module-integration",
+                           "section":  "Competition Workflow Integration - Post Winner Selection",
+                           "sub_section":  "",
+                           "description":  "CA uploads Letter of Appointment (LoA) \u0026 forwards to DHC",
+                           "steps":  [
+                                         "1 CA uploads Letter of Appointment against the competition",
+                                         "2 Forward workflow to DHC (or EE as configured) with remarks"
+                                     ],
+                           "expected":  [
+                                            "1 LoA should be uploaded successfully.",
+                                            "2 Workflow ownership should transfer to DHC.",
+                                            "3 LoA \u0026 competition documents should be available at DHC after forwarding.",
+                                            "4 Status should be updated correctly."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_046",
+                           "suite":  "cross-module-integration",
+                           "section":  "Competition Workflow Integration - Post Winner Selection",
+                           "sub_section":  "",
+                           "description":  "DHC completes Work Order \u0026 forwards to EE",
+                           "steps":  [
+                                         "1 Login as DHC \u0026 open received workflow",
+                                         "2 Upload/complete the Work Order document",
+                                         "3 Forward to EE with remarks"
+                                     ],
+                           "expected":  [
+                                            "1 Work Order should be uploaded successfully.",
+                                            "2 Status should update to Work Order Issued.",
+                                            "3 Ownership should transfer successfully to EE with document synchronization."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_047",
+                           "suite":  "cross-module-integration",
+                           "section":  "Competition Workflow Integration - Post Winner Selection",
+                           "sub_section":  "",
+                           "description":  "EE uploads Letter of Agreement \u0026 forwards to winner",
+                           "steps":  [
+                                         "1 Login as EE \u0026 open received workflow",
+                                         "2 Upload the Letter of Agreement",
+                                         "3 Forward workflow to the selected Empanelled Architect"
+                                     ],
+                           "expected":  [
+                                            "1 Agreement should be uploaded successfully.",
+                                            "2 Workflow should be forwarded to the selected CMS user (winner) correctly.",
+                                            "3 Status \u0026 ownership should update accordingly."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_048",
+                           "suite":  "cross-module-integration",
+                           "section":  "Competition Workflow Integration - Post Winner Selection",
+                           "sub_section":  "",
+                           "description":  "Workflow visibility only for winner in CMS",
+                           "steps":  [
+                                         "1 Login as winner on CMS - open assigned workflow",
+                                         "2 Login as other CMS users - check workflow visibility"
+                                     ],
+                           "expected":  [
+                                            "1 Workflow should appear only for the selected winner.",
+                                            "2 Other CMS users should not be able to view/access this workflow."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_049",
+                           "suite":  "cross-module-integration",
+                           "section":  "Competition Workflow Integration - Post Winner Selection",
+                           "sub_section":  "",
+                           "description":  "Winner uploads mandatory documents in CMS",
+                           "steps":  [
+                                         "1 Winner logs in using CMS",
+                                         "2 Upload mandatory documents (e.g. Layout plan, Building plan)",
+                                         "3 Verify same documents at Authority module side"
+                                     ],
+                           "expected":  [
+                                            "1 Mandatory documents should be uploaded successfully in CMS.",
+                                            "2 Upload should be allowed only after EE has attached the agreement document (as per rule).",
+                                            "3 Documents should synchronize correctly between CMS \u0026 Authority modules."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_050",
+                           "suite":  "cross-module-integration",
+                           "section":  "Competition Workflow Integration - Post Winner Selection",
+                           "sub_section":  "",
+                           "description":  "Winner returns workflow only to EE",
+                           "steps":  [
+                                         "1 Winner clicks Return/Forward",
+                                         "2 Check available routing options",
+                                         "3 Return workflow to EE"
+                                     ],
+                           "expected":  [
+                                            "1 Workflow should return only to the Executive Engineer.",
+                                            "2 Invalid routing to any other user should be prevented.",
+                                            "3 Ownership should update to EE with audit entry."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_051",
+                           "suite":  "cross-module-integration",
+                           "section":  "Reverse Competition Integration (Emp Architect -\u003e EE -\u003e DHC -\u003e CA)",
+                           "sub_section":  "",
+                           "description":  "EE forwards workflow to DHC (reverse)",
+                           "steps":  [
+                                         "1 EE reviews documents received from winner",
+                                         "2 Forward workflow to DHC with remarks"
+                                     ],
+                           "expected":  [
+                                            "1 Workflow ownership should transfer correctly to DHC.",
+                                            "2 All documents should remain accessible at DHC.",
+                                            "3 Workflow history should be preserved."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_052",
+                           "suite":  "cross-module-integration",
+                           "section":  "Reverse Competition Integration (Emp Architect -\u003e EE -\u003e DHC -\u003e CA)",
+                           "sub_section":  "",
+                           "description":  "DHC forwards workflow to CA (reverse)",
+                           "steps":  [
+                                         "1 DHC reviews the workflow",
+                                         "2 Forward to CA with remarks"
+                                     ],
+                           "expected":  [
+                                            "1 Workflow ownership should transfer correctly to CA.",
+                                            "2 Complete history \u0026 all documents should be available at CA."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_053",
+                           "suite":  "cross-module-integration",
+                           "section":  "Reverse Competition Integration (Emp Architect -\u003e EE -\u003e DHC -\u003e CA)",
+                           "sub_section":  "",
+                           "description":  "Document \u0026 version integrity across reverse chain",
+                           "steps":  [
+                                         "1 At each stage of reverse flow, open document section \u0026 version history"
+                                     ],
+                           "expected":  [
+                                            "1 Every upload/forward/revert should be logged with user, role, action type, timestamp \u0026 remarks.",
+                                            "2 Documents should remain accessible throughout the reverse process with correct versions.",
+                                            "3 No document should be lost."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_054",
+                           "suite":  "cross-module-integration",
+                           "section":  "Final Competition Approval (CA)",
+                           "sub_section":  "",
+                           "description":  "CA final review \u0026 acceptance of deliverables",
+                           "steps":  [
+                                         "1 CA reviews all submitted documents \u0026 deliverables",
+                                         "2 Accept the competition deliverables",
+                                         "3 Complete the workflow"
+                                     ],
+                           "expected":  [
+                                            "1 Final workflow status should be updated successfully.",
+                                            "2 Workflow should be marked as completed.",
+                                            "3 No further edit/forward should be allowed after completion."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_055",
+                           "suite":  "cross-module-integration",
+                           "section":  "Final Competition Approval (CA)",
+                           "sub_section":  "",
+                           "description":  "Completion reflection in both modules",
+                           "steps":  [
+                                         "1 Check competition/workflow status in Authority module",
+                                         "2 Login winner on CMS \u0026 check status of the same competition"
+                                     ],
+                           "expected":  [
+                                            "1 Completion status should be reflected in BOTH the Authority module and the CMS module.",
+                                            "2 Status shown in both modules should be identical \u0026 synchronized."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_056",
+                           "suite":  "cross-module-integration",
+                           "section":  "Final Competition Approval (CA)",
+                           "sub_section":  "",
+                           "description":  "End-to-end cross-module data consistency audit",
+                           "steps":  [
+                                         "1 For the completed lifecycle, verify Land ID -\u003e Sub Land -\u003e Competition -\u003e Winner mapping",
+                                         "2 Verify all documents, workflow history \u0026 ownership records across Land, Architect Workflow \u0026 CMS modules"
+                                     ],
+                           "expected":  [
+                                            "1 All documents, workflow history \u0026 ownership records should remain consistent across every integrated module.",
+                                            "2 Same Land/Sub Land/Competition IDs should map correctly end to end with no data mismatch."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_LG_001",
+                           "suite":  "legacy-land-integration",
+                           "section":  "Legacy Land Integration - Part 2 of Land Module (EE -\u003e CA). Part 1 = New Land Creation (INT_001 - INT_007, unchanged)",
+                           "sub_section":  "Legacy Land Retrieval (Advanced Filter)",
+                           "description":  "Advanced Filter - Is Migrated Data = Yes",
+                           "steps":  [
+                                         "1 Login as EE via Authority Login",
+                                         "2 Open Land module \u003e Land list",
+                                         "3 Open Advanced Filter",
+                                         "4 Select Is Migrated Data = Yes and apply"
+                                     ],
+                           "expected":  [
+                                            "1 Only migrated legacy Land records should be listed.",
+                                            "2 Each listed record should already have an existing Land ID (migrated from old system).",
+                                            "3 Non-migrated (newly created) lands should be excluded from the result."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_LG_002",
+                           "suite":  "legacy-land-integration",
+                           "section":  "Legacy Land Integration - Part 2 of Land Module (EE -\u003e CA). Part 1 = New Land Creation (INT_001 - INT_007, unchanged)",
+                           "sub_section":  "Legacy Land Retrieval (Advanced Filter)",
+                           "description":  "Existing Land ID validation - no new Land ID created",
+                           "steps":  [
+                                         "1 Open a legacy Land record from the filtered list",
+                                         "2 Observe the Land ID and available actions"
+                                     ],
+                           "expected":  [
+                                            "1 The existing migrated Land ID should open for completion.",
+                                            "2 No new Land ID should be generated in this flow.",
+                                            "3 Create-new-Land screen should not be invoked for legacy processing."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_LG_003",
+                           "suite":  "legacy-land-integration",
+                           "section":  "Legacy Land Integration - Part 2 of Land Module (EE -\u003e CA). Part 1 = New Land Creation (INT_001 - INT_007, unchanged)",
+                           "sub_section":  "Legacy Land Retrieval (Advanced Filter)",
+                           "description":  "Default values of migrated record (NA)",
+                           "steps":  [
+                                         "1 In the filtered legacy list, check Land Type column",
+                                         "2 Check Last Modified Date column for an unprocessed migrated record"
+                                     ],
+                           "expected":  [
+                                            "1 Land Type column should initially contain NA.",
+                                            "2 Last Modified Date should contain NA.",
+                                            "3 NA values should indicate migrated records requiring completion."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_LG_004",
+                           "suite":  "legacy-land-integration",
+                           "section":  "Legacy Land Integration - Part 2 of Land Module (EE -\u003e CA). Part 1 = New Land Creation (INT_001 - INT_007, unchanged)",
+                           "sub_section":  "Legacy Land Retrieval (Advanced Filter)",
+                           "description":  "Migrated data display \u0026 editability",
+                           "steps":  [
+                                         "1 Open the legacy Land record",
+                                         "2 Compare prefilled fields with migrated legacy data",
+                                         "3 Check blank fields"
+                                     ],
+                           "expected":  [
+                                            "1 Fields already containing migrated data should display correctly without corruption.",
+                                            "2 Blank fields should remain blank and be editable.",
+                                            "3 EE should be able to complete/update the missing information."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_LG_005",
+                           "suite":  "legacy-land-integration",
+                           "section":  "Legacy Land Integration - Part 2 of Land Module (EE -\u003e CA). Part 1 = New Land Creation (INT_001 - INT_007, unchanged)",
+                           "sub_section":  "Mandatory Validations Before Forwarding",
+                           "description":  "Validation 1 - Land Type must not remain blank",
+                           "steps":  [
+                                         "1 Keep Land Type = NA/blank in Land Details",
+                                         "2 Try to forward the legacy Land to CA",
+                                         "3 Select a valid Land Type and retry"
+                                     ],
+                           "expected":  [
+                                            "1 Forward should be blocked while Land Type is blank/NA, with proper validation message.",
+                                            "2 After selecting a valid Land Type, Validation 1 should pass."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_LG_006",
+                           "suite":  "legacy-land-integration",
+                           "section":  "Legacy Land Integration - Part 2 of Land Module (EE -\u003e CA). Part 1 = New Land Creation (INT_001 - INT_007, unchanged)",
+                           "sub_section":  "Mandatory Validations Before Forwarding",
+                           "description":  "Validation 2 - Khasra Area must be \u003e 0 Hectare",
+                           "steps":  [
+                                         "1 Keep Khasra Area = 0 (or blank) in Khasra Details",
+                                         "2 Try to forward",
+                                         "3 Enter Area \u003e 0 Hectare and retry"
+                                     ],
+                           "expected":  [
+                                            "1 Forward should be blocked while Area is 0/blank, with proper validation message.",
+                                            "2 After entering Area \u003e 0 Hectare, Validation 2 should pass."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_LG_007",
+                           "suite":  "legacy-land-integration",
+                           "section":  "Legacy Land Integration - Part 2 of Land Module (EE -\u003e CA). Part 1 = New Land Creation (INT_001 - INT_007, unchanged)",
+                           "sub_section":  "Mandatory Validations Before Forwarding",
+                           "description":  "Combined validation behaviour",
+                           "steps":  [
+                                         "1 Keep both Land Type blank AND Area = 0 -\u003e try forward",
+                                         "2 Fix only Land Type -\u003e try forward",
+                                         "3 Fix Area also -\u003e try forward"
+                                     ],
+                           "expected":  [
+                                            "1 With both validations failing, forward should be blocked (both errors indicated).",
+                                            "2 With only one validation fixed, forward should remain blocked.",
+                                            "3 Only after BOTH validations pass should forwarding become possible."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_LG_008",
+                           "suite":  "legacy-land-integration",
+                           "section":  "Legacy Land Integration - Part 2 of Land Module (EE -\u003e CA). Part 1 = New Land Creation (INT_001 - INT_007, unchanged)",
+                           "sub_section":  "Document Rule (Legacy)",
+                           "description":  "Mandatory document validation NOT applied for Legacy Land",
+                           "steps":  [
+                                         "1 Do not upload any mandatory documents on the legacy Land",
+                                         "2 Ensure Validation 1 \u0026 2 pass",
+                                         "3 Forward to CA"
+                                     ],
+                           "expected":  [
+                                            "1 Unlike New Land Creation, mandatory document validation should NOT be applied.",
+                                            "2 Forwarding should be allowed even when mandatory documents are not uploaded (subject to remaining business validations).",
+                                            "3 New Land flow (Part 1) should still enforce its document rules - no regression."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_LG_009",
+                           "suite":  "legacy-land-integration",
+                           "section":  "Legacy Land Integration - Part 2 of Land Module (EE -\u003e CA). Part 1 = New Land Creation (INT_001 - INT_007, unchanged)",
+                           "sub_section":  "Document Rule (Legacy)",
+                           "description":  "Optional document upload on Legacy Land",
+                           "steps":  [
+                                         "1 Upload one or more documents on the legacy Land (valid PDF within size limit)",
+                                         "2 Try invalid type/oversized file"
+                                     ],
+                           "expected":  [
+                                            "1 Optional upload should work and documents should remain associated with the legacy Land ID.",
+                                            "2 Invalid file type/size should still be rejected with proper message."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_LG_010",
+                           "suite":  "legacy-land-integration",
+                           "section":  "Legacy Land Integration - Part 2 of Land Module (EE -\u003e CA). Part 1 = New Land Creation (INT_001 - INT_007, unchanged)",
+                           "sub_section":  "Forwarding \u0026 Ownership Transfer",
+                           "description":  "Forward Legacy Land to Chief Architect",
+                           "steps":  [
+                                         "1 With validations passed, click Forward, select Chief Architect, insert remarks",
+                                         "2 Confirm"
+                                     ],
+                           "expected":  [
+                                            "1 Forward should succeed with confirmation message.",
+                                            "2 Workflow status should update correctly.",
+                                            "3 Record should appear in Chief Architect inbox.",
+                                            "4 Audit log should capture from-user, to-user, timestamp \u0026 remarks."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_LG_011",
+                           "suite":  "legacy-land-integration",
+                           "section":  "Legacy Land Integration - Part 2 of Land Module (EE -\u003e CA). Part 1 = New Land Creation (INT_001 - INT_007, unchanged)",
+                           "sub_section":  "Forwarding \u0026 Ownership Transfer",
+                           "description":  "Same migrated Land ID continues (no regeneration)",
+                           "steps":  [
+                                         "1 Note the legacy Land ID before forwarding",
+                                         "2 Forward to CA",
+                                         "3 Check the Land ID at CA side and in workflow history"
+                                     ],
+                           "expected":  [
+                                            "1 The same migrated Land ID must continue throughout the workflow.",
+                                            "2 No new Land ID should be generated at any stage of the transition."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_LG_012",
+                           "suite":  "legacy-land-integration",
+                           "section":  "Legacy Land Integration - Part 2 of Land Module (EE -\u003e CA). Part 1 = New Land Creation (INT_001 - INT_007, unchanged)",
+                           "sub_section":  "Forwarding \u0026 Ownership Transfer",
+                           "description":  "Ownership transfer \u0026 EE access after forward",
+                           "steps":  [
+                                         "1 After forwarding, at EE login open the same legacy Land"
+                                     ],
+                           "expected":  [
+                                            "1 Ownership should transfer successfully to CA.",
+                                            "2 EE should no longer be able to edit/re-forward - read-only/history view only."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_LG_013",
+                           "suite":  "legacy-land-integration",
+                           "section":  "Legacy Land Integration - Part 2 of Land Module (EE -\u003e CA). Part 1 = New Land Creation (INT_001 - INT_007, unchanged)",
+                           "sub_section":  "Chief Architect Validation \u0026 Cross-Module Integration",
+                           "description":  "CA receives the same Legacy Land ID with complete data",
+                           "steps":  [
+                                         "1 Login as CA",
+                                         "2 Open inbox / Architect Workflow received list",
+                                         "3 Open the forwarded legacy Land"
+                                     ],
+                           "expected":  [
+                                            "1 The same Legacy Land ID should be received at CA.",
+                                            "2 Migrated data + values completed by EE should be intact.",
+                                            "3 No data should be lost during module transition."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_LG_014",
+                           "suite":  "legacy-land-integration",
+                           "section":  "Legacy Land Integration - Part 2 of Land Module (EE -\u003e CA). Part 1 = New Land Creation (INT_001 - INT_007, unchanged)",
+                           "sub_section":  "Chief Architect Validation \u0026 Cross-Module Integration",
+                           "description":  "Document visibility - uploaded vs non-uploaded distinction",
+                           "steps":  [
+                                         "1 At CA, open document section of the legacy Land",
+                                         "2 Compare uploaded documents against the required document list"
+                                     ],
+                           "expected":  [
+                                            "1 Previously uploaded documents should be visible \u0026 downloadable.",
+                                            "2 Missing (not uploaded) documents should also be displayed in the list.",
+                                            "3 Uploaded and non-uploaded documents should be correctly distinguished (clear status/indicator)."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_LG_015",
+                           "suite":  "legacy-land-integration",
+                           "section":  "Legacy Land Integration - Part 2 of Land Module (EE -\u003e CA). Part 1 = New Land Creation (INT_001 - INT_007, unchanged)",
+                           "sub_section":  "Chief Architect Validation \u0026 Cross-Module Integration",
+                           "description":  "Architect Workflow starts using the Legacy Land ID",
+                           "steps":  [
+                                         "1 CA creates Sub Land(s) on the legacy Land",
+                                         "2 Select In-House or Competition mode",
+                                         "3 Continue the standard workflow"
+                                     ],
+                           "expected":  [
+                                            "1 Sub Land should link with the correct legacy parent Land ID.",
+                                            "2 In-House / Competition workflows should behave exactly as for a new Land (no difference downstream).",
+                                            "3 The legacy Land ID should continue through the entire workflow."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_LG_016",
+                           "suite":  "legacy-land-integration",
+                           "section":  "Legacy Land Integration - Part 2 of Land Module (EE -\u003e CA). Part 1 = New Land Creation (INT_001 - INT_007, unchanged)",
+                           "sub_section":  "Chief Architect Validation \u0026 Cross-Module Integration",
+                           "description":  "Data consistency \u0026 Last Modified Date update",
+                           "steps":  [
+                                         "1 Update legacy Land fields at EE and save",
+                                         "2 Re-check Last Modified Date column",
+                                         "3 Verify saved values at CA side after forward"
+                                     ],
+                           "expected":  [
+                                            "1 All edits should persist correctly.",
+                                            "2 Last Modified Date should update from NA to the actual modification date after saving.",
+                                            "3 Data shown at CA must match data saved at EE (cross-module consistency)."
+                                        ]
+                       },
+                       {
+                           "id":  "INT_LG_017",
+                           "suite":  "legacy-land-integration",
+                           "section":  "Legacy Land Integration - Part 2 of Land Module (EE -\u003e CA). Part 1 = New Land Creation (INT_001 - INT_007, unchanged)",
+                           "sub_section":  "Negative Scenarios",
+                           "description":  "Negative - filter, invalid area \u0026 routing",
+                           "steps":  [
+                                         "1 Set Advanced Filter Is Migrated Data = No -\u003e check list",
+                                         "2 Try inserting negative / non-numeric Khasra Area on legacy Land",
+                                         "3 Try forwarding legacy Land to any role other than CA (if option shown)"
+                                     ],
+                           "expected":  [
+                                            "1 With Is Migrated Data = No, migrated legacy records should be excluded; newly created lands should not appear under Yes.",
+                                            "2 Negative or non-numeric Area values should be rejected.",
+                                            "3 Invalid routing should be prevented - forward should go to Chief Architect inbox only."
+                                        ]
+                       }
+                   ]
+}

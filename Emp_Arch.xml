@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
+<!-- Architect Empanelment suite - NO DataProviders (2026-07-15 rework).
+     Order matters: SignupNegativeTests registers the duplicate-source user;
+     ProprietorshipEmpanelmentFlow (first firm) saves the Firm Reg No/GST/PAN
+     that later firm flows reuse for the duplicacy negatives (TC_AR_093/094). -->
 <suite name="Architect Empanelment Suite">
 <listeners>
-   
+
     <listener class-name="ReportManager.Master_extent_report"/>
+
 </listeners>
 
 	<test name="Architect Empanelment Tests" thread-count="1">
@@ -13,9 +18,15 @@
 
 			<class name="testCases.ArchitectEmpanelment.TC_001_LaunchUrl" />
 
-			<class name="testCases.ArchitectEmpanelment.TC_002_SignUp" />
-			
-			<class name="testCases.ArchitectEmpanelment.TC_003_SignIn" />
+			<class name="testCases.ArchitectEmpanelment.SignupNegativeTests" />
+			<class name="testCases.ArchitectEmpanelment.FormValidationNegativeTests" />
+
+			<class name="testCases.ArchitectEmpanelment.IndividualEmpanelmentFlow" />
+			<class name="testCases.ArchitectEmpanelment.ProprietorshipEmpanelmentFlow" />
+			<class name="testCases.ArchitectEmpanelment.PartnershipEmpanelmentFlow" />
+			<class name="testCases.ArchitectEmpanelment.PvtLtdEmpanelmentFlow" />
+			<class name="testCases.ArchitectEmpanelment.PublicLtdEmpanelmentFlow" />
+			<class name="testCases.ArchitectEmpanelment.LlpEmpanelmentFlow" />
 
 		</classes>
 

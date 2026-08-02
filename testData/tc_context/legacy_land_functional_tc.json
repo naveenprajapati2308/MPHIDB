@@ -1,0 +1,325 @@
+﻿{
+    "project":  "MPHIDB",
+    "module":  "Land Management - Legacy Land (Part 2)",
+    "source_excel":  "g:\\MPHB\\MPHIDB TC  RTM.xlsx (sheet: Legacy Land)",
+    "total_test_cases":  21,
+    "test_cases":  [
+                       {
+                           "id":  "LG_001",
+                           "suite":  "legacy-land-functional",
+                           "section":  "Legacy Land Processing (Land Module - Part 2). Part 1 = New Land Creation (existing LM_001 - LM_199, unchanged)",
+                           "sub_section":  "Advanced Filter \u0026 Retrieval",
+                           "description":  "Advanced Filter option",
+                           "steps":  [
+                                         "1 Login as EE",
+                                         "2 Open Land module \u003e Land list",
+                                         "3 Click Advanced Filter"
+                                     ],
+                           "expected":  [
+                                            "Verify Advanced Filter option is available on Land list \u0026 opens the filter panel."
+                                        ]
+                       },
+                       {
+                           "id":  "LG_002",
+                           "suite":  "legacy-land-functional",
+                           "section":  "Legacy Land Processing (Land Module - Part 2). Part 1 = New Land Creation (existing LM_001 - LM_199, unchanged)",
+                           "sub_section":  "Advanced Filter \u0026 Retrieval",
+                           "description":  "Is Migrated Data field",
+                           "steps":  [
+                                         "1 Check Is Migrated Data field in Advanced Filter"
+                                     ],
+                           "expected":  [
+                                            "Verify Is Migrated Data dropdown/field is available with values Yes / No."
+                                        ]
+                       },
+                       {
+                           "id":  "LG_003",
+                           "suite":  "legacy-land-functional",
+                           "section":  "Legacy Land Processing (Land Module - Part 2). Part 1 = New Land Creation (existing LM_001 - LM_199, unchanged)",
+                           "sub_section":  "Advanced Filter \u0026 Retrieval",
+                           "description":  "Filter - Is Migrated Data = Yes",
+                           "steps":  [
+                                         "1 Select Is Migrated Data = Yes",
+                                         "2 Apply filter"
+                                     ],
+                           "expected":  [
+                                            "1 Verify only migrated legacy Land records are listed.",
+                                            "2 Verify each record already has an existing Land ID (from old system).",
+                                            "3 Verify newly created lands are not shown in this result."
+                                        ]
+                       },
+                       {
+                           "id":  "LG_004",
+                           "suite":  "legacy-land-functional",
+                           "section":  "Legacy Land Processing (Land Module - Part 2). Part 1 = New Land Creation (existing LM_001 - LM_199, unchanged)",
+                           "sub_section":  "Advanced Filter \u0026 Retrieval",
+                           "description":  "Filter - Is Migrated Data = No",
+                           "steps":  [
+                                         "1 Select Is Migrated Data = No",
+                                         "2 Apply filter"
+                                     ],
+                           "expected":  [
+                                            "Verify migrated legacy records are excluded from the result."
+                                        ]
+                       },
+                       {
+                           "id":  "LG_005",
+                           "suite":  "legacy-land-functional",
+                           "section":  "Legacy Land Processing (Land Module - Part 2). Part 1 = New Land Creation (existing LM_001 - LM_199, unchanged)",
+                           "sub_section":  "Advanced Filter \u0026 Retrieval",
+                           "description":  "Land Type default NA",
+                           "steps":  [
+                                         "1 In filtered legacy list check Land Type column"
+                                     ],
+                           "expected":  [
+                                            "Verify Land Type column initially contains NA for migrated records (indicates completion required)."
+                                        ]
+                       },
+                       {
+                           "id":  "LG_006",
+                           "suite":  "legacy-land-functional",
+                           "section":  "Legacy Land Processing (Land Module - Part 2). Part 1 = New Land Creation (existing LM_001 - LM_199, unchanged)",
+                           "sub_section":  "Advanced Filter \u0026 Retrieval",
+                           "description":  "Last Modified Date default NA",
+                           "steps":  [
+                                         "1 Check Last Modified Date column for unprocessed migrated record"
+                                     ],
+                           "expected":  [
+                                            "Verify Last Modified Date contains NA for migrated records not yet updated."
+                                        ]
+                       },
+                       {
+                           "id":  "LG_007",
+                           "suite":  "legacy-land-functional",
+                           "section":  "Legacy Land Processing (Land Module - Part 2). Part 1 = New Land Creation (existing LM_001 - LM_199, unchanged)",
+                           "sub_section":  "Open \u0026 Complete Legacy Land",
+                           "description":  "Open migrated Land ID",
+                           "steps":  [
+                                         "1 Open a legacy Land record from the filtered list"
+                                     ],
+                           "expected":  [
+                                            "1 Verify existing migrated Land ID opens for completion.",
+                                            "2 Verify NO new Land ID is created in this flow."
+                                        ]
+                       },
+                       {
+                           "id":  "LG_008",
+                           "suite":  "legacy-land-functional",
+                           "section":  "Legacy Land Processing (Land Module - Part 2). Part 1 = New Land Creation (existing LM_001 - LM_199, unchanged)",
+                           "sub_section":  "Open \u0026 Complete Legacy Land",
+                           "description":  "Migrated (prefilled) fields",
+                           "steps":  [
+                                         "1 Check fields already containing migrated data"
+                                     ],
+                           "expected":  [
+                                            "1 Verify migrated values display correctly without corruption.",
+                                            "2 Verify prefilled fields are editable as per business rules."
+                                        ]
+                       },
+                       {
+                           "id":  "LG_009",
+                           "suite":  "legacy-land-functional",
+                           "section":  "Legacy Land Processing (Land Module - Part 2). Part 1 = New Land Creation (existing LM_001 - LM_199, unchanged)",
+                           "sub_section":  "Open \u0026 Complete Legacy Land",
+                           "description":  "Blank fields",
+                           "steps":  [
+                                         "1 Check fields that are blank in the migrated record",
+                                         "2 Insert values \u0026 save"
+                                     ],
+                           "expected":  [
+                                            "1 Verify blank fields remain blank initially.",
+                                            "2 Verify EE can insert \u0026 save values in blank fields."
+                                        ]
+                       },
+                       {
+                           "id":  "LG_010",
+                           "suite":  "legacy-land-functional",
+                           "section":  "Legacy Land Processing (Land Module - Part 2). Part 1 = New Land Creation (existing LM_001 - LM_199, unchanged)",
+                           "sub_section":  "Open \u0026 Complete Legacy Land",
+                           "description":  "Update Land Type from NA",
+                           "steps":  [
+                                         "1 Open Land Details",
+                                         "2 Pick Land Type from dropdown",
+                                         "3 Save"
+                                     ],
+                           "expected":  [
+                                            "1 Verify Land Type dropdown allows valid selection.",
+                                            "2 Verify saved Land Type replaces NA in the list."
+                                        ]
+                       },
+                       {
+                           "id":  "LG_011",
+                           "suite":  "legacy-land-functional",
+                           "section":  "Legacy Land Processing (Land Module - Part 2). Part 1 = New Land Creation (existing LM_001 - LM_199, unchanged)",
+                           "sub_section":  "Open \u0026 Complete Legacy Land",
+                           "description":  "Khasra Area field validation",
+                           "steps":  [
+                                         "1 Open Khasra Details",
+                                         "2 Try numeric, decimal, 0, negative \u0026 non-numeric values in Area (Hectare)"
+                                     ],
+                           "expected":  [
+                                            "1 Verify numeric insert allowed only.",
+                                            "2 Verify decimal values allowed.",
+                                            "3 Verify negative \u0026 non-numeric values are not accepted."
+                                        ]
+                       },
+                       {
+                           "id":  "LG_012",
+                           "suite":  "legacy-land-functional",
+                           "section":  "Legacy Land Processing (Land Module - Part 2). Part 1 = New Land Creation (existing LM_001 - LM_199, unchanged)",
+                           "sub_section":  "Open \u0026 Complete Legacy Land",
+                           "description":  "Last Modified Date update on save",
+                           "steps":  [
+                                         "1 Update any field of legacy Land \u0026 save",
+                                         "2 Re-check Last Modified Date column"
+                                     ],
+                           "expected":  [
+                                            "Verify Last Modified Date updates from NA to actual modification date after save."
+                                        ]
+                       },
+                       {
+                           "id":  "LG_013",
+                           "suite":  "legacy-land-functional",
+                           "section":  "Legacy Land Processing (Land Module - Part 2). Part 1 = New Land Creation (existing LM_001 - LM_199, unchanged)",
+                           "sub_section":  "Mandatory Validations Before Forwarding",
+                           "description":  "Validation 1 - Land Type blank",
+                           "steps":  [
+                                         "1 Keep Land Type = NA/blank",
+                                         "2 Click Forward to CA"
+                                     ],
+                           "expected":  [
+                                            "1 Verify forward is blocked.",
+                                            "2 Verify proper validation message displayed (Land Type must not remain blank)."
+                                        ]
+                       },
+                       {
+                           "id":  "LG_014",
+                           "suite":  "legacy-land-functional",
+                           "section":  "Legacy Land Processing (Land Module - Part 2). Part 1 = New Land Creation (existing LM_001 - LM_199, unchanged)",
+                           "sub_section":  "Mandatory Validations Before Forwarding",
+                           "description":  "Validation 2 - Area = 0 Hectare",
+                           "steps":  [
+                                         "1 Keep Khasra Area = 0 (or blank)",
+                                         "2 Click Forward to CA"
+                                     ],
+                           "expected":  [
+                                            "1 Verify forward is blocked.",
+                                            "2 Verify proper validation message displayed (Area must be greater than 0 Hectare)."
+                                        ]
+                       },
+                       {
+                           "id":  "LG_015",
+                           "suite":  "legacy-land-functional",
+                           "section":  "Legacy Land Processing (Land Module - Part 2). Part 1 = New Land Creation (existing LM_001 - LM_199, unchanged)",
+                           "sub_section":  "Mandatory Validations Before Forwarding",
+                           "description":  "Both validations failing",
+                           "steps":  [
+                                         "1 Keep Land Type blank AND Area = 0",
+                                         "2 Click Forward"
+                                     ],
+                           "expected":  [
+                                            "1 Verify forward remains blocked.",
+                                            "2 Verify both validation errors are indicated to the user."
+                                        ]
+                       },
+                       {
+                           "id":  "LG_016",
+                           "suite":  "legacy-land-functional",
+                           "section":  "Legacy Land Processing (Land Module - Part 2). Part 1 = New Land Creation (existing LM_001 - LM_199, unchanged)",
+                           "sub_section":  "Mandatory Validations Before Forwarding",
+                           "description":  "Both validations passed",
+                           "steps":  [
+                                         "1 Select valid Land Type",
+                                         "2 Enter Area \u003e 0 Hectare",
+                                         "3 Click Forward"
+                                     ],
+                           "expected":  [
+                                            "Verify forwarding is allowed only after BOTH validations pass."
+                                        ]
+                       },
+                       {
+                           "id":  "LG_017",
+                           "suite":  "legacy-land-functional",
+                           "section":  "Legacy Land Processing (Land Module - Part 2). Part 1 = New Land Creation (existing LM_001 - LM_199, unchanged)",
+                           "sub_section":  "Document Rule (Legacy)",
+                           "description":  "Mandatory documents NOT enforced",
+                           "steps":  [
+                                         "1 Do not upload mandatory documents",
+                                         "2 Pass Validation 1 \u0026 2",
+                                         "3 Click Forward"
+                                     ],
+                           "expected":  [
+                                            "1 Verify mandatory document validation is NOT applied for Legacy Land.",
+                                            "2 Verify forward is allowed without mandatory documents.",
+                                            "3 Verify New Land flow (Part 1) still enforces its document validation - no regression."
+                                        ]
+                       },
+                       {
+                           "id":  "LG_018",
+                           "suite":  "legacy-land-functional",
+                           "section":  "Legacy Land Processing (Land Module - Part 2). Part 1 = New Land Creation (existing LM_001 - LM_199, unchanged)",
+                           "sub_section":  "Document Rule (Legacy)",
+                           "description":  "Optional document upload",
+                           "steps":  [
+                                         "1 Upload valid PDF within max size on legacy Land",
+                                         "2 Try invalid file type \u0026 oversized file"
+                                     ],
+                           "expected":  [
+                                            "1 Verify optional upload works \u0026 document is associated with the legacy Land ID.",
+                                            "2 Verify invalid type/size is rejected with error message on the same screen."
+                                        ]
+                       },
+                       {
+                           "id":  "LG_019",
+                           "suite":  "legacy-land-functional",
+                           "section":  "Legacy Land Processing (Land Module - Part 2). Part 1 = New Land Creation (existing LM_001 - LM_199, unchanged)",
+                           "sub_section":  "Forward to Chief Architect",
+                           "description":  "Forward legacy Land",
+                           "steps":  [
+                                         "1 Click Forward, select Chief Architect, insert remarks",
+                                         "2 Confirm"
+                                     ],
+                           "expected":  [
+                                            "1 Verify confirmation message on successful forward.",
+                                            "2 Verify workflow status updated.",
+                                            "3 Verify record appears in Chief Architect inbox.",
+                                            "4 Verify audit log captures the event (from-user, to-user, date-time, remarks)."
+                                        ]
+                       },
+                       {
+                           "id":  "LG_020",
+                           "suite":  "legacy-land-functional",
+                           "section":  "Legacy Land Processing (Land Module - Part 2). Part 1 = New Land Creation (existing LM_001 - LM_199, unchanged)",
+                           "sub_section":  "Forward to Chief Architect",
+                           "description":  "Same Land ID retained \u0026 EE read-only",
+                           "steps":  [
+                                         "1 Note Land ID before forward",
+                                         "2 After forward, check Land ID at CA side",
+                                         "3 At EE, reopen the forwarded record"
+                                     ],
+                           "expected":  [
+                                            "1 Verify the same migrated Land ID continues - no new ID generated.",
+                                            "2 Verify EE gets read-only/history view after forward (no edit/re-forward)."
+                                        ]
+                       },
+                       {
+                           "id":  "LG_021",
+                           "suite":  "legacy-land-functional",
+                           "section":  "Legacy Land Processing (Land Module - Part 2). Part 1 = New Land Creation (existing LM_001 - LM_199, unchanged)",
+                           "sub_section":  "Forward to Chief Architect",
+                           "description":  "CA document visibility (uploaded vs missing)",
+                           "steps":  [
+                                         "1 Login as CA",
+                                         "2 Open forwarded legacy Land",
+                                         "3 Check document section against required document list"
+                                     ],
+                           "expected":  [
+                                            "1 Verify same Legacy Land ID is received with all data intact.",
+                                            "2 Verify previously uploaded documents are visible/downloadable.",
+                                            "3 Verify missing (not uploaded) documents are also displayed.",
+                                            "4 Verify uploaded vs non-uploaded documents are clearly distinguished.",
+                                            "5 Verify workflow ownership transferred successfully."
+                                        ]
+                       }
+                   ]
+}

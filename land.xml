@@ -12,14 +12,14 @@
 	<test name="land Management Tests" thread-count="1">
 
 		<classes>
-
 			<class name="testCases.LandModule.login" />
-			<class name="testCases.LandModule.landCreation" />
-			<class name="testCases.LandModule.AddKhasra" />
-			<class name="testCases.LandModule.SurveyDetails" />
-			<class name="testCases.LandModule.ForwordToCA" />
-			
-
+			<class name="testCases.LandModule.GovernmentLandCreation" />
+			<class name="testCases.LandModule.DepositWorkLandCreation" />
+			<class name="testCases.LandModule.HousingRedensificationLandCreation" />
+			<class name="testCases.LandModule.LandAcquisitionActLandCreation" />
+			<class name="testCases.LandModule.LandPullingLandCreation" />
+			<class name="testCases.LandModule.PrivateLandLandCreation" />
+			<class name="testCases.LandModule.RedensificationGovtLandCreation" />
 		</classes>
 
 	</test>

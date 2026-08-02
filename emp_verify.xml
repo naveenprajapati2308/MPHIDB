@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<!-- Scratch suite for verifying ONE empanelment class in isolation
+     (same pattern as land_verify.xml). Swap the class entry as needed:
+     mvn -f pom.xml test -DsuiteXmlFile=emp_verify.xml -DopenReport=false -->
+<suite name="Empanelment Verify Suite">
+<listeners>
+    <listener class-name="ReportManager.Master_extent_report_v2"/>
+</listeners>
+
+	<test name="empanelment verify" thread-count="1">
+
+		<classes>
+
+			<class name="testCases.ArchitectEmpanelment.IndividualEmpanelmentFlow" />
+
+		</classes>
+
+	</test>
+
+</suite>

@@ -1,0 +1,149 @@
+REQUIREMENT TRACEABILITY MATRIX,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,Project Name:,MPHIDB,,,,,,,,
+,Module,Land Management/Land Id Creation,,,,,,,,
+SNO,User Story ID,Requirement Description,Test Cases,Test Case Description,No of Test Cases,,,,,
+1,User Story 1,Capture Land Details for By Government Land,LM_046 - LM_068,"Create land details,Khasra,update & create Land ID",23,,,,,
+2,User Story 2,Capture Land Details for By Private Land,LM_145 - LM_166,"Create land details,Khasra,update & create Land ID",22,,,,,
+3,User Story 3,Capture Land Details for By Land Acquisition,LM_092 - LM_120,"Create land details,Khasra,update & create Land ID",29,,,,,
+4,User Story 4,Capture Land Details for By Land Pulling,LM_121 - LM_144,"Create land details,Khasra,update & create Land ID",23,,,,,
+5,User Story 5,Capture Land Details for Redensification,LM_069 - LM_091,"Create land details,Khasra,update & create Land ID",23,,,,,
+6,User Story 6,Capture Land Details for Redensification for Government,LM_167 - LM_195,"Create land details,Khasra,update & create Land ID",29,,,,,
+7,User Story 7,Capture Land Details for Redevelopment,LM_196 - LM_199,"Create land details,Khasra,update & create Land ID",4,,,,,
+8,User Story 8,Capture Land Details for Deposit Work,LM_001 - LM_045,"Create land details,Khasra,update & create Land ID",45,,,,,
+,,,,,,,,,,
+,Module,Architect Empanelment & Chief Architect Module,,,,,,,,
+SNO,User Story ID,Requirement Description,Test Cases,Test Case Description,No of Test Cases,,,,,
+1,User Story 1 (25655),"Title: Registration page access
+As a new architect,
+I want to access the registration page on the MPHIDB ERP portal,
+So that I can begin the registration process.",Registration page access,"As a new architect,
+I want to access the registration page on the MPHIDB ERP portal,
+So that I can begin the registration process.",1,,,,,
+2,User Story 2 (25656),"Title: Mobile and Email OTP verification
+As a new architect,
+I want to verify my mobile number and email ID using OTPs,
+So that my contact details are authenticated before registration.",Mobile and Email OTP verification,"As a new architect,
+I want to verify my mobile number and email ID using OTPs,
+So that my contact details are authenticated before registration",1,,,,,
+3,User Story 3 (25657),"Title: Enable Register button after verification
+As a new architect,
+I want the ‘Register’ button to be enabled only after OTP verification,
+So that registration happens only for verified users.",Enable Register button after verification,"I want the ‘Register’ button to be enabled only after OTP verification,
+So that registration happens only for verified users.",1,,,,,
+4,User Story 4(25658),"Title: Receive credentials upon successful registration
+As a registered architect,
+I want to receive my login credentials via SMS and email,
+So that I can log in to the portal and access my dashboard.",Receive credentials upon successful registration,"As a registered architect,
+I want to receive my login credentials via SMS and email,
+So that I can log in to the portal and access my dashboard.",1,,,,,
+5,User Story 1 (25659),"Title: Access to Login Page
+As an architect,
+I want to access the login page of the MPHIDB ERP Portal,
+So that I can log in to my account securely.",Access to Login Page,"As an architect,
+I want to access the login page of the MPHIDB ERP Portal,
+So that I can log in to my account securely.",1,,,,,
+6,User Story 2 (25660),"Title: Login with Credentials
+As an architect,
+I want to log in using my username and password,
+So that I can access my dashboard securely.",Login with Credentials,"I want to log in using my username and password,
+So that I can access my dashboard securely.",1,,,,,
+7,User Story 3 (25661),"Title: Redirect to Change Password Page on First Login
+As an architect,
+I want to be redirected to a “Change Password” page upon my first login,
+So that I can update my password for security purposes.",Redirect to Change Password Page on First Login,"I want to be redirected to a “Change Password” page upon my first login,
+So that I can update my password for security purposes.",1,,,,,
+8,User Story 4 (25662),"Title: Update Password Successfully
+As an architect,
+I want to update my password successfully,
+So that I can secure my account and continue using the portal.",Update Password Successfully,"I want to update my password successfully,
+So that I can secure my account and continue using the portal.",1,,,,,
+9,User Story 1 (25663),"Title- Submit Application
+
+As an Architect, I want to complete and submit my application so that it can be reviewed and approved.",Submit Application,"As an Architect, I want to complete and submit my application so that it can be reviewed and approved.",82,,,,,
+10,"User Story 2 (25664)
+","Title- Upload Documents
+As an Architect, I want to upload all required documents so that my application meets compliance standards.
+",Upload Documents,"As an Architect, I want to upload all required documents so that my application meets compliance standards.",1,,,,,
+11,User Story 3 (25665),"Title – View/Re-Submit Reverted Application
+
+As an Architect, I want to update my application based on feedback so that I can resubmit it for approval.",View/Re-Submit Reverted Application,"As an Architect, I want to update my application based on feedback so that I can resubmit it for approval.",1,,,,,
+12,User Story 4 (25666),"Title– Change Architect Type
+
+As an Architect, I want the ability to change my category (Individual / Firm) before final submission.",Change Architect Type,"As an Architect, I want the ability to change my category (Individual / Firm) before final submission.",1,,,,,
+13,User Story 1 (25667) ,"Title– Review Application
+
+As a Chief Architect, I want to review architect applications so that I can validate their eligibility.",Review Application,"As a Chief Architect, I want to review architect applications so that I can validate their eligibility.",1,,,,,
+14,User Story 2 (25668),"Title– Approve Application
+
+As a Chief Architect, I want to approve valid applications so the architect can proceed to payment.",Approve Application,"As a Chief Architect, I want to approve valid applications so the architect can proceed to payment.",1,,,,,
+15,User Story 3 (25669),"Title– Revert Application
+
+As a Chief Architect, I want to revert applications with remarks so that architects can correct issues.",Revert Application,"As a Chief Architect, I want to revert applications with remarks so that architects can correct issues.",1,,,,,
+16,User Story 4 (25670),"Title– Activity Logs
+
+As a Chief Architect, I want to view the activity logs of the application so I can track progress.",Activity Logs/History Trail,"As a Chief Architect, I want to view the activity logs of the application so I can track progress.",1,,,,,
+17,User Story 1 (25671),"Title – Select Payment Years (for First Payment)
+
+As an architect, I want to select the number of years for annual fees so that I can pay based on certificate validity.",Select Payment Years (for First Payment),"As an architect, I want to select the number of years for annual fees so that I can pay based on certificate validity.",1,,,,,
+18,User Story 2 (25672),"Title – Select Payment Years (After done first payment)
+
+As an architect, I want to select the number of years for annual fees so that I can pay based on certificate validity.",Select Payment Years (After done first payment),"As an architect, I want to select the number of years for annual fees so that I can pay based on certificate validity.",1,,,,,
+19,User Story 3 (25673),"Title – Make Online Payment
+
+As an architect, I want to pay my fees through multiple online payment modes so that I can complete the payment conveniently.",Make Online Payment,"As an architect, I want to pay my fees through multiple online payment modes so that I can complete the payment conveniently.",1,,,,,
+20,User Story 4 (25674),"Title– View Payment Summary
+
+As an architect, I want to view a clear payment summary so that I can verify all details before paying.",View Payment Summary,"As an architect, I want to view a clear payment summary so that I can verify all details before paying.",1,,,,,
+21,User Story 5(25675),"Title – View Payment Records
+
+As an architect, I want to view all my past payment history so that I can track my financial transactions.",View Payment Records,"As an architect, I want to view all my past payment history so that I can track my financial transactions.",1,,,,,
+22,User Story 1 (25676),"Story ID: US_ALG_001
+Title: Access View Logs Section
+As an architect or chief architect,
+I want to access the “View Logs”  of Empanelment Process,
+So that I can see all activities performed in my workflow.",Access View Logs Section,"As an architect or chief architect,
+I want to access the “View Logs”  of Empanelment Process,
+So that I can see all activities performed in my workflow.",1,,,,,
+23,User Story 2 (25677),"Story ID: US_ALG_002
+Title: Display All Activity Details
+As an architect or chief architect,
+I want to see details of each activity (date, name, and status),
+So that I can monitor the progress and actions taken on my applications.",Display All Activity Details,"As an architect or chief architect,
+I want to see details of each activity (date, name, and status),
+So that I can monitor the progress and actions taken on my applications.",1,,,,,
+24,User Story 3 (25678),"Story ID: US_ALG_003
+Title: Filter or Sort Logs (Optional Feature)
+As an architect or chief architect,
+I want to filter or sort activity logs by date, status, or activity type,
+So that I can easily locate specific activities in the log list.",Filter or Sort Logs (Optional Feature),"As an architect or chief architect,
+I want to filter or sort activity logs by date, status, or activity type,
+So that I can easily locate specific activities in the log list.",1,,,,,
+25,User Story 4 (25679),"User Story 4 (25679)
+
+Story ID: US_ALG_004
+Title: Handle Empty or Error Scenarios
+As an architect or chief architect,
+I want the system to display proper messages when no logs are available or when an error occurs,
+So that I clearly understand the system’s response.",Handle Empty or Error Scenarios,"As an architect or chief architect,
+I want the system to display proper messages when no logs are available or when an error occurs,
+So that I clearly understand the system’s response.",1,,,,,
+26,,,,,,,,,,
+27,,,,,,,,,,
+28,,,,,,,,,,
+29,,,,,,,,,,
+30,,,,,,,,,,
+31,,,,,,,,,,
+32,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,

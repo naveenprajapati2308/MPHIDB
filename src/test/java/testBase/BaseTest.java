@@ -55,9 +55,6 @@ public class BaseTest {
 
 		ElementUtils.handleOptionalPopup(driver);
 	}
-
-	// IMPORTANT PART
-	// Har DataProvider scenario se pehle home page reload karega
 	@BeforeMethod
 	public void loadHomePage() {
 

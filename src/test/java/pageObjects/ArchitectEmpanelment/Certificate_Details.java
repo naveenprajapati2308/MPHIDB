@@ -40,7 +40,9 @@ public class Certificate_Details extends DriverBase {
 
 
 	// -------- FILE UPLOAD --------
-	@FindBy(xpath="//div[@class='row g-2']//div[@class='mb-3 col-md-4']//input[@type='file']")
+	// COA upload is the certificate pane's (only) unnamed pdf file input,
+	// confirmed live on UAT 2026-07-15 (doc-modal's input is name='newDocFile').
+	@FindBy(xpath="(//div[@id='certificate']//input[@type='file' and @accept='.pdf' and not(@name)])[1]")
 	private WebElement certificateUploadField;
 
 
@@ -84,10 +86,13 @@ public class Certificate_Details extends DriverBase {
 	@FindBy(xpath="//input[@name='modal.project_place']")
 	private WebElement projectPlaceField;
 
-	@FindBy(xpath="//input[@placeholder='in rupees ₹']")
+	@FindBy(xpath="//input[@name='modal.project_cost']")
 	private WebElement projectCostField;
 
-	@FindBy(xpath="//input[@name='modal.project_year']")
+	// Confirmed live on UAT (2026-07-15): project year is a SELECT whose
+	// options stop at the CURRENT year - future years are excluded by design
+	// (the TC_AR_017.4 "future year not allowed" rule).
+	@FindBy(xpath="//select[@name='modal.project_year']")
 	private WebElement projectYearField;
 
 
@@ -166,8 +171,19 @@ public class Certificate_Details extends DriverBase {
 	}
 
 	public void enterProjectYear(String year) {
-	    projectYearField.clear();
-	    projectYearField.sendKeys(year);
+	    new Select(projectYearField).selectByVisibleText(year);
+	}
+
+	/** All numeric year options offered by the project-year dropdown. */
+	public java.util.List<String> getProjectYearOptions() {
+	    java.util.List<String> years = new java.util.ArrayList<>();
+	    for (org.openqa.selenium.WebElement option : new Select(projectYearField).getOptions()) {
+	        String text = option.getText().trim();
+	        if (text.matches("\\d{4}")) {
+	            years.add(text);
+	        }
+	    }
+	    return years;
 	}
 
 	public void selectProjectStatus(String status) {

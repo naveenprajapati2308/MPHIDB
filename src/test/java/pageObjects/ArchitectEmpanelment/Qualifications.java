@@ -25,7 +25,11 @@ public class Qualifications extends DriverBase {
 	// ===================== EDUCATION SECTION =====================
 
 	// -------- BUTTON --------
-	@FindBy(xpath="//button[@class='btn btn-outline-warning']")
+	// Confirmed live on UAT (2026-07-15): the Qualification tab is a TABLE
+	// (div#education) where each row has its own small save button
+	// (title='Save new record', disabled until the row is valid). Row 1 =
+	// Graduation (mandatory), row 2 = Post-Graduation (optional).
+	@FindBy(xpath="//div[@id='education']//tbody/tr[1]//button[@title='Save new record']")
 	private WebElement educationSaveButton;
 
 
@@ -73,6 +77,11 @@ public class Qualifications extends DriverBase {
 
 	// BUTTON
 	public void clickEducationSave() {
+	    // The row-save stays disabled until every field of the row validates;
+	    // give the React re-render a beat to enable it.
+	    new WebDriverWait(driver, Duration.ofSeconds(10))
+	            .until(ExpectedConditions.elementToBeClickable(educationSaveButton));
+
 	    ClickUtils.smartClick(driver, educationSaveButton);
 	}
 }

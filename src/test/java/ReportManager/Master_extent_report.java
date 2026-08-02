@@ -211,6 +211,22 @@ public class Master_extent_report implements ITestListener, ISuiteListener {
 				e.printStackTrace();
 			}
 		}
+
+		// Raw Selenium exceptions (timeouts, element-not-found) only say a locator
+		// didn't resolve in time - they don't say WHY the page never reached the
+		// expected state. Scan the live DOM at failure time for any on-screen
+		// error/status text (API error banners, SweetAlert2 popups, invalid-feedback
+		// messages) so the report can show the actual root cause alongside the
+		// exception, e.g. "Request failed with status code 404" surfaced on the
+		// login page instead of just "element not clickable".
+		String rootCause = utilities.FailureDiagnostics.captureRootCause(driver);
+
+		if (rootCause != null && !rootCause.isEmpty()) {
+
+			test.log(Status.FAIL, "🔎 Actual reason shown on page: " + rootCause);
+
+			System.out.println("[FailureDiagnostics] " + result.getName() + " -> " + rootCause);
+		}
 	}
 
 	// ================= SKIP =================

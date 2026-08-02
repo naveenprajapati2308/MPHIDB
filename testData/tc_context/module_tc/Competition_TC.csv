@@ -1,0 +1,214 @@
+,,,,,,,,,,,,,,
+Project Name:MPHIDB,,Test Case- Competition Workflow,,,,,,,,,,,,
+Module : ,Module- Competition Workflow ,,,,Iteration 1,,,,Iteration 2,,,,,
+Test Case No.,Test description,Test Steps /Title,Expected Result,Actual Result, Status,"Severity (Major Minor, Low)",Date when Test Case Performed,Status (Pass / Fail / Cannot Be Tested/ Blocked/Invalid),Status,Date when Test Case Performed,Status (Pass / Fail / Cannot Be Tested/ Blocked/Invalid),Remarks (Resolution for Failed Test Cases),,
+,"AS-W-COMP-13 (28704)
+Create & Publish Competition Request to IT Cell (CA ? IT Cell)
+
+Story ID: 
+
+ARSEC-013
+
+As a Chief Architect, I want to send the Notesheet and competition content to IT Cell for publishing a competition notification on the MPHIDB website, so that eligible empanelled private architects can apply.",,"Verify:-
+1 CA must be able to create a Competition against a Land ID (mode = Competition).
+
+2 CA must be able to upload Notesheet and competition content/matter.
+
+3 CA must be able to forward the competition publish request to IT Cell.
+
+4 System must allow multiple competitions to be active simultaneously (uniquely identified by competition name/ID).
+
+5 Audit Log must capture creation, documents, and forwarding event.","ER1
+ER2
+3 ruled out
+ER4
+ER5",Pass,,4/1/2026,"1 notesheet not to be allowed to upload before architect selection.
+",,,,,,
+,Free SubLand,,"Verify-
+1 Enable Free Subland feature only for Chief Architect user.
+2 Area of subland that is freed must be added under available land area to utilize somewhere else.","ER1
+ER2",Pass,,,Not functioning correctly,,,,,,
+,Apply for Competition,,"Verify-
+1 Emp arch should see published competition under Competition list to apply.
+
+",,,,,,,,,,,
+,View table details,,"Verify-
+1 Emp arch should see two menu(Competition list,Assigned competition)
+
+",,,,,,,,,,,
+,Listing at Empaneled Architect,,"Verify-
+1 In competition list (Sno,Inititaed date,Title,Start date,End date,apply button),with Active competition & History.
+2 Assigned competition (selected by CA records only)
+ ",,,,,,,,,,,
+,Who all (Emp Arch) user can apply for competition,,,,,,,,,,,,,
+,1 Approved Emp arch by CA with existing validaity of COA.,,"Verify-
+1 Appoved emp arch by CA can appear to participate for competitiion only having COA valid till apply date.Who all (Emp Arch) user can apply for competition",As expected,Pass,Major,3/31/2026,,,,,,,
+,2 Inprocess/Reverted Emp Arch can't apply,"Emp user- Ind 319021
+Land id: Rajpur Land 0100/NA/H004     sub land id- 0100/NA/H004-S9
+
+","Verify-
+1 Emp Arch having status Inprocess/pending or reverted can't apply for competition process.
+2 Competition list must not open in their UI having application status as inprocess/reverted.",Not as expected,Fail,Major,4/9/2026,"Non-approved/pending user also seeing the compettion in list,",,,,,,
+,Apply dates Flows,,,,,,,,,,,,,
+,1 Don't allow Emp arch to apply for future dates window.,,"Verify-
+1 EmP arch should not be allowed to apply for future date comp for example today 8 apr (10-17apr)
+ 
+",Not as expected,Fail,,4/8/2026,Emp user apply allowed irrespective of date,,,,,,
+,2 At CA Don't allow selection till end date is over ,,"Verify-
+2 CA should not see/take action for applied competition within the start & end date(10-17) today is 8 apr.
+User should only select when end date is over.",Not as expected,Fail,,4/8/2026,,,,,,,
+,3 CA view Export to excel for Interested Architects,,"Verify-
+3 CA should get export to excel feature in webtable to view received proposals.",Not as expected,Fail,,4/8/2026,Functionality to be developed,,,,,,
+,4 Restrict Emp user when End date passed,,"Verify-
+4 Do not allow Emp Arch user to apply when end date has been passed(ie for past date)",Not as expected,Fail,,4/8/2026,User is able to to apply competition even after end date is passed ,,,,,,
+,Uplaod Presentation,,"Verify-
+1 Allow Emp user to upload PPT/PDF to show interest in competition process.
+",Not as expected,Fail,,4/8/2026,PPT format upload failed.,,,,,,
+,Upload Layout plan & Building plan ,,"Verify-
+1 Allow Emp Arch user to upload Building & Layout plan docs(non mandatory).
+2 Allow only to upload when EE user has attached agreement document.",Not as expected,Fail,,4/8/2026,"1 User anytime during flow process allowed to uplaod docs.
+2 Both upload docs are mandatorycurrently.",,,,,,
+,,,,,,,,,,,,,,
+,Select any one Empaneled Architect,,"Verify -
+1 CA user should only be allowed to select any one Emp Arch via radio button pick.
+",Not As expected,Fail,,4/8/2026,Othr user seeing in active competition,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,Notesheet upload Only by CA,,"Verify notesheet documents:
+1 Only CA can upload & update.
+2 Only after Empaneled architect selection it should appear.",2 Not as Expected.,Fail,,4/7/2026,,,,,,,
+,Notesheet uplaod before Competition (architect) selection,,"Verify-
+1 CA user should not be allowed to upload Notesheet doc before competition publish.
+2 Doc should not be visible to Emp Arch.",,Fail,,,,,,,,,
+,Notesheet upload after Competition (architect) selection,,"Verify-
+1 CA user should only be allowed to upload Notesheet doc after competition (empaneled arch) selection.
+2 Doc should not be visible to Emp Arch.",,Fail,,,,,,,,,
+,Competition Doc,,"Verify-
+1 CA user should be able to upload Competition doc(for refernce to Emp arch)
+2 Same doc should be visible to Emp Arch for reference.",,Fail,,,,,,,,,
+,"AS-W-COMP-14 (28705)
+Restrict Applications to Empanelled Private Architects
+
+Story ID: 
+
+ARSEC-014
+
+As a System Administrator/IT Cell, I want to ensure only empanelled private architects (consultant architects) can apply to competitions, so that applications are restricted to eligible participants.",,"Verify:-
+
+1 Competition application must require applicant validation against an empanelled architect master list.
+
+2 Non-empanelled users must not be able to submit applications.
+
+3 System must store applicant details: name, CoA, mobile, email, address, PPT upload.
+
+4 Audit Log must capture application submissions with timestamps.",Credential awaiting to validate negative scenarios,,,4/2/2026,COA not showing for some users.,,,,,,
+,Allow Approved Empaneled Architects only,,,,,,,,,,,,,
+,Restrict Pending/non-approved/Reverted Empaneled Architects,,,,,,,,,,,,,
+,Restrict Empanelled architect if there validaity is expired,,,,,,,,,,,,,
+,Allow only Approved Empaled architect which are Today/till yesterday ,,,,,,,,,,,,,
+,"AS-W-COMP-15(28707)
+View Competition Applicants Post Expiry (CA)
+
+Story ID: 
+
+ARSEC-015
+
+As a Chief Architect, I want to view the list of applicants for a competition after the last date, so that I can conduct evaluation and select a winner offline.",,"Verify:-
+
+1 After competition expiry date, CA must be able to select competition name and view all applicants in a list/table.
+
+2 Table must display: name, CoA, mobile, email, address, PPT file (downloadable).
+
+3 System must prevent new applications after expiry.
+
+4 Audit Log must capture access and downloads (if required by policy)","ER1
+ER2
+3 To be test (test data preparation needed)
+",Pass,,4/6/2026,,,,,,,
+,"AS-W-COMP-16 (28708)
+Upload Offline Competition Outcome Documents & Forward to DHC (CA ? DHC)
+
+Story ID: 
+
+ARSEC-016
+
+As a Chief Architect, I want to upload the offline competition outcome documents (LoA, MoM, approval letter) and forward them to the Deputy Housing Commissioner, so that the work order issuance can be initiated.",,"Verify:-
+
+1 CA must be able to upload: Letter of Appointment (LoA), Minutes of Meeting, Approval Letter.
+
+2 CA must be able to forward the package to DHC with remarks.
+
+3 System must update status to Competition Awarded – Sent to DHC (or equivalent).
+
+4 Audit Log must capture uploads and forwarding.","Not as expected
+ER 1 fail
+ER2
+ER3 
+ER4",Pass,,4/6/2026,Approval letter upload file is not available.,,,,,,
+,"AS-W-COMP-17(28709)
+Issue Work Order (DHC ? EE)
+
+Story ID: 
+
+ARSEC-017
+
+As a Deputy Housing Commissioner, I want to upload and issue the Work Order based on LoA and forward it to the Executive Engineer, so that the agreement process can begin.",,"Verify:-
+
+1 DHC must be able to upload the Work Order document.
+
+2 DHC must be able to forward it to EE with remarks.
+
+3 System must update status to Work Order Issued.
+
+4 Audit Log must capture upload and forward action.","1 Not as expected
+2 ER
+3 not as expected 
+ER4",Fail,,4/6/2026,"1 upload Workorder field is NA in dropdown.
+",,,,,,
+,"AS-W-COMP-18(28710)
+Create & Upload Agreement (EE) and Share with Stakeholders (EE ? DHC/AHC/CA)
+
+Story ID: 
+
+ARSEC-018
+
+As an Executive Engineer, I want to upload the signed Agreement document (between EE and winning private consultant) and forward it along with required documents to DHC, AHC, and CA, so that the competition execution record is complete and accessible to all concerned authorities.",,"Verify:-
+
+1 EE must be able to upload the Agreement document and mark it as signed/executed.
+
+2 EE must be able to forward agreement + required documents to DHC, AHC, and CA.
+
+3 System must capture recipients, timestamp, and remarks.
+
+4 Status must update to Agreement Executed / Competition Execution Completed (as per lifecycle).
+
+5 Audit Log must capture upload and distribution.","ER1
+ER2
+ER3
+4--
+ER5
+",Pass,,4/7/2026,,,,,,,
+,"AS-W-COMP-19 (28712)
+Document Versioning + Audit Trail for Forward/Revert Cycles
+
+Story ID: 
+
+ARSEC-019
+
+As a System, I want to maintain document versioning and audit trail for every upload, revert, forward, and finalize action across roles, so that accountability and traceability are ensured throughout the land case lifecycle.",,"Verify:-
+
+1 Every upload must create a new version with uploader, role, timestamp, and remarks.
+
+2 Every forward/revert/finalize must be logged with from-user, to-user, action type, timestamp, and remarks.
+
+3 System must display version history per document type (Layout / Building Drawing / Permissions / Competition Docs).
+
+4 System must prevent editing of “Finalized by CA” outputs unless an authorized amendment action is triggered (if applicable).
+
+5 Audit log must be exportable/viewable as per role permission.",,,,,,,,,,,
+,Empanelled architect,,,,,,,,,,,,,
+,GUI & tab navigations,,,,,,,,,,,,,
+,Upload file type & size ,,,,,,,,,,,,,
+,,,,,,,,,,,,,,

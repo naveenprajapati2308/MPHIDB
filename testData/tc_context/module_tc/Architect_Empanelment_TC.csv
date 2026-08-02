@@ -1,0 +1,1019 @@
+,,,,,,,,,,,,,,
+Project Name:  MPHIDB,,Test Case- Architect & Chief Architect Module,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+Module : ,Architect & Chief Architect Module,,,,Iteration 1,,,,Iteration 2,,,,,
+Test Case No.,Test description,Test Steps /Title,Expected Result,Actual Result, Status,"Severity (Major Minor, Low)",Date when Test Case Performed,Status (Pass / Fail / Cannot Be Tested/ Blocked/Invalid),Status,Date when Test Case Performed,Status (Pass / Fail / Cannot Be Tested/ Blocked/Invalid),Remarks (Resolution for Failed Test Cases),,
+TC_AR_001,"User Story 1 (25655)
+Story ID: US_AR_001
+Title: Registration page access
+As a new architect,
+I want to access the registration page on the MPHIDB ERP portal,
+So that I can begin the registration process.","1 Open URL (https://godavari.mp.gov.in/MPHB_dev/architect)
+2 Click > Login 
+3 Click > Signup","1 User should be able to open the MPHIDB ERP portal successfully.
+2 “Registration” option should be visible and clickable.
+3 System should redirect the user to the registration page upon selection.
+4 User should be able to initiate registratin process.","ER 1
+2 User registration can be made via accessing through Sign Up.
+ER3
+ER4",Pass,,1/9/2026,,,,,,,
+TC_AR_002,"User Story 2 (25656)
+
+Story ID: US_AR_002
+Title: Mobile and Email OTP verification
+As a new architect,
+I want to verify my mobile number and email ID using OTPs,
+So that my contact details are authenticated before registration.","Preconditions-
+1 TC_AR_001 should be passed.
+2 User should be ""create your account"" page.","1 User must be able to enter mobile number and receive OTP.
+2 System should validate OTP correctly.
+3 Similar OTP verification must occur for email.
+4 The system should not allow registration without both successful verifications.","ER1
+2 System accepting wrong OTP as well.
+ER3
+ER4",Pass,,1/9/2026,"System validating with Invalid OTP s for both mobile & email.
+& sometimes not allowing user even with correct OTPs.",Pass,1/13/2026,System rejecting Invalid p/w.,,,
+TC_AR_003,"User Story 3 (25657)
+Story ID: US_AR_003
+Title: Enable Register button after verification
+As a new architect,
+I want the ‘Register’ button to be enabled only after OTP verification,
+So that registration happens only for verified users.
+
+
+
+","Preconditions-
+1 TC_AR_002 should be passed.
+2 Inserted both OTP should be verified.","1 ‘Register’ button should remain disabled until both OTPs are validated.
+2 After successful validation, the ‘Register’ button should automatically activate.
+3 If either OTP expires or fails, the button should remain disabled.","1 Reg button is visible & clickable but functional only after OTP verified.
+ER2
+3 OTP allowed even after 60 sec expiry time.",Pass,,1/9/2026,OTP expiry failed however TC passed.,,,,,,
+TC_AR_004,"User Story 4(25658)
+
+Story ID: US_AR_004
+Title: Receive credentials upon successful registration
+As a registered architect,
+I want to receive my login credentials via SMS and email,
+So that I can log in to the portal and access my dashboard.","Preconditions-
+1 User must be verify via OTP's.
+2 User must validate on agreeing terms & click register.","1 System should auto-generate username and password after successful registration.
+2 Credentials should be sent to both mobile number and email ID.
+3 User should be able to use the provided credentials to log in successfully.
+4 In case of delivery failure, the system should retry or prompt for alternate contact","1 ER
+2 @staging mobile & email shooting message is disabled.
+3 ER
+4 ER",Pass,,1/12/2026,"1 PW set default @staging 12345678
+2 No sms shooting is provided @staging.",,,,,,
+TC_AR_005,"User Story 1 (25659)
+Story ID: US_AL_001
+Title: Access to Login Page
+As an architect,
+I want to access the login page of the MPHIDB ERP Portal,
+So that I can log in to my account securely.","1 TC_AR_004 should be passed.
+2 Username & p/w should be created.","1 “Login” option should be available on the portal homepage.
+2 User should be prompted to select a user type (e.g., Architect).
+3 System should display the architect login form after user type selection.","1 ER
+2 ER
+3 ER",Pass,,1/13/2026,,,,,,,
+TC_AR_006,"User Story 2 (25660)
+
+Story ID: US_AL_002
+Title: Login with Credentials
+As an architect,
+I want to log in using my username and password,
+So that I can access my dashboard securely.",,"1 System should allow entry of username, password, and captcha.
+2 System should validate all login details against the database.
+3 If credentials are correct, login should be successful.
+4 If credentials are incorrect, an error message should be displayed.
+5 Login attempt should not proceed without captcha validation.","1 ER1
+2 ER2
+3 ER3
+4 ER4
+5 ER5",Pass,,1/13/2026,,,,,,,
+TC_AR_007,"User Story 3 (25661)
+Story ID: US_AL_003
+Title: Redirect to Change Password Page on First Login
+As an architect,
+I want to be redirected to a “Change Password” page upon my first login,
+So that I can update my password for security purposes.",,"1 After first successful login, system must redirect to “Change Password” page.
+2 Page should display fields for Old Password, New Password, and Confirm Password.
+3 User should not be able to skip this step until password is updated.",Functionality not developed,Fail,,1/13/2026,,,,Functionality put on hold due to it got failed in Sanity testing.,,,
+TC_AR_008,"User Story 4 (25662)
+
+Story ID: US_AL_004
+Title: Update Password Successfully
+As an architect,
+I want to update my password successfully,
+So that I can secure my account and continue using the portal.",,"1 User must enter old, new, and confirm password fields.
+2 System should validate the old password and match new and confirm password fields.
+3 Password update should succeed only if criteria are met.
+4 Success message “Password successfully updated” should be displayed.
+5 User should be redirected to dashboard after successful update.",Functionality not developed,Fail,,1/13/2026,,,,,,,
+TC_AR_009,"User Story 1 (25663)
+– Submit Application
+
+As an Architect, I want to complete and submit my application so that it can be reviewed and approved.",,"1: System must display the architect type and allow changes before submission.
+2: User must not be able to submit unless all mandatory fields and documents are provided.
+3: Submit button must activate only after all validations are passed.
+4: System must show a confirmation message upon successful submission.
+5: Application status must change to “Submitted to Chief Architect.”",Not as expected,Fail,,1/13/2026,"Open Bugs needs to be fixed (graduation details failure),form not saving even after inserting all mandate fields.",Pass,1/27/2026,,,,
+TC_AR_010,Flow Test 1 (Individual),GUI Home page,"1 User should land at mai page that is Dashboard.
+2 User should get Logout button.
+3 User should get option to work with light/dark theme.",As expected,Pass,,1/16/2026,,,,,,,
+TC_AR_011,,Open form for Empanelment process.,"1 Manage application > Add new.
+2 Observe application details,certicate details,other details,acknowledgement & submit.",As expected,Pass,,1/16/2026,,,,,,,
+TC_AR_012,,Mandatory fields,"Verify following details are mandatory
+",Not as expected,Fail,,1/20/2026,when user try to submit without filling mandatory  fields it should be redirect to the empity field instead of long loading on page ,Pass,1/28/2026,,,,
+TC_AR_013,,1 Architect details,"1 Verify all mandatory fields-Architect name (Certificate issued to),Gender,DOB,Upload latest photograph Mobile no,Email,PAN,Experience,Turn over,Income tax paid
+2 Do not save Architect details if any field is missing.
+3 Allow edit before sumit.",As expected,Pass,,1/16/2026,,,,,,,
+TC_AR_014,,2 Qualification details,"1 Verify Graduation field is mandatory with edit.
+2 Verify separate button add quaificatin details.
+3 Verify Post graduation field is optional.
+4 Verify edit of Qualification details.
+4 Submit button should save & update records.",As expected,Pass,,1/16/2025,,,,,,,
+TC_AR_015,,3 Ceritificate details,"1 Verify all mandatory fields-Architect Name (Certificate Issued To) ,Council of Architecture,Upload COA(max 2mb),Certificate Issued Dated,Is Certificate Lifetime Valid?,auto certificate validity calculate
+2 verify submit button",As expected,Pass,,1/16/2026,,,,,,,
+TC_AR_016,,ITR 4 Documents ,"Verify Document Upload details-
+1 Allow multiple file uploads having names.
+2 Allow edit of inserted documents.
+3 Allow delete of inserted records.
+",As expected,Pass,,1/16/2026,,,,,,,
+TC_AR_017,, 5 Project Details,"Verify insert of project details -
+1 Verify project name
+2 Verify place.
+3 Verify cost is inserted in numbers.
+4 Verify year is valid & future year not allowed.
+5 Verify status from the dropdown.
+6 Verify edit & delete of project record
+7 Verify generate Project Id(unique).
+8 verify view record in the table.",As expected,Pass,,1/16/2026,,,,,,,
+TC_AR_018,,6 Shareholders/other details,"Verify mandatory fields to be insert-
+1 Verify Member Of Institute of Town Planners Of India 
+2 Member Of Indian Institute of Architecture
+3 Empanelment/Registration in Other Government/Semi-Government Organisation in MP
+4 Verify 'Save' button.",As expected,Pass,,1/16/2026,,,,,,,
+TC_AR_019,,7 Acknowledgement,"Verify-
+1 Enable Submit button when user provides consent on condition.
+2 User should be able to view terms & condition details on cliking link.",As expected,Pass,,1/16/2026,,,,,,,
+TC_AR_020,,8 Edit before submit,1 Verify user should be allowed to edit/modify all details before final submit.,As expected,Pass,,1/16/2026,,,,,,,
+TC_AR_021,,9 Generate Application number ,"1 Verify application no is generating after submit.
+",Not as expected,Pass,,1/16/2026,,Pass,1/27/2026,,,,
+TC_AR_022,Flow Test 2                                   (firm - Proprietorship Firm),GUI Home page,"1 User should land at mai page that is Dashboard.
+2 User should get Logout button.
+3 User should get option to work with light/dark theme.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_023,,Open form for Empanelment process.,"1 Manage application > Add new.
+2 Observe application details,certicate details,other details,acknowledgement & submit.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_024,,Mandatory fields,Verify following details are mandatory,Not as expected,fail,,1/20/2026,when user try to submit without filling mandatory  fields it should be redirect to the empity field instead of long loading on page ,Pass,1/27/2026,,,,
+TC_AR_025,,1 Architect details,"1 Verify all mandatory fields-Architect name (Certificate issued to),Gender,DOB,Upload latest photograph Mobile no,Email,PAN,Experience,Turn over,Income tax paid
+2 Do not save Architect details if any field is missing.
+3 Allow edit before sumit.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_026,,Unique details ,1 Firm  registration number must  be unique           2 Firm GST number must be unique                       3 Firm Pan number must be unique ,Not as expected,Fail,,1/20/2026,Pan number should unique after  confirmation  by bA ,Pass,1/27/2026,,,,
+TC_AR_027,,2 Qualification details,"1 Verify Graduation field is mandatory with edit.
+2 Verify separate button add quaificatin details.
+3 Verify Post graduation field is optional.
+4 Verify edit of Qualification details.
+4 Submit button should save & update records.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_028,,3 Ceritificate details,"1 Verify all mandatory fields-Architect Name (Certificate Issued To) ,Council of Architecture,Upload COA(max 2mb),Certificate Issued Dated,Is Certificate Lifetime Valid?,auto certificate validity calculate
+2 verify submit button",not as expected,Fail,,1/20/2026,when uploading the file in the COA file input filed and submit it again show  no file chosen although view of privious pdf file is available ,Pass,,Althogh file is availbel in VIEW ,,,
+TC_AR_029,,4  ITR  Documents ,"Verify Document Upload details-
+1 Allow multiple file uploads having names.
+2 Allow edit of inserted documents.
+3 Allow delete of inserted records.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_030,, 5 Project Details,"Verify insert of project details -
+1 Verify project name
+2 Verify place.
+3 Verify cost is inserted in numbers.
+4 Verify year is valid & future year not allowed.
+5 Verify status from the dropdown.
+6 Verify edit & delete of project record
+7 Verify generate Project Id(unique).
+8 verify view record in the table.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_031,,6 Shareholders,Shareholder are mandatory ,Not as expected,Fail,,1/20/2026,Confirmation  by BA remove shareholder from here,Pass,,"For proprotorship flow,patrner details not mandate",,,
+TC_AR_032,,7 Other details,"Verify mandatory fields to be insert-
+1 Verify Member Of Institute of Town Planners Of India 
+2 Member Of Indian Institute of Architecture
+3 Empanelment/Registration in Other Government/Semi-Government Organisation in MP
+4 Verify 'Save' button.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_033,,8 Acknowledgement,"Verify-
+1 Enable Submit button when user provides consent on condition.
+2 User should be able to view terms & condition details on cliking link.",As expected,Pass,,1/20/2026,Open Bugs needs to be fixed,,,,,,
+TC_AR_034,,9 Edit before submit,1 Verify user should be allowed to edit/modify all details before final submit.,As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_035,,10 Generate Application number ,1 Verify application no is generating after submit.,Not as expected,Fail,,1/20/2026,,Pass,,System generating application number.,,,
+TC_AR_036,Flow Test 3                                    (Firm - Partnership Firm),GUI Home page,"1 User should land at mai page that is Dashboard.
+2 User should get Logout button.
+3 User should get option to work with light/dark theme.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_037,,Open form for Empanelment process.,"1 Manage application > Add new.
+2 Observe application details,certicate details,other details,acknowledgement & submit.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_038,,Mandatory fields,Verify following details are mandatory,Not as expected,fail,,1/20/2026,when user try to submit without filling mandatory  fields it should be redirect to the empity field instead of long loading on page ,Pass,,,,,
+TC_AR_039,,1 Architect details,"1 Verify all mandatory fields-Architect name (Certificate issued to),Gender,DOB,Upload latest photograph Mobile no,Email,PAN,Experience,Turn over,Income tax paid
+2 Do not save Architect details if any field is missing.
+3 Allow edit before sumit.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_040,,Unique details ,1 Firm  registration number must  be unique           2 Firm GST number must be unique                       3 Firm Pan number must be unique ,Not as expected,Fail,,,Pan number should unique after  confirmation  by bA ,Pass,,,,,
+TC_AR_041,,2 Qualification details,"1 Verify Graduation field is mandatory with edit.
+2 Verify separate button add quaificatin details.
+3 Verify Post graduation field is optional.
+4 Verify edit of Qualification details.
+4 Submit button should save & update records.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_042,,3 Ceritificate details,"1 Verify all mandatory fields-Architect Name (Certificate Issued To) ,Council of Architecture,Upload COA(max 2mb),Certificate Issued Dated,Is Certificate Lifetime Valid?,auto certificate validity calculate
+2 verify submit button",Not as expected,Fail,,1/20/2026,when uploading the file in the COA file input filed and submit it again show  no file chosen although view of privious pdf file is available ,Pass,,,,,
+TC_AR_043,,4  ITR  Documents ,"Verify Document Upload details-
+1 Allow multiple file uploads having names.
+2 Allow edit of inserted documents.
+3 Allow delete of inserted records.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_044,, 5 Project Details,"Verify insert of project details -
+1 Verify project name
+2 Verify place.
+3 Verify cost is inserted in numbers.
+4 Verify year is valid & future year not allowed.
+5 Verify status from the dropdown.
+6 Verify edit & delete of project record
+7 Verify generate Project Id(unique).
+8 verify view record in the table.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_045,,6 Shareholders,At least one shareholder should be ,As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_046,,7 Other details,"Verify mandatory fields to be insert-
+1 Verify Member Of Institute of Town Planners Of India 
+2 Member Of Indian Institute of Architecture
+3 Empanelment/Registration in Other Government/Semi-Government Organisation in MP
+4 Verify 'Save' button.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_047,,8 Acknowledgement,"Verify-
+1 Enable Submit button when user provides consent on condition.
+2 User should be able to view terms & condition details on cliking link.",As expected,Pass,,1/20/2026,Open Bugs needs to be fixed,,,,,,
+TC_AR_048,,9 Edit before submit,1 Verify user should be allowed to edit/modify all details before final submit.,As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_049,,10 Generate Application number ,1 Verify application no is generating after submit.,Not as expected,Fail,,1/20/2026,,,,,,,
+TC_AR_050,Flow Test 4                                    (Private Limited Company (Pvt. Ltd.),GUI Home page,"1 User should land at mai page that is Dashboard.
+2 User should get Logout button.
+3 User should get option to work with light/dark theme.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_051,,Open form for Empanelment process.,"1 Manage application > Add new.
+2 Observe application details,certicate details,other details,acknowledgement & submit.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_052,,Mandatory fields,Verify following details are mandatory,Not as expected,fail,,1/20/2026,when user try to submit without filling mandatory  fields it should be redirect to the empity field instead of long loading on page ,,,,,,
+TC_AR_053,,1 Architect details,"1 Verify all mandatory fields-Architect name (Certificate issued to),Gender,DOB,Upload latest photograph Mobile no,Email,PAN,Experience,Turn over,Income tax paid
+2 Do not save Architect details if any field is missing.
+3 Allow edit before sumit.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_054,,Unique details ,1 Firm  registration number must  be unique           2 Firm GST number must be unique                       3 Firm Pan number must be unique ,Not as expected,Fail,,1/20/2026,Pan number should unique after  confirmation  by bA ,,,,,,
+TC_AR_055,,2 Qualification details,"1 Verify Graduation field is mandatory with edit.
+2 Verify separate button add quaificatin details.
+3 Verify Post graduation field is optional.
+4 Verify edit of Qualification details.
+4 Submit button should save & update records.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_056,,3 Ceritificate details,"1 Verify all mandatory fields-Architect Name (Certificate Issued To) ,Council of Architecture,Upload COA(max 2mb),Certificate Issued Dated,Is Certificate Lifetime Valid?,auto certificate validity calculate
+2 verify submit button",Not as expected,Fail,,1/20/2026,when uploading the file in the COA file input filed and submit it again show  no file chosen although view of privious pdf file is available ,,,,,,
+TC_AR_057,,4  ITR  Documents ,"Verify Document Upload details-
+1 Allow multiple file uploads having names.
+2 Allow edit of inserted documents.
+3 Allow delete of inserted records.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_058,, 5 Project Details,"Verify insert of project details -
+1 Verify project name
+2 Verify place.
+3 Verify cost is inserted in numbers.
+4 Verify year is valid & future year not allowed.
+5 Verify status from the dropdown.
+6 Verify edit & delete of project record
+7 Verify generate Project Id(unique).
+8 verify view record in the table.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_059,,6 Shareholders,At least one shareholder should be ,As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_060,,7 Other details,"Verify mandatory fields to be insert-
+1 Verify Member Of Institute of Town Planners Of India 
+2 Member Of Indian Institute of Architecture
+3 Empanelment/Registration in Other Government/Semi-Government Organisation in MP
+4 Verify 'Save' button.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_061,,8 Acknowledgement,"Verify-
+1 Enable Submit button when user provides consent on condition.
+2 User should be able to view terms & condition details on cliking link.",As expected,Pass,,1/20/2026,Open Bugs needs to be fixed,,,,,,
+TC_AR_062,,9 Edit before submit,1 Verify user should be allowed to edit/modify all details before final submit.,As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_063,,10 Generate Application number ,1 Verify application no is generating after submit.,Not as expected,Fail,,1/20/2026,,,,,,,
+TC_AR_064,Flow Test 5                                  (Public Limited Company (Ltd.),GUI Home page,"1 User should land at mai page that is Dashboard.
+2 User should get Logout button.
+3 User should get option to work with light/dark theme.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_065,,Open form for Empanelment process.,"1 Manage application > Add new.
+2 Observe application details,certicate details,other details,acknowledgement & submit.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_066,,Mandatory fields,Verify following details are mandatory,Not as expected,fail,,1/20/2026,when user try to submit without filling mandatory  fields it should be redirect to the empity field instead of long loading on page ,,,,,,
+TC_AR_067,,1 Architect details,"1 Verify all mandatory fields-Architect name (Certificate issued to),Gender,DOB,Upload latest photograph Mobile no,Email,PAN,Experience,Turn over,Income tax paid
+2 Do not save Architect details if any field is missing.
+3 Allow edit before sumit.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_068,,Unique details ,1 Firm  registration number must  be unique           2 Firm GST number must be unique                       3 Firm Pan number must be unique ,not as expected,Fail,,1/20/2026,Pan number should unique after  confirmation  by bA ,Pass,1/27/2026,,,,
+TC_AR_069,,2 Qualification details,"1 Verify Graduation field is mandatory with edit.
+2 Verify separate button add quaificatin details.
+3 Verify Post graduation field is optional.
+4 Verify edit of Qualification details.
+4 Submit button should save & update records.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_070,,3 Ceritificate details,"1 Verify all mandatory fields-Architect Name (Certificate Issued To) ,Council of Architecture,Upload COA(max 2mb),Certificate Issued Dated,Is Certificate Lifetime Valid?,auto certificate validity calculate
+2 verify submit button",Not as expected,Fail,,1/20/2026,when uploading the file in the COA file input filed and submit it again show  no file chosen although view of privious pdf file is available ,,,,,,
+TC_AR_071,,4  ITR  Documents ,"Verify Document Upload details-
+1 Allow multiple file uploads having names.
+2 Allow edit of inserted documents.
+3 Allow delete of inserted records.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_072,, 5 Project Details,"Verify insert of project details -
+1 Verify project name
+2 Verify place.
+3 Verify cost is inserted in numbers.
+4 Verify year is valid & future year not allowed.
+5 Verify status from the dropdown.
+6 Verify edit & delete of project record
+7 Verify generate Project Id(unique).
+8 verify view record in the table.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_073,,6 Shareholders,At least one shareholder should be ,As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_074,,7 Other details,"Verify mandatory fields to be insert-
+1 Verify Member Of Institute of Town Planners Of India 
+2 Member Of Indian Institute of Architecture
+3 Empanelment/Registration in Other Government/Semi-Government Organisation in MP
+4 Verify 'Save' button.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_075,,8 Acknowledgement,"Verify-
+1 Enable Submit button when user provides consent on condition.
+2 User should be able to view terms & condition details on cliking link.",As expected,Pass,,1/20/2026,Open Bugs needs to be fixed,,,,,,
+TC_AR_076,,9 Edit before submit,1 Verify user should be allowed to edit/modify all details before final submit.,As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_077,,10 Generate Application number ,1 Verify application no is generating after submit.,Not as expected,Fail,,1/20/2026,,Pass,1/27/2026,,,,
+TC_AR_078,Flow Test 6                              (Limited Liability Partnership (LLP),GUI Home page,"1 User should land at mai page that is Dashboard.
+2 User should get Logout button.
+3 User should get option to work with light/dark theme.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_079,,Open form for Empanelment process.,"1 Manage application > Add new.
+2 Observe application details,certicate details,other details,acknowledgement & submit.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_080,,Mandatory fields,Verify following details are mandatory,Not as expected,fail,,1/20/2026,when user try to submit without filling mandatory  fields it should be redirect to the empity field instead of long loading on page ,Pass,1/27/2026,,,,
+TC_AR_081,,1 Architect details,"1 Verify all mandatory fields-Architect name (Certificate issued to),Gender,DOB,Upload latest photograph Mobile no,Email,PAN,Experience,Turn over,Income tax paid
+2 Do not save Architect details if any field is missing.
+3 Allow edit before sumit.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_082,,Unique details ,1 Firm  registration number must  be unique           2 Firm GST number must be unique                       3 Firm Pan number must be unique ,not as expected,fail,,1/20/2026,Pan number should unique after  confirmation  by bA ,Pass,1/28/2026,,,,
+TC_AR_083,,2 Qualification details,"1 Verify Graduation field is mandatory with edit.
+2 Verify separate button add quaificatin details.
+3 Verify Post graduation field is optional.
+4 Verify edit of Qualification details.
+4 Submit button should save & update records.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_084,,3 Ceritificate details,"1 Verify all mandatory fields-Architect Name (Certificate Issued To) ,Council of Architecture,Upload COA(max 2mb),Certificate Issued Dated,Is Certificate Lifetime Valid?,auto certificate validity calculate
+2 verify submit button",Not as expected,Fail,,1/20/2026,when uploading the file in the COA file input filed and submit it again show  no file chosen although view of privious pdf file is available ,,,,,,
+TC_AR_085,,4  ITR  Documents ,"Verify Document Upload details-
+1 Allow multiple file uploads having names.
+2 Allow edit of inserted documents.
+3 Allow delete of inserted records.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_086,, 5 Project Details,"Verify insert of project details -
+1 Verify project name
+2 Verify place.
+3 Verify cost is inserted in numbers.
+4 Verify year is valid & future year not allowed.
+5 Verify status from the dropdown.
+6 Verify edit & delete of project record
+7 Verify generate Project Id(unique).
+8 verify view record in the table.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_087,,6 Shareholders,At least one shareholder should be ,As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_088,,7 Other details,"Verify mandatory fields to be insert-
+1 Verify Member Of Institute of Town Planners Of India 
+2 Member Of Indian Institute of Architecture
+3 Empanelment/Registration in Other Government/Semi-Government Organisation in MP
+4 Verify 'Save' button.",As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_089,,8 Acknowledgement,"Verify-
+1 Enable Submit button when user provides consent on condition.
+2 User should be able to view terms & condition details on cliking link.",As expected,Pass,,1/20/2026,Open Bugs needs to be fixed,,,,,,
+TC_AR_090,,9 Edit before submit,1 Verify user should be allowed to edit/modify all details before final submit.,As expected,Pass,,1/20/2026,,,,,,,
+TC_AR_091,,10 Generate Application number ,1 Verify application no is generating after submit.,Not as expected,Fail,,1/20/2026,,Pass,1/27/2026,,,,
+TC_AR_092,Firm Type,Change Firm Type,1 Verfiy Architect is able to change firm type from propritor to other & vice versa when applciation reverted by Chief Architect.,As expected,Pass,,2/12/2026,,,,,,,
+TC_AR_093,Unique Details,GST number,"1 Verify GST should be unique
+2 Already inserted GST can't be inserted again.
+3 Throw error on GST duplicacy
+4 Don't accept same GST when already inserted by any other architect.",As expected,Pass,,1/27/2026,,,,,,,
+TC_AR_094,,PAN number,"1 Verify PAN should be unique
+2 Already inserted PAN can't be inserted again.
+3 Throw error on PAn duplicacy
+4 Don't accept same PAN when already inserted by any other architect.",As expected,Pass,,1/27/2026,,,,,,,
+TC_AR_095,"User Story 2 (25664)– Upload Documents
+
+As an Architect, I want to upload all required documents so that my application meets compliance standards.",,"1: System must validate document formats and sizes.
+2: All mandatory documents must be uploaded.
+3: Missing documents must be highlighted.
+4: Final submission must be blocked until all documents are valid.",Not as expected,Fail,,1/13/2026,Open Bugs needs to be fixed,Pass,1/27/2026,,,,
+TC_AR_096,"User Story 3 (25665) – View/Re-Submit Reverted Application
+
+As an Architect, I want to update my application based on feedback so that I can resubmit it for approval.",,"1: Reverted applications must display all remarks from the Chief Architect.
+2: Architect must be able to edit relevant fields.
+3: Resubmitted application must again be routed for approval.
+4: Status must display “Resubmitted.”",As expected,Pass,,1/13/2026,after submit appn details not freezing & on revert update button not appearing.,Pass,1/27/2026,,,,
+TC_AR_097,"User Story 4 (25666) – Change Architect Type
+
+As an Architect, I want the ability to change my category (Individual / Firm) before final submission.",,"1: System must allow category change only before submission.
+2: Changing category must refresh the application form fields.
+3: All previously filled fields must be reset after type change.
+4: System must display a confirmation message before resetting.",No such functionality exists,,,1/13/2026,,,,,,,
+TC_AR_098,"User Story 1 (25667) – Review Application
+
+As a Chief Architect, I want to review architect applications so that I can validate their eligibility.",,"1: System must display full application details.
+2: System must show uploaded documents.
+3: System must allow zoom/view/download of documents.
+4: Application cannot be approved if any document is missing.",As expected,,,1/13/2026,,Pass,1/27/2026,,,,
+TC_AR_099,"User Story 2 (25668) – Approve Application
+
+As a Chief Architect, I want to approve valid applications so the architect can proceed to payment.",,"1: Approval must immediately update application status.
+2: Payment option must be activated in the architect’s login.
+3: Action must be recorded in logs with timestamp.",As expected,,,1/13/2026,Payment module yet to be developed.,Pass,1/28/2026,,,,
+TC_AR_100,"User Story 3 (25669) – Revert Application
+
+As a Chief Architect, I want to revert applications with remarks so that architects can correct issues.",,"1: Remarks are mandatory for revert.
+2: Application must be routed back to architect’s login.
+3: Status must display “Reverted with Remarks.”",As expected,-,,1/13/2026,,Pass,1/26/2026,,,,
+TC_AR_101,"User Story 4 (25670) – Activity Logs/History Trail
+As a Chief Architect, I want to view the activity logs of the application so I can track progress.",,"1: Logs must display activity name, date, time, and status.
+2: Logs must include actions taken by both Architect and Chief Architect.
+3: Logs must be read-only.",As expected,,,1/13/2026,,Pass,1/28/2026,,,,
+TC_AR_102,"User Story 1 (25671) – Select Payment Years (for First Payment)
+
+As an architect, I want to select the number of years for annual fees so that I can pay based on certificate validity.",,"1: System must show only valid years based on certificate validity.
+2: Selection cannot exceed maximum allowed years.
+3: Registration fee must be auto-selected.
+4: Total amount updates automatically based on selected years.",Functionality under development,,,1/13/2026,,,,,,,
+TC_AR_103,"User Story 2 (25672) – Select Payment Years (After done first payment)
+
+As an architect, I want to select the number of years for annual fees so that I can pay based on certificate validity.
+
+",,"1: System must show only valid years based on certificate validity.
+2: Selection cannot exceed maximum allowed years.
+3: Total amount updates automatically based on selected years.",Functionality under development,,,1/13/2026,,,,,,,
+TC_AR_104,"User Story 3 (25673) – Make Online Payment
+
+As an architect, I want to pay my fees through multiple online payment modes so that I can complete the payment conveniently.",,"1: System must redirect to Unipay on clicking Pay Now.
+2: Payment modes must include UPI, Debit Card, Credit Card, Net Banking.
+3: System must display success or failure messages based on payment results.
+4: Receipt must generate after successful payment.
+5: After that system generated the Empanelment Id",Functionality under development,,,1/13/2026,,,,,,,
+TC_AR_105,"User Story 4 (25674)– View Payment Summary
+
+As an architect, I want to view a clear payment summary so that I can verify all details before paying.",,"1: Summary must show registration fees, annual fees, total years, and total payable amount.
+2: Pay Now button must be visible only when details are added.
+3: Summary must update whenever the architect changes selected years.",Functionality under development,,,1/13/2026,,,,,,,
+TC_AR_106,"User Story 5(25675) – View Payment Records
+
+As an architect, I want to view all my past payment history so that I can track my financial transactions.",,"1: Payment Details tab must display receipt number, transaction ID, date, amount, and status.
+2: Records must be non-editable.
+3: System must store and display all previous payments.
+4: Downloads of receipts must be available.",Functionality under development,,,1/13/2026,,,,,,,
+TC_AR_107,"User Story 1 (25676)
+
+Story ID: US_ALG_001
+Title: Access View Logs Section
+As an architect or chief architect,
+I want to access the “View Logs”  of Empanelment Process,
+So that I can see all activities performed in my workflow.",,"1“View Logs” tab should be available while clicking on the Manage Application and Payment menu.
+2 Upon clicking, the system should fetch all relevant activity records.
+3 Data should display in a structured table format.
+4 Each record should include the date, activity name, and activity status.",Functionality under development,,,1/13/2026,,,,,,,
+TC_AR_108,"User Story 2 (25677)
+
+Story ID: US_ALG_002
+Title: Display All Activity Details
+As an architect or chief architect,
+I want to see details of each activity (date, name, and status),
+So that I can monitor the progress and actions taken on my applications.",,"1 Each log must display:
+
+2 Date/Time of the activity
+Activity Name (e.g., Application Submission, Payment Done, Approved, etc.)
+Status (Completed, Reverted, Pending, etc.)
+Logs should appear in chronological order.
+
+3 The system should automatically update logs when new actions occur.",Functionality under development,,,1/13/2026,,,,,,,
+TC_AR_109,"User Story 3 (25678)
+
+Story ID: US_ALG_003
+Title: Filter or Sort Logs (Optional Feature)
+As an architect or chief architect,
+I want to filter or sort activity logs by date, status, or activity type,
+So that I can easily locate specific activities in the log list.",,"1 Filters should include date range, status, and activity name.
+2 Sorting should be possible in ascending or descending order by date.
+3 Filtered results should update instantly on-screen.
+4 If no results are found, the message “No matching logs found” should appear.",Functionality under development,,,1/13/2026,,,,,,,
+TC_AR_110,"User Story 4 (25679)
+
+Story ID: US_ALG_004
+Title: Handle Empty or Error Scenarios
+As an architect or chief architect,
+I want the system to display proper messages when no logs are available or when an error occurs,
+So that I clearly understand the system’s response.",,"1 If no logs are found, show: “No activity logs available.”
+2 If a system error occurs, show: “Unable to load logs. Please try again later.”
+3 Log data must never be partially displayed or corrupted.
+4 Page must remain stable and navigable even during load failure.",Functionality under development,,,1/13/2026,,,,,,,
+TC_AR_111,"US ID:  ARSEC-001 (28079)
+AS-W-1 Land Case Intake Forwarding (Div EE ? CA)
+
+Story Point: 1
+
+
+
+As a Division Executive Engineer (Div EE), I want to forward a Land ID to the Chief Architect with all required land documents and metadata, so that the architectural workflow can be initiated with complete inputs.",,"Verify-
+1 Div EE must be able to select a Land ID and choose Forward to Chief Architect.
+
+2 Div EE must be able to attach/upload documents: Circle, Division, Khasra Map, DTS Survey, Patwari Report, Location Survey, AutoCAD file, Covering Letter, Development Plan (Land Use)
+
+3 System must capture sender user, timestamp, and forwarding remarks
+
+4 Land ID status must change to Intake Submitted (or equivalent “Submitted to CA”)
+
+5 Land ID must appear on CA dashboard in the relevant queue
+
+6 Audit Log must capture document attachments and the forward action","1 ER 1
+2 ER2
+3 ER3
+4 ER4
+5 ER5 
+6 --",Pass,,2/19/2026,Notesheet is static doc,,,,,,
+TC_AR_112,"Story ID: ARSEC-002 (28080)
+AS-W-2 Case Assignment & Execution Mode Selection (CA)
+
+Story Point: 3
+
+As a Chief Architect, I want to assign a submitted Land ID to an Architect/Assistant Architect and select execution mode (In-House or Competition), so that the correct execution workflow is triggered and ownership is established.",,"Verify-
+1 CA must be able to open any Land ID with status Intake Submitted and select Assign & Select Mode
+
+2 CA must be able to select Execution Mode: In-House / Competition
+
+3 CA must be able to upload/attach the Notesheet at the time of assignment (mandatory)
+
+4 CA must be able to select Designation ? User Name via two-level dropdown (Architect / Asst Architect) populated based on availability/role
+
+5 System must record assignee designation, assignee name, mode, CA user, timestamp, and remarks
+
+6 Assignment must appear on CA + assignee dashboards
+
+7 Assignment must be editable only until first downstream action by assignee
+
+8 Audit Log must capture assignment, mode selection, and edits","ER1
+ER2
+ER3
+ER4
+ER5
+ER6
+7---
+8--",Pass,,2/19/2026,,,,,,,
+TC_AR_113,"Story ID: ARSEC-003 (28081)
+AS-W-3 Layout Preparation Task Routing (Architect/Asst Architect)
+
+Story Point: 3
+
+As an Architect/Assistant Architect, I want to decide whether to prepare the Layout myself or forward the Land ID to Draftsman, so that the Layout can be created efficiently as per work allocation",,"Verify-
+1 Assigned Architect/Asst Architect must be able to open the Land ID and select Create Layout
+
+2 System must provide two options: Upload Layout (Self) OR Forward to Draftsman
+
+3 If Upload Layout (Self) is selected: user must be able to upload layout file and submit to CA for review
+
+4 If Forward to Draftsman is selected: user must be able to select Draftsman (Designation ? User Name) and forward with remarks
+
+5 Status must reflect the active owner (e.g., “Layout in Progress – Draftsman” / “Layout in Progress – Architect”)
+
+6 Audit Log must capture routing choice, assignee, timestamp, and remarks.","ER1
+ER2
+ER3
+ER4
+5--
+ER6
+",Pass,,2/25/2026,,,,,,,
+TC_AR_114,"Story ID: ARSEC-004 (28082)
+AS-W-4 Draftsman Layout Upload & Return (Draftsman ? Architect/Asst Architect)
+
+Story Point:3
+
+As a Draftsman, I want to upload the Layout file and send it back to the Architect/Assistant Architect who forwarded the Land ID, so that the reviewer can validate and finalize the Layout.",,"Verify-
+1 Draftsman must be able to view Land IDs assigned to them.
+
+2 Draftsman must be able to upload a layout document (file types as per system rule).
+
+3 Draftsman must be able to send the layout back to the immediate sender (Architect/Asst Architect) with remarks.
+
+4 System must maintain version history of uploads.
+
+5 Audit Log must capture upload, send-back action, timestamps, and remarks.","ER1 Draftman seeing Subland ids.
+ER2
+ER3
+ER4 (Reuploaded/overwritten history not maintained)
+ER5",Pass,,2/26/2026,1 Re-uploaded old doc history not maintained.,,,,,,
+TC_AR_115,"Story ID: ARSEC-005 (28083)
+AS-W-5 Review Cycle Between Architect/Asst Architect and Draftsman
+
+Story Point: 3
+
+As an Architect/Assistant Architect, I want to review the Draftsman’s Layout and request revisions or accept it, so that the layout is finalized before sending to CA.",,"Acceptance Criteria:
+
+1 Architect/Asst Architect must be able to review the latest layout version and either Approve or Revert to Draftsman.
+
+2 If Revert: remarks are mandatory and task ownership must shift back to Draftsman.
+
+3 Multiple revert-forward cycles must be supported until Architect/Asst Architect marks layout as Finalized for CA Review.
+
+4 System must store each version with uploader, timestamp, and remarks.
+
+5 Audit Log must capture each revert/forward event.","ER1
+ER2
+ER3
+ER4
+ER5
+",Pass,,2/26/2026,,,,,,,
+TC_AR_116,"Story ID: ARSEC-006 (28084)
+AS-W-6 Submit Layout to CA for Validation (Architect/Asst Architect ? CA)
+
+Story Point: 3
+
+As an Architect/Assistant Architect, I want to submit the finalized Layout to the Chief Architect, so that CA can validate, suggest changes, and finalize it for onward processing.",,"Verify-
+
+1 Architect/Asst Architect must be able to submit layout to CA only after selecting Finalized for CA Review.
+
+2 System must lock Draftsman edits while layout is under CA review.
+
+3 CA must receive the Land ID in Layout Review queue.
+
+4 Audit Log must capture submission event and final version reference.","ER1
+2 --didn't understand
+3 ER3
+ER4",Pass,,2/27/2026,,,,,,,
+TC_AR_117,"Story ID: ARSEC-007 (28085)
+AS-W-7 CA Review / Revert / Finalize Layout (CA ? Architect/Asst Architect ? Draftsman)
+
+
+Story Point: 3
+
+As a Chief Architect, I want to review the submitted Layout, revert it to Architect/Assistant Architect for changes (and indirectly to Draftsman if needed), or finalize it, so that the final approved Layout is ready for execution by EE.",,"Acceptance Criteria:
+
+1 CA must be able to view layout version history and current version.
+
+2 CA must be able to Finalize Layout OR Revert to Architect/Asst Architect with mandatory remarks.
+
+3 When reverted, ownership must move to Architect/Asst Architect, who can either update themselves or revert to Draftsman.
+
+4 System must support multiple iterative cycles among CA ? Architect/Asst Architect ? Draftsman until Finalized by CA.
+
+5 When CA finalizes status must update to Layout Finalized and become read-only (except as per authorized amendment workflow, if any).
+
+6 Audit Log must capture every revert/forward/finalize event and remark.","ER1
+ER2
+ER3
+ER4
+ER5
+ER6",Pass,,2/27/2026,,,,,,,
+TC_AR_118,"Story ID: ARSEC-008 (28086)
+AS-W-8 Forward Finalized Layout to Executive Engineer (CA ? EE)
+Story Point: 1
+
+As a Chief Architect, I want to forward the finalized Layout to the Executive Engineer, so that the permission and building plan process can begin.",,"Verify
+
+1 CA must be able to forward Land ID to EE only when status is Layout Finalized.
+
+2 CA must be able to attach the final layout version in the forward action.
+
+3 EE must receive the Land ID in their dashboard/queue.
+
+4 Audit Log must capture forward event, recipient, and document reference.","ER1
+ER2
+ER3
+ER4",Pass,,3/2/2026,,,,,,,
+TC_AR_119,"Story ID: ARSEC-009(28087)
+AS-W-9 EE Upload T&CP Permission + Building Plan Request Letter (EE ? CA)
+Story Point: 1
+
+As an Executive Engineer, I want to upload T&CP permission and a letter requesting building plan/drawing, and forward it to CA, so that building drawing preparation can be initiated for the same Land ID.",,"Verify-
+
+1 EE must be able to upload T&CP office permission document.
+
+2 EE must be able to upload a Building Plan Request Letter document.
+
+3 EE must be able to forward these to CA with remarks.
+
+4 Status must update to Building Drawing Requested (or equivalent).
+
+5 Audit Log must capture uploads and forward action.","ER1
+ER2 other doc
+ER3
+ER4 
+ER5
+",Pass,,3/6/2026,,,,,,,
+TC_AR_120,"Story ID: ARSEC-010(28088)
+AS-W-10 Re-Assign Building Drawing to Same Assignee (CA ? Architect/Asst Architect)
+
+Story Point: 3
+
+As a Chief Architect, I want to forward the building drawing preparation request to the same Architect/Assistant Architect previously assigned for the Land ID, so that continuity is maintained for the same case.",,"Verify-
+
+1 When CA receives building drawing request from EE, system must display the previously assigned Architect/Asst Architect as default recipient.
+
+2 CA must be able to forward to the same assignee with remarks.
+
+3 If CA changes assignee (if allowed), system must require reason and capture in audit log.
+
+4 The building drawing task must appear in Architect/Asst Architect dashboard.
+
+5 Audit Log must capture the forward and assignee mapping.","ER1
+ER2
+3---
+ER4
+ER5",Pass,,3/6/2026,,,,,,,
+TC_AR_121,"Story ID: ARSEC-011(28089)
+AS-W-11 Building Drawing Preparation Workflow (Repeat of Layout Workflow)
+Story Point: 3
+
+As an Architect/Assistant Architect, I want to prepare and finalize the building drawing for the same Land ID using the same review cycles (self-upload or draftsman route + CA finalization), so that the approved building plan is produced for permission processing.",,"Verify-
+
+1 System must support the same routing options as Layout: self upload OR forward to Draftsman.
+
+2 Draftsman upload and Architect review cycles must be supported for building drawing.
+
+3 Architect/Asst Architect must be able to submit finalized drawing to CA.
+
+4 CA must be able to revert/finalize building drawing similar to layout.
+
+5 Versioning and audit logging must apply separately for building drawing artifacts.
+
+6 Finalized building drawing must be forwardable to EE.","ER1
+ER2
+ER3
+ER4
+ER5
+ER6",Pass,,3/6/2026,,,,,,,
+TC_AR_122,"Story ID: ARSEC-012 (28090)
+AS-W-12 Permission Tracking and Distribution (EE ? CA/Architect/Asst Architect)
+
+Story Point: 1
+
+As an Executive Engineer, I want to upload and share all obtained permissions (T&CP, Nagar Nigam, and others) with CA, Architect, and Assistant Architect, so that all stakeholders have access to final approvals for the Land ID.
+
+",,"Verify-
+
+1 EE must be able to upload permission documents with a Permission Type (T&CP / Nagar Nigam / Other).
+
+2 EE must be able to forward/share permissions to multiple recipients: CA, Architect, Asst Architect.
+
+3 System must record recipients, timestamp, and remarks.
+
+4 Permissions must be visible under the Land ID document section for all authorized roles.
+
+5 Audit Log must capture uploads and distribution events.","ER1
+ER2
+ER3
+ER4
+ER5",Pass,,3/6/2026,,,,,,,
+                         Scenario wise flow submission sequence (In house),,,,,,,,,,,,,,
+,End to End flow testing-,,,,,,,,,,,,,
+TC_AR_123,Flow 1 ,"land Id- 0100/NA/G001
+Sub-land Id- 0100/NA/G001-S4","Verify business flow with this scenario-
+CA> In house>CA(notesheet chnaged)> asst arch>draftsman (doc chnaged)>asst arch >draftman > CA>EE",As expected,pass,,3/25/2026,In house architect not allowing forward to asst achitect,Issue fixed,,,,,
+TC_AR_124,Flow 2 ,"Land Id: 0105/NA/A003 
+Sub Land-ID : 0105/NA/A003-S5","Verify business flow with this scenario-
+CA>IA>AA(Layout Plan)>CA(notesheet chnaged)>DF (one doc updated & one added) >CA>EE>CA(Final submit) ",As expected,pass,,3/26/2026,,,,,,,
+TC_AR_125,Flow 3,"Land Id: 0105/NA/A003
+Sub Land-ID : 0105/NA/A003-S3","Verify business flow with this scenario-
+CA>IA>CA>IA>DF(all supporting doc added & building ,lyout) >IA>DF(reupload)>AA>CA>DF(reuplaod layout)>CA(final submit) ",As expected,pass,,3/26/2026,,,,,,,
+TC_AR_126,In house arch to Asst arch,,"Verify allow:
+In house architect > Asst architect",not as expected,Fail,,3/6/2026,Fixed now,Issue fixed,,,,,
+TC_AR_127,Allow Notesheet onlt at Chief architect,,Verify Chief architect to upload Notesheet file at his role only with multiple times.,As expected,Pass,,3/31/2026,,,,,,,
+TC_AR_128,File type upload validation,,Verify allowed upload file type for  ,,,,,,,,,,,
+,Final submit ,,Verify Allow final submit whem Building Plan & Layout plan is uploaded by.,As expected,Pass,,5426,,,,,,,
+,,,,,,,,,,,,,,
+                         Competition Workflow,,,,,,,,,,,,,,
+,"AS-W-COMP-13 (28704)
+Create & Publish Competition Request to IT Cell (CA ? IT Cell)
+
+Story ID: 
+
+ARSEC-013
+
+As a Chief Architect, I want to send the Notesheet and competition content to IT Cell for publishing a competition notification on the MPHIDB website, so that eligible empanelled private architects can apply.",,"Verify:-
+1 CA must be able to create a Competition against a Land ID (mode = Competition).
+
+2 CA must be able to upload Notesheet and competition content/matter.
+
+3 CA must be able to forward the competition publish request to IT Cell.
+
+4 System must allow multiple competitions to be active simultaneously (uniquely identified by competition name/ID).
+
+5 Audit Log must capture creation, documents, and forwarding event.","ER1
+ER2
+3 ruled out
+ER4
+ER5",Pass,,4/1/2026,,,,,,,
+,,,,,,,,,,,,,,
+,Apply for Competition,,,,,,,,,,,,,
+,Listing at Empaneled Architect,,,,,,,,,,,,,
+,Uplaod Presentation,,,,,,,,,,,,,
+,Select any one Empaneled Architect,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,Notesheet upload Only by CA,,"Verify notesheet documents:
+1 Only CA can upload & update.
+2 Only after Empaneled architect selection it show appear.",2 Not as Expected.,Fail,,4/7/2026,,,,,,,
+,"AS-W-COMP-14 (28705)
+Restrict Applications to Empanelled Private Architects
+
+Story ID: 
+
+ARSEC-014
+
+As a System Administrator/IT Cell, I want to ensure only empanelled private architects (consultant architects) can apply to competitions, so that applications are restricted to eligible participants.",,"Verify:-
+
+1 Competition application must require applicant validation against an empanelled architect master list.
+
+2 Non-empanelled users must not be able to submit applications.
+
+3 System must store applicant details: name, CoA, mobile, email, address, PPT upload.
+
+4 Audit Log must capture application submissions with timestamps.",Credential awaiting to validate negative scenarios,,,4/2/2026,COA not showing for some users.,,,,,,
+,"AS-W-COMP-15(28707)
+View Competition Applicants Post Expiry (CA)
+
+Story ID: 
+
+ARSEC-015
+
+As a Chief Architect, I want to view the list of applicants for a competition after the last date, so that I can conduct evaluation and select a winner offline.",,"Verify:-
+
+1 After competition expiry date, CA must be able to select competition name and view all applicants in a list/table.
+
+2 Table must display: name, CoA, mobile, email, address, PPT file (downloadable).
+
+3 System must prevent new applications after expiry.
+
+4 Audit Log must capture access and downloads (if required by policy)","ER1
+ER2
+3 To be test (test data preparation needed)
+",Pass,,4/6/2026,,,,,,,
+,"AS-W-COMP-16 (28708)
+Upload Offline Competition Outcome Documents & Forward to DHC (CA ? DHC)
+
+Story ID: 
+
+ARSEC-016
+
+As a Chief Architect, I want to upload the offline competition outcome documents (LoA, MoM, approval letter) and forward them to the Deputy Housing Commissioner, so that the work order issuance can be initiated.",,"Verify:-
+
+1 CA must be able to upload: Letter of Appointment (LoA), Minutes of Meeting, Approval Letter.
+
+2 CA must be able to forward the package to DHC with remarks.
+
+3 System must update status to Competition Awarded – Sent to DHC (or equivalent).
+
+4 Audit Log must capture uploads and forwarding.","Not as expected
+ER 1 fail
+ER2
+ER3 
+ER4",Pass,,4/6/2026,Approval letter upload file is not available.,,,,,,
+,"AS-W-COMP-17(28709)
+Issue Work Order (DHC ? EE)
+
+Story ID: 
+
+ARSEC-017
+
+As a Deputy Housing Commissioner, I want to upload and issue the Work Order based on LoA and forward it to the Executive Engineer, so that the agreement process can begin.",,"Verify:-
+
+1 DHC must be able to upload the Work Order document.
+
+2 DHC must be able to forward it to EE with remarks.
+
+3 System must update status to Work Order Issued.
+
+4 Audit Log must capture upload and forward action.","1 Not as expected
+2 ER
+3 not as expected 
+ER4",Fail,,4/6/2026,"1 upload Workorder field is NA in dropdown.
+",,,,,,
+,"AS-W-COMP-18(28710)
+Create & Upload Agreement (EE) and Share with Stakeholders (EE ? DHC/AHC/CA)
+
+Story ID: 
+
+ARSEC-018
+
+As an Executive Engineer, I want to upload the signed Agreement document (between EE and winning private consultant) and forward it along with required documents to DHC, AHC, and CA, so that the competition execution record is complete and accessible to all concerned authorities.",,"Verify:-
+
+1 EE must be able to upload the Agreement document and mark it as signed/executed.
+
+2 EE must be able to forward agreement + required documents to DHC, AHC, and CA.
+
+3 System must capture recipients, timestamp, and remarks.
+
+4 Status must update to Agreement Executed / Competition Execution Completed (as per lifecycle).
+
+5 Audit Log must capture upload and distribution.",ER1,,,,,,,,,,
+,"AS-W-COMP-19 (28712)
+Document Versioning + Audit Trail for Forward/Revert Cycles
+
+Story ID: 
+
+ARSEC-019
+
+As a System, I want to maintain document versioning and audit trail for every upload, revert, forward, and finalize action across roles, so that accountability and traceability are ensured throughout the land case lifecycle.",,"Verify:-
+
+1 Every upload must create a new version with uploader, role, timestamp, and remarks.
+
+2 Every forward/revert/finalize must be logged with from-user, to-user, action type, timestamp, and remarks.
+
+3 System must display version history per document type (Layout / Building Drawing / Permissions / Competition Docs).
+
+4 System must prevent editing of “Finalized by CA” outputs unless an authorized amendment action is triggered (if applicable).
+
+5 Audit log must be exportable/viewable as per role permission.",,,,,,,,,,,
+,Empanelled architect,,,,,,,,,,,,,
+,GUI & tab navigations,,,,,,,,,,,,,
+,Upload file type & size ,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,

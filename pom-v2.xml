@@ -9,11 +9,11 @@
 	<name>MP Housing Board</name>
 	<dependencies>
 		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-java</artifactId>
-			<version>4.44.0</version>
-			<scope>compile</scope>
-		</dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <version>4.45.0</version>
+    <scope>compile</scope>
+</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>

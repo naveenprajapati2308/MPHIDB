@@ -40,7 +40,8 @@ public class FrameworkRunnerService {
 
     private static void handleHealth(HttpExchange exchange) throws IOException {
         boolean mavenAvailable = checkCommandAvailable("mvn") || checkCommandAvailable("mvn.cmd");
-        String json = "{\"status\":\"UP\",\"port\":" + exchange.getLocalAddress().getPort() + ",\"mavenAvailable\":" + mavenAvailable + "}";
+        String json = "{\"status\":\"UP\",\"port\":" + exchange.getLocalAddress().getPort() + ",\"mavenAvailable\":"
+                + mavenAvailable + "}";
         send(exchange, 200, json, "application/json");
     }
 
@@ -49,7 +50,10 @@ public class FrameworkRunnerService {
                 + "\"running\":" + running + ","
                 + "\"executionId\":" + (activeExecutionId == null ? "null" : "\"" + activeExecutionId + "\"") + ","
                 + "\"suiteXml\":" + (activeSuiteXml == null ? "null" : "\"" + activeSuiteXml + "\"") + ","
-                + "\"startedAt\":" + (activeStartedAt == null ? "null" : "\"" + activeStartedAt.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) + "\"") + ","
+                + "\"startedAt\":"
+                + (activeStartedAt == null ? "null"
+                        : "\"" + activeStartedAt.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) + "\"")
+                + ","
                 + "\"status\":\"" + activeStatus + "\""
                 + "}";
         send(exchange, 200, json, "application/json");
@@ -64,7 +68,7 @@ public class FrameworkRunnerService {
 
             for (Path path : xmlFiles) {
                 String filename = path.getFileName().toString();
-                
+
                 // Only return the non-v2 equivalents in the list, so the portal stays clean
                 if (filename.endsWith("-v2.xml")) {
                     continue;
@@ -97,11 +101,12 @@ public class FrameworkRunnerService {
         for (int i = 0; i < suites.size(); i++) {
             Map<String, String> suite = suites.get(i);
             sb.append("{")
-              .append("\"key\":\"").append(suite.get("key")).append("\",")
-              .append("\"name\":\"").append(suite.get("name")).append("\",")
-              .append("\"xml\":\"").append(suite.get("xml")).append("\"")
-              .append("}");
-            if (i < suites.size() - 1) sb.append(",");
+                    .append("\"key\":\"").append(suite.get("key")).append("\",")
+                    .append("\"name\":\"").append(suite.get("name")).append("\",")
+                    .append("\"xml\":\"").append(suite.get("xml")).append("\"")
+                    .append("}");
+            if (i < suites.size() - 1)
+                sb.append(",");
         }
         sb.append("]");
 
@@ -120,7 +125,8 @@ public class FrameworkRunnerService {
         }
 
         String body;
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(exchange.getRequestBody(), StandardCharsets.UTF_8))) {
+        try (BufferedReader reader = new BufferedReader(
+                new InputStreamReader(exchange.getRequestBody(), StandardCharsets.UTF_8))) {
             body = reader.lines().collect(Collectors.joining("\n"));
         }
 
@@ -162,11 +168,14 @@ public class FrameworkRunnerService {
                 command.add("pom-v2.xml");
                 command.add("test");
                 command.add("-DsuiteXmlFile=" + runSuite);
-                if (execId != null) command.add("-DexecutionId=" + execId);
-                if (portalUrl != null) command.add("-DportalUrl=" + portalUrl);
-                
+                if (execId != null)
+                    command.add("-DexecutionId=" + execId);
+                if (portalUrl != null)
+                    command.add("-DportalUrl=" + portalUrl);
+
                 String apiKey = System.getenv("PORTAL_API_KEY");
-                if (apiKey != null) command.add("-DportalApiKey=" + apiKey);
+                if (apiKey != null)
+                    command.add("-DportalApiKey=" + apiKey);
 
                 command.add("-DopenReport=false");
 
@@ -178,7 +187,8 @@ public class FrameworkRunnerService {
                 activeProcess = builder.start();
 
                 // Read output to avoid blocking the process
-                try (BufferedReader r = new BufferedReader(new InputStreamReader(activeProcess.getInputStream(), StandardCharsets.UTF_8))) {
+                try (BufferedReader r = new BufferedReader(
+                        new InputStreamReader(activeProcess.getInputStream(), StandardCharsets.UTF_8))) {
                     String line;
                     while ((line = r.readLine()) != null) {
                         System.out.println("[Maven Process] " + line);
@@ -222,7 +232,7 @@ public class FrameworkRunnerService {
 
     private static boolean checkCommandAvailable(String cmd) {
         try {
-            Process p = Runtime.getRuntime().exec(new String[]{cmd, "--version"});
+            Process p = Runtime.getRuntime().exec(new String[] { cmd, "--version" });
             p.destroy();
             return true;
         } catch (Exception e) {
@@ -232,14 +242,17 @@ public class FrameworkRunnerService {
 
     private static String getJsonField(String json, String fieldName) {
         int index = json.indexOf("\"" + fieldName + "\"");
-        if (index == -1) return null;
+        if (index == -1)
+            return null;
         int colonIndex = json.indexOf(":", index);
-        if (colonIndex == -1) return null;
+        if (colonIndex == -1)
+            return null;
 
         int startQuote = json.indexOf("\"", colonIndex);
         int nextComma = json.indexOf(",", colonIndex);
         int nextBrace = json.indexOf("}", colonIndex);
-        int limit = (nextComma != -1 && nextBrace != -1) ? Math.min(nextComma, nextBrace) : (nextComma != -1 ? nextComma : nextBrace);
+        int limit = (nextComma != -1 && nextBrace != -1) ? Math.min(nextComma, nextBrace)
+                : (nextComma != -1 ? nextComma : nextBrace);
 
         if (startQuote != -1 && (limit == -1 || startQuote < limit)) {
             int endQuote = json.indexOf("\"", startQuote + 1);
@@ -256,7 +269,8 @@ public class FrameworkRunnerService {
         return null;
     }
 
-    private static void send(HttpExchange exchange, int statusCode, String body, String contentType) throws IOException {
+    private static void send(HttpExchange exchange, int statusCode, String body, String contentType)
+            throws IOException {
         byte[] bytes = body.getBytes(StandardCharsets.UTF_8);
         exchange.getResponseHeaders().set("Content-Type", contentType + "; charset=utf-8");
         exchange.sendResponseHeaders(statusCode, bytes.length);

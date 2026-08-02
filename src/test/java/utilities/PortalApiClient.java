@@ -215,8 +215,21 @@ public class PortalApiClient {
     }
 
     public static void pushTestFailed(ITestResult result, String screenshotPath) {
+        pushTestFailed(result, screenshotPath, null);
+    }
+
+    /**
+     * @param rootCause the actual on-page error text captured by
+     * {@link FailureDiagnostics#captureRootCause} at failure time (e.g. "Request
+     * failed with status code 404"), if any was found - distinct from
+     * exceptionMessage, which is just the Selenium exception's own message (e.g.
+     * "element not clickable") and rarely explains why the page never reached the
+     * expected state. Null/empty is fine - the field is simply omitted from the
+     * payload so the portal isn't sent a false "no root cause" signal.
+     */
+    public static void pushTestFailed(ITestResult result, String screenshotPath, String rootCause) {
         long duration = result.getEndMillis() - result.getStartMillis();
-        
+
         String relativePath = "";
         if (screenshotPath != null) {
             int index = screenshotPath.indexOf("screenShots");
@@ -249,6 +262,9 @@ public class PortalApiClient {
                 + "\"exceptionMessage\":\"" + escapeJson(exMsg) + "\","
                 + "\"stackTrace\":\"" + escapeJson(stackTrace) + "\","
                 + "\"screenshotPath\":\"" + escapeJson(relativePath) + "\""
+                + (rootCause != null && !rootCause.isEmpty()
+                        ? ",\"actualReason\":\"" + escapeJson(rootCause) + "\""
+                        : "")
                 + "}";
         pushEvent("TEST_FAILED", data);
     }

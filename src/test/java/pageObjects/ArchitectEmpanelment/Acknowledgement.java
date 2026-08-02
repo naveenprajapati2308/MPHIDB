@@ -68,4 +68,19 @@ public class Acknowledgement extends DriverBase {
 	    );
 	    ClickUtils.smartClick(driver, submitBtn);
 	}
+
+	/**
+	 * Whether the final Submit is currently enabled - per TC_AR_019 it must
+	 * stay disabled until the consent + terms checkboxes are ticked.
+	 */
+	public boolean isFinalSubmitEnabled() {
+	    try {
+	        WebElement submitBtn = submitSectionContainer.findElement(
+	            By.xpath(".//button[normalize-space()='Submit']")
+	        );
+	        return submitBtn.isEnabled();
+	    } catch (Exception notRendered) {
+	        return false;
+	    }
+	}
 }

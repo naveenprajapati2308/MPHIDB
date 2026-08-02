@@ -13,10 +13,7 @@
         <classes>
 
           	<class name="testCases.LandModule.login" />
-			<class name="testCases.LandModule.landCreation" />
-			<class name="testCases.LandModule.AddKhasra" />
-			<class name="testCases.LandModule.SurveyDetails" />
-			<class name="testCases.LandModule.ForwordToCA" />
+			<class name="testCases.LandModule.GovernmentLandCreation" />
            
 
         </classes>
@@ -29,8 +26,13 @@
         <classes>
 
             <class name="testCases.ArchitectEmpanelment.TC_001_LaunchUrl"/>
-            <class name="testCases.ArchitectEmpanelment.TC_002_SignUp"/>
-            <class name="testCases.ArchitectEmpanelment.TC_003_SignIn"/>
+            <class name="testCases.ArchitectEmpanelment.SignupNegativeTests"/>
+            <class name="testCases.ArchitectEmpanelment.IndividualEmpanelmentFlow"/>
+            <class name="testCases.ArchitectEmpanelment.ProprietorshipEmpanelmentFlow"/>
+            <class name="testCases.ArchitectEmpanelment.PartnershipEmpanelmentFlow"/>
+            <class name="testCases.ArchitectEmpanelment.PvtLtdEmpanelmentFlow"/>
+            <class name="testCases.ArchitectEmpanelment.PublicLtdEmpanelmentFlow"/>
+            <class name="testCases.ArchitectEmpanelment.LlpEmpanelmentFlow"/>
 
         </classes>
 
